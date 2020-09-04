@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="计算机组成原理复习存储器存储的层次  缓存-主存     主存-辅存  DRAM刷新 集中 分散 异步  存储器封装成芯片几片一组（位相等） 几组一片 总共几片 存储器与CPU的连接容量的扩展  位扩展  把几个芯片当成一个芯片来用 让它们同时工作  用相同的信号来连接    字扩展     地址线  CPU地址线的低位往往与芯片连接 高位可以扩展也可用于片选等  字、位扩展   芯片的选择  R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2020/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="计算机组成原理复习存储器存储的层次  缓存-主存     主存-辅存  DRAM刷新 集中 分散 异步  存储器封装成芯片几片一组（位相等） 几组一片 总共几片 存储器与CPU的连接容量的扩展  位扩展  把几个芯片当成一个芯片来用 让它们同时工作  用相同的信号来连接    字扩展     地址线  CPU地址线的低位往往与芯片连接 高位可以扩展也可用于片选等  字、位扩展   芯片的选择  R">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/jHLFvmGsaxtbTir.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/12/4ibPsFK2d6UMj5t.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/15/AnFl9EdWmkaVXZQ.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/13/dnPjQa2ZmFo7z3B.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/13/2h4TBHEUygWwcGo.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/13/Rw2AnNFZdkirJbC.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/15/4Lr1miwJC6AspeH.png">
+<meta property="article:published_time" content="2020-07-12T15:11:29.047Z">
+<meta property="article:modified_time" content="2020-07-15T14:57:35.127Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/07/12/jHLFvmGsaxtbTir.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-计算机组成原理复习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/" class="article-date">
+  <time datetime="2020-07-12T15:11:29.047Z" itemprop="datePublished">2020-07-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机组成原理复习"><a href="#计算机组成原理复习" class="headerlink" title="计算机组成原理复习"></a>计算机组成原理复习</h1><h2 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h2><p>存储的层次</p>
+<blockquote>
+<p>缓存-主存     主存-辅存</p>
+</blockquote>
+<h3 id="DRAM"><a href="#DRAM" class="headerlink" title="DRAM"></a>DRAM</h3><h4 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h4><ul>
+<li>集中</li>
+<li>分散</li>
+<li>异步</li>
+</ul>
+<h4 id="存储器封装成芯片"><a href="#存储器封装成芯片" class="headerlink" title="存储器封装成芯片"></a>存储器封装成芯片</h4><p>几片一组（位相等）</p>
+<p>几组一片</p>
+<p>总共几片</p>
+<h4 id="存储器与CPU的连接"><a href="#存储器与CPU的连接" class="headerlink" title="存储器与CPU的连接"></a>存储器与CPU的连接</h4><p>容量的扩展</p>
+<ul>
+<li><p>位扩展</p>
+<blockquote>
+<p>把几个芯片当成一个芯片来用</p>
+<p>让它们同时工作  用相同的信号来连接</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/12/jHLFvmGsaxtbTir.png" style="zoom:50%;" />
+</li>
+<li><p>字扩展</p>
+<img src="https://i.loli.net/2020/07/12/4ibPsFK2d6UMj5t.png" style="zoom:50%;" />
+
+</li>
+</ul>
+<p>地址线</p>
+<blockquote>
+<p>CPU地址线的低位往往与芯片连接</p>
+<p>高位可以扩展也可用于片选等</p>
+</blockquote>
+<p>字、位扩展</p>
+<img src="https://i.loli.net/2020/07/15/AnFl9EdWmkaVXZQ.png" style="zoom:67%;" />
+
+<p>芯片的选择</p>
+<blockquote>
+<p>Ram  用户编程</p>
+<p>Rom 系统程序</p>
+</blockquote>
+<h3 id="提高访存速度的措施"><a href="#提高访存速度的措施" class="headerlink" title="提高访存速度的措施"></a>提高访存速度的措施</h3><ul>
+<li>单体多字系统</li>
+</ul>
+<blockquote>
+<p>适用于程序和数据是连续存放的   在一个存储周期里面取出多条指令    送至CPU执行</p>
+</blockquote>
+<ul>
+<li>多体并行系统</li>
+</ul>
+<blockquote>
+<p>多个相同的存储体  可以同时工作  读出的数据要在总线上分时传送</p>
+<p>地址分为体号地址以及体内地址</p>
+<p>低位交叉（低位表示体号）</p>
+</blockquote>
+<h3 id="高速缓冲存储器（cache）"><a href="#高速缓冲存储器（cache）" class="headerlink" title="高速缓冲存储器（cache）"></a>高速缓冲存储器（cache）</h3><blockquote>
+<p>cpu的一个跑腿的</p>
+<p>cpu读数据首先是在cache中读   如果命中则读出</p>
+<p>如果没有命中则回到通过总线到内存中去读进一连串的</p>
+</blockquote>
+<p>cache的映射规则</p>
+<p>字长：一次性处理事务的固定长度</p>
+<p>八位1B</p>
+<p><img src="https://i.loli.net/2020/07/13/dnPjQa2ZmFo7z3B.png"></p>
+<ul>
+<li>直接映射</li>
+<li>全相联映射</li>
+<li>组相联映射</li>
+</ul>
+<blockquote>
+<p>设计主存的地址格式</p>
+</blockquote>
+<h4 id="替换策略"><a href="#替换策略" class="headerlink" title="替换策略"></a>替换策略</h4><ul>
+<li>先进先出</li>
+<li>近期最少使用</li>
+<li>随机</li>
+</ul>
+<h2 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h2><h3 id="I-O设备编址方式"><a href="#I-O设备编址方式" class="headerlink" title="I/O设备编址方式"></a>I/O设备编址方式</h3><ul>
+<li>统一编址    看作存储器的一部分（占用了存储器的空间）</li>
+<li>不统一编址    必须有专门的IO指令</li>
+</ul>
+<p>IO传递信息的方式</p>
+<ul>
+<li>立即响应</li>
+<li>同步</li>
+<li>异步</li>
+</ul>
+<h3 id="信息传送的控制方式"><a href="#信息传送的控制方式" class="headerlink" title="信息传送的控制方式"></a>信息传送的控制方式</h3><ul>
+<li>程序查询方式</li>
+</ul>
+<blockquote>
+<p>不断查询io设备是否准备就绪</p>
+</blockquote>
+<ul>
+<li>程序中断方式</li>
+</ul>
+<blockquote>
+<p>在io准备就绪并向cpu发出请求后才予以响应</p>
+</blockquote>
+<p>DMA</p>
+<blockquote>
+<p>主存与io设备之间有一条单独的数据通路   </p>
+<p>dma读取数据的优先级比cpu高</p>
+</blockquote>
+<p>IO接口</p>
+<blockquote>
+<p>主机与io设备之间设置的一个硬件电路及其相应的软件控制</p>
+<p>数据线  设备选择线  命令线  状态线</p>
+</blockquote>
+<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p>流程</p>
+<ul>
+<li>测试指令</li>
+<li>传送指令</li>
+<li>转移指令</li>
+</ul>
+<h3 id="程序中断方式"><a href="#程序中断方式" class="headerlink" title="程序中断方式"></a>程序中断方式</h3><p>接口电路</p>
+<ul>
+<li>中断请求触发器INTR</li>
+<li>完成触发器D</li>
+<li>排队器</li>
+<li>中断向量地址形成部件</li>
+</ul>
+<blockquote>
+<p>不同设备的中断服务程序有不同的地址</p>
+<p>向量的形成与排队器的INTR有关</p>
+</blockquote>
+<h4 id="中断服务程序的流程"><a href="#中断服务程序的流程" class="headerlink" title="中断服务程序的流程"></a>中断服务程序的流程</h4><p>保护现场  中断服务  恢复现场  中断返回</p>
+<img src="https://i.loli.net/2020/07/13/2h4TBHEUygWwcGo.png" style="zoom:33%;" />
+
+<h3 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h3><h4 id="DMA交换数据的方法"><a href="#DMA交换数据的方法" class="headerlink" title="DMA交换数据的方法"></a>DMA交换数据的方法</h4><ul>
+<li><p>停止CPU访问主存</p>
+</li>
+<li><p>周期挪用</p>
+</li>
+<li><p>DMA与CPU交替访问</p>
+</li>
+</ul>
+<blockquote>
+<p>三种方式颗粒由大到小</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/13/Rw2AnNFZdkirJbC.png" style="zoom:33%;" />
+
+
+
+<h2 id="计算机的运算方法"><a href="#计算机的运算方法" class="headerlink" title="计算机的运算方法"></a>计算机的运算方法</h2><h3 id="无符号数"><a href="#无符号数" class="headerlink" title="无符号数"></a>无符号数</h3><p>原码</p>
+<blockquote>
+<p>不变</p>
+<p>正数的原码 补码 反码都不变</p>
+</blockquote>
+<p>补码</p>
+<blockquote>
+<p>符号位不变  剩余位取反加一 </p>
+</blockquote>
+<p>反码</p>
+<blockquote>
+<p>作为原码到补码的过渡   符号位不变  剩余位全部取反</p>
+</blockquote>
+<p>表示范围</p>
+<img src="https://i.loli.net/2020/07/15/4Lr1miwJC6AspeH.png" style="zoom: 50%;" />
+
+<p>定点表示</p>
+<blockquote>
+<p>小数点的位置固定不变</p>
+</blockquote>
+<p>定点运算</p>
+<ul>
+<li>移位</li>
+</ul>
+<blockquote>
+<p>移位的符号变化：正数都是左右+0   负数  补码（左移+0  右移+1）  负数原码+0  负数反码左右+1</p>
+</blockquote>
+<p>现代计算机中常使用补码作加减法运算</p>
+<ul>
+<li>溢出</li>
+</ul>
+<blockquote>
+<p>符号位相同的两个数参加操作，而结果符号位不同的，即为溢出</p>
+</blockquote>
+<p>ALU</p>
+<ul>
+<li>串行进位</li>
+<li>并行进位</li>
+</ul>
+<h2 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h2><h3 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h3><ul>
+<li>操作码</li>
+<li>地址码</li>
+</ul>
+<h3 id="操作数类型"><a href="#操作数类型" class="headerlink" title="操作数类型"></a>操作数类型</h3><p>地址  数字  字符  逻辑数据</p>
+<p>操作类型</p>
+<p>数据传送   算术逻辑操作  移位  转移  调用与返回  IO输入输出指令</p>
+<h3 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h3><p>指令寻址</p>
+<ul>
+<li>PC + 1</li>
+<li>JMP </li>
+</ul>
+<p>数据寻址</p>
+<ul>
+<li><p>立即寻址</p>
+<blockquote>
+<p>操作数本身就在指令字内   形式地址就是操作数本身</p>
+</blockquote>
+</li>
+<li><p>直接寻址</p>
+<blockquote>
+<p>形式地址就是真实地址</p>
+</blockquote>
+</li>
+<li><p>隐含地址</p>
+<blockquote>
+<p>另一个操作数隐含在操作码或某个寄存器中</p>
+</blockquote>
+</li>
+<li><p>间接地址</p>
+<blockquote>
+<p>指出操作数真实地址所在的存储单元地址</p>
+</blockquote>
+</li>
+<li><p>寄存器寻址</p>
+<blockquote>
+<p>直接指出寄存器编号</p>
+</blockquote>
+</li>
+<li><p>寄存器间接寻址</p>
+</li>
+<li><p>基址寻址</p>
+</li>
+</ul>
+<blockquote>
+<p>EA = A + (BR)</p>
+</blockquote>
+<ul>
+<li>变址寻址</li>
+</ul>
+<blockquote>
+<p>EA = A + (IX)     IX变址寄存器</p>
+</blockquote>
+<ul>
+<li>相对寻址</li>
+</ul>
+<blockquote>
+<p>在PC的基础上加    </p>
+</blockquote>
+<h4 id="RISC技术"><a href="#RISC技术" class="headerlink" title="RISC技术"></a>RISC技术</h4><blockquote>
+<p>用常用指令来组合实现剩下的指令</p>
+</blockquote>
+<h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><h4 id="CPU的寄存器"><a href="#CPU的寄存器" class="headerlink" title="CPU的寄存器"></a>CPU的寄存器</h4><ul>
+<li>用户可见寄存器</li>
+</ul>
+<blockquote>
+<p>通用寄存器  数据寄存器    地址寄存器    条件码寄存器</p>
+</blockquote>
+<ul>
+<li>控制和状态寄存器</li>
+</ul>
+<blockquote>
+<p>MAR    MDR    PC    IR</p>
+</blockquote>
+<h4 id="指令周期"><a href="#指令周期" class="headerlink" title="指令周期"></a>指令周期</h4><blockquote>
+<p>CPU取出并执行一条指令所需的全部时间</p>
+</blockquote>
+<h4 id="中断系统"><a href="#中断系统" class="headerlink" title="中断系统"></a>中断系统</h4><p>中断请求标记</p>
+<blockquote>
+<p>INTR 中断请求触发器</p>
+</blockquote>
+<p>中断判优逻辑</p>
+<blockquote>
+<p>硬件实现——优先级高的封住优先级低的请求</p>
+<p>软件实现——编写排队程序</p>
+</blockquote>
+<p>中断服务程序的入口地址</p>
+<p>硬件向量法</p>
+<p>软件查询法</p>
+<h4 id="中断响应"><a href="#中断响应" class="headerlink" title="中断响应"></a>中断响应</h4><p>响应条件</p>
+<ul>
+<li>EINT（允许中断触发器为1）    INTR（中断请求触发器为1） </li>
+</ul>
+<p>响应中断时间</p>
+<ul>
+<li>指令执行周期结束之后</li>
+</ul>
+<blockquote>
+<p>指令执行周期结束之后CPU才能知道哪个中断源发出了请求</p>
+</blockquote>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h2 id="控制单元"><a href="#控制单元" class="headerlink" title="控制单元"></a>控制单元</h2><h3 id="微操作命令"><a href="#微操作命令" class="headerlink" title="微操作命令"></a>微操作命令</h3><h3 id="多级时序系统"><a href="#多级时序系统" class="headerlink" title="多级时序系统"></a>多级时序系统</h3><ul>
+<li>机器周期</li>
+</ul>
+<blockquote>
+<p>所有指令执行过程的一个基准时间</p>
+</blockquote>
+<h4 id="控制方式"><a href="#控制方式" class="headerlink" title="控制方式"></a>控制方式</h4><ul>
+<li>同步控制方式</li>
+</ul>
+<blockquote>
+<p>定长   不定长时钟周期</p>
+</blockquote>
+<ul>
+<li>异步控制方式</li>
+</ul>
+<blockquote>
+<p>有专门的应答线路控制</p>
+</blockquote>
+<h2 id="控制单元的设计"><a href="#控制单元的设计" class="headerlink" title="控制单元的设计"></a>控制单元的设计</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/" data-id="ckeo20dw6000ptx5k9vcadl0d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/20/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/09/%E9%97%AD%E5%8C%85%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88js%E4%B8%AD0.1+0.2%EF%BC%81=0.3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/21/%E6%89%8B%E5%86%99instanceof%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/var%20let%20const/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/14/this%E6%8C%87%E5%90%91/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

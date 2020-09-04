@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="浅拷贝 如果有属性是对象的话拷贝的是地址   Object.assign var b &#x3D; Object.assign(&amp;#123;&amp;#125;,a);  点展开符 var b &#x3D; &amp;#123;...a&amp;#125;;   深拷贝 属性是对象的话拷贝的不是地址   JSON.stringify.    JSON.parse   var b &#x3D; JSON.parse(JSON.stringify(a))">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="浅拷贝 如果有属性是对象的话拷贝的是地址   Object.assign var b &#x3D; Object.assign(&amp;#123;&amp;#125;,a);  点展开符 var b &#x3D; &amp;#123;...a&amp;#125;;   深拷贝 属性是对象的话拷贝的不是地址   JSON.stringify.    JSON.parse   var b &#x3D; JSON.parse(JSON.stringify(a))">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-18T03:44:14.946Z">
+<meta property="article:modified_time" content="2020-08-18T04:17:52.622Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-深浅拷贝" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="article-date">
+  <time datetime="2020-08-18T03:44:14.946Z" itemprop="datePublished">2020-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><blockquote>
+<p>如果有属性是对象的话拷贝的是地址</p>
+</blockquote>
+<ol>
+<li><p>Object.assign</p>
+<p><code>var b = Object.assign(&#123;&#125;,a);</code></p>
+</li>
+<li><p>点展开符</p>
+<p><code>var b = &#123;...a&#125;;</code></p>
+</li>
+</ol>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><blockquote>
+<p>属性是对象的话拷贝的不是地址</p>
+</blockquote>
+<ol>
+<li><p>JSON.stringify.    JSON.parse </p>
+<p><code> var b = JSON.parse(JSON.stringify(a));</code></p>
+</li>
+<li><p>递归拷贝</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> res;</span><br><span class="line"> <span class="keyword">if</span>(<span class="keyword">typeof</span> target === <span class="string">&#x27;object&#x27;</span>)&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(target))&#123;</span><br><span class="line">         res = [];</span><br><span class="line">         <span class="keyword">for</span>(i <span class="keyword">in</span> target)&#123;</span><br><span class="line">             res.push(deepClone(target[i]))</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span>(target === <span class="literal">null</span>)&#123;</span><br><span class="line">         res = <span class="literal">null</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span>(target.constructor === <span class="built_in">RegExp</span>)&#123;</span><br><span class="line">         res = target;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span>&#123;</span><br><span class="line">         res = &#123;&#125;;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> target)&#123;</span><br><span class="line">             res[i] = deepClone(target[i]);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span>&#123;</span><br><span class="line">     res = target;       </span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f4329eb1bace">https://www.jianshu.com/p/f4329eb1bace</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="ckeo20dw2000ltx5k42lndd4x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/18/var%20let%20const/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/14/this%E6%8C%87%E5%90%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88js%E4%B8%AD0.1+0.2%EF%BC%81=0.3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/21/%E6%89%8B%E5%86%99instanceof%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/var%20let%20const/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/14/this%E6%8C%87%E5%90%91/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-为什么js中0.1+0.2！=0.3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88js%E4%B8%AD0.1+0.2%EF%BC%81=0.3/" class="article-date">
+  <time datetime="2020-08-21T06:46:06.829Z" itemprop="datePublished">2020-08-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>因为js采用IEEE754双精度版本（64位）</p>
+</blockquote>
+<p>有些十进制用二进制数表示是循环的</p>
+<p>如果被裁减的话会出现精度丢失的问题</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><blockquote>
+<p>var a = (0.1 + 0.2).toFixed(10);</p>
+<p>a == 0.3 //true</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88js%E4%B8%AD0.1+0.2%EF%BC%81=0.3/" data-id="ckeo20dvv000dtx5k3jfp2d9f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-手写instanceof函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/21/%E6%89%8B%E5%86%99instanceof%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2020-08-21T00:43:46.698Z" itemprop="datePublished">2020-08-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h3><blockquote>
+<p>构造函数的原型对象</p>
+<p>它是一个对象</p>
+<p>只有函数才有prototype属性</p>
+</blockquote>
+<h3 id="proto"><a href="#proto" class="headerlink" title="__ proto__"></a>__ proto__</h3><blockquote>
+<p>对象的属性</p>
+<p>指向对象的构造函数的原型对象</p>
+</blockquote>
+<img src="https://i.loli.net/2020/08/21/PVeg3DmSI8kstBn.png" style="zoom:50%;" />
+
+
+
+<h3 id="手写instance函数"><a href="#手写instance函数" class="headerlink" title="手写instance函数"></a>手写instance函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myInstanceOf</span>(<span class="params">left,right</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> prototype = right.prototype;</span><br><span class="line">    left = left.__proto__;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(left == <span class="literal">null</span> || left == <span class="literal">undefined</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(left === prototype)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        left = left.__proto__;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/21/%E6%89%8B%E5%86%99instanceof%E5%87%BD%E6%95%B0/" data-id="ckeo20dvz000itx5k1ws3hvau" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-var let const" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/18/var%20let%20const/" class="article-date">
+  <time datetime="2020-08-18T06:46:46.972Z" itemprop="datePublished">2020-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="var"><a href="#var" class="headerlink" title="var"></a>var</h3><p>var 存在提升，可以在声明前使用。</p>
+<p>变量提升只会把声明挪到作用域顶部</p>
+<p>Var 在全局作用域下声明变量会挂载到window上</p>
+<h3 id="let-const"><a href="#let-const" class="headerlink" title="let const"></a>let const</h3><p>Let const因为暂时性死区，不能在声明前使用</p>
+<h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><p>函数提升会把整个函数提升到作用域顶部</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/18/var%20let%20const/" data-id="ckeo20dxq000ytx5kff9x5506" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-深浅拷贝" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="article-date">
+  <time datetime="2020-08-18T03:44:14.946Z" itemprop="datePublished">2020-08-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><blockquote>
+<p>如果有属性是对象的话拷贝的是地址</p>
+</blockquote>
+<ol>
+<li><p>Object.assign</p>
+<p><code>var b = Object.assign(&#123;&#125;,a);</code></p>
+</li>
+<li><p>点展开符</p>
+<p><code>var b = &#123;...a&#125;;</code></p>
+</li>
+</ol>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><blockquote>
+<p>属性是对象的话拷贝的不是地址</p>
+</blockquote>
+<ol>
+<li><p>JSON.stringify.    JSON.parse </p>
+<p><code> var b = JSON.parse(JSON.stringify(a));</code></p>
+</li>
+<li><p>递归拷贝</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> res;</span><br><span class="line"> <span class="keyword">if</span>(<span class="keyword">typeof</span> target === <span class="string">&#x27;object&#x27;</span>)&#123;</span><br><span class="line">     <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(target))&#123;</span><br><span class="line">         res = [];</span><br><span class="line">         <span class="keyword">for</span>(i <span class="keyword">in</span> target)&#123;</span><br><span class="line">             res.push(deepClone(target[i]))</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span>(target === <span class="literal">null</span>)&#123;</span><br><span class="line">         res = <span class="literal">null</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span>(target.constructor === <span class="built_in">RegExp</span>)&#123;</span><br><span class="line">         res = target;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span>&#123;</span><br><span class="line">         res = &#123;&#125;;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> target)&#123;</span><br><span class="line">             res[i] = deepClone(target[i]);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span>&#123;</span><br><span class="line">     res = target;       </span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f4329eb1bace">https://www.jianshu.com/p/f4329eb1bace</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="ckeo20dw2000ltx5k42lndd4x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-this指向" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/14/this%E6%8C%87%E5%90%91/" class="article-date">
+  <time datetime="2020-08-13T22:32:25.063Z" itemprop="datePublished">2020-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><blockquote>
+<p>包裹在箭头函数外面的普通函数的this指向</p>
+</blockquote>
+<h3 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h3><ul>
+<li><p>Obj.foo()</p>
+<blockquote>
+<p>指向obj</p>
+</blockquote>
+</li>
+<li><p>foo()</p>
+<blockquote>
+<p>指向window</p>
+</blockquote>
+</li>
+<li><p>New </p>
+<blockquote>
+<p>固化在new实例上</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call,apply,bind"></a>call,apply,bind</h3><blockquote>
+<p>绑定在第一个参数上</p>
+<p>且只认第一次绑定的</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/14/this%E6%8C%87%E5%90%91/" data-id="ckeo20dxt0011tx5k7u2q87fr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue双向绑定原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/12/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" class="article-date">
+  <time datetime="2020-08-12T13:49:20.947Z" itemprop="datePublished">2020-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="思路整理"><a href="#思路整理" class="headerlink" title="思路整理"></a>思路整理</h3><img src="https://i.loli.net/2020/08/12/bZ36BETrS4yf1jh.png" style="zoom:50%;" />
+
+<ul>
+<li>数据监听器 observer    能够对数据对象的所有属性进行监听</li>
+<li>指令解析器compile  对每个元素节点的指令进行扫描和解析  </li>
+<li>实现一个watcher作为连接observer和compile的桥梁</li>
+<li>mvvm入口函数</li>
+</ul>
+<h3 id="实现observer"><a href="#实现observer" class="headerlink" title="实现observer"></a>实现observer</h3><blockquote>
+<p>将需要observe的数据对象进行递归遍历，都加上getter和setter</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!data || <span class="keyword">typeof</span> data !== <span class="string">&#x27;object&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//对属性进行遍历</span></span><br><span class="line">    <span class="built_in">Object</span>.keys(data).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        defineReactive(data,key,data[key]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defineReactive</span>(<span class="params">data,key,val</span>)</span>&#123;</span><br><span class="line">    observe(val);<span class="comment">//监听子属性   如果是对象的话就递归下去</span></span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(data,key,&#123;</span><br><span class="line">        enumerable:<span class="literal">true</span>,</span><br><span class="line">        configurable:<span class="literal">true</span>,</span><br><span class="line">        get:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> val;</span><br><span class="line">        &#125;,</span><br><span class="line">        set:<span class="function"><span class="keyword">function</span>(<span class="params">newVal</span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&#x27;set has been detected  &#x27;</span> + newVal);</span><br><span class="line">            val = newVal;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = &#123;<span class="attr">name</span>:<span class="string">&#x27;Alan&#x27;</span>&#125;;</span><br><span class="line">observe(data);</span><br><span class="line">data.name = <span class="string">&#x27;TOM&#x27;</span>; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000006599500">https://segmentfault.com/a/1190000006599500</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/12/vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" data-id="ckeo20dxq000ztx5kfebg8r4b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-object.defineProperty" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/12/object.defineProperty/" class="article-date">
+  <time datetime="2020-08-12T10:20:16.181Z" itemprop="datePublished">2020-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="object-defineProperty"><a href="#object-defineProperty" class="headerlink" title="object.defineProperty"></a>object.defineProperty</h2><blockquote>
+<p>定义对象的属性</p>
+</blockquote>
+<h3 id="访问器描述符"><a href="#访问器描述符" class="headerlink" title="访问器描述符"></a>访问器描述符</h3><ul>
+<li><p>configurable 能否修改属性的特性(是否可以删除)</p>
+</li>
+<li><p>enumerable 是否可以被枚举</p>
+</li>
+<li><p>Value 值</p>
+</li>
+<li><p>writable 是否可写</p>
+</li>
+</ul>
+<h3 id="存取描述符"><a href="#存取描述符" class="headerlink" title="存取描述符"></a>存取描述符</h3><ul>
+<li><p>get </p>
+</li>
+<li><p>Set</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> temp = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">&#x27;name&#x27;</span>,&#123;</span><br><span class="line">    get:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;,</span><br><span class="line">    set:<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">        temp = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">obj.name = <span class="string">&#x27;jobs&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.name);</span><br><span class="line"></span><br><span class="line"><span class="comment">//以上重写了set和get方法</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/12/object.defineProperty/" data-id="ckeo20dxo000wtx5k02hs89bw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/10/CSS/" class="article-date">
+  <time datetime="2020-08-10T06:34:38.826Z" itemprop="datePublished">2020-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h3><blockquote>
+<p>为元素的不同状态或不确定存在的元素设置样式规则</p>
+</blockquote>
+<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><blockquote>
+<p>相邻元素的纵向外边距会合并</p>
+</blockquote>
+<h3 id="弹性盒模型"><a href="#弹性盒模型" class="headerlink" title="弹性盒模型"></a>弹性盒模型</h3><blockquote>
+<p>在盒子上加元素来控制其中弹性元素的排列方式 </p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/10/CSS/" data-id="ckeo20dvs000atx5k2bucgm47" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-移动端适配" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" class="article-date">
+  <time datetime="2020-08-09T08:09:52.935Z" itemprop="datePublished">2020-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><h4 id="移动端的视口"><a href="#移动端的视口" class="headerlink" title="移动端的视口"></a>移动端的视口</h4><ul>
+<li><p>布局视口</p>
+<blockquote>
+<p>网页布局的布局宽度</p>
+</blockquote>
+</li>
+<li><p>视觉视口</p>
+<blockquote>
+<p>设备宽度</p>
+</blockquote>
+</li>
+<li><p>理想视口</p>
+<blockquote>
+<p>理想的宽度</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" data-id="ckeo20dw5000otx5k7b5ae979" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webpack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/09/webpack/" class="article-date">
+  <time datetime="2020-08-09T01:49:02.681Z" itemprop="datePublished">2020-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/09/webpack/" data-id="ckeo20dxj000stx5khc9o54kt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88js%E4%B8%AD0.1+0.2%EF%BC%81=0.3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/21/%E6%89%8B%E5%86%99instanceof%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/var%20let%20const/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/14/this%E6%8C%87%E5%90%91/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

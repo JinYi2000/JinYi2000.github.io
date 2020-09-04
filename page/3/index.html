@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-手写promise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/06/%E6%89%8B%E5%86%99promise/" class="article-date">
+  <time datetime="2020-08-06T00:15:15.487Z" itemprop="datePublished">2020-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="promise函数的核心"><a href="#promise函数的核心" class="headerlink" title="promise函数的核心"></a>promise函数的核心</h3><blockquote>
+<ul>
+<li>状态判断   PENDING  RESOLVED  REJECTED</li>
+<li>成功后的函数    onresolved</li>
+<li>失败后的函数    onrejected</li>
+</ul>
+</blockquote>
+<h3 id="promise的用法"><a href="#promise的用法" class="headerlink" title="promise的用法"></a>promise的用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//processdata</span></span><br><span class="line">    <span class="keyword">if</span>(...)&#123;</span><br><span class="line">        resolve(<span class="string">&#x27;...&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(...)&#123;</span><br><span class="line">        reject(<span class="string">&#x27;...&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="手写promise函数"><a href="#手写promise函数" class="headerlink" title="手写promise函数"></a>手写promise函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//手写promise</span></span><br><span class="line"><span class="keyword">const</span> PENDING = <span class="string">&#x27;pending&#x27;</span></span><br><span class="line"><span class="keyword">const</span> RESOLVED = <span class="string">&#x27;resolved&#x27;</span></span><br><span class="line"><span class="keyword">const</span> REJECTED = <span class="string">&#x27;rejected&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myPromise</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> that = <span class="built_in">this</span>;<span class="comment">//因为代码可能会异步执行</span></span><br><span class="line">    <span class="built_in">this</span>.state = PENDING;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.value = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    that.resolvedCallbacks = [];</span><br><span class="line">    that.rejectedCallbacks = [];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(that.state === PENDING)&#123;</span><br><span class="line">            that.state = RESOLVED;</span><br><span class="line">            that.value = value;</span><br><span class="line">            that.resolvedCallbacks.map(<span class="function"><span class="params">cb</span>=&gt;</span>cb(that.value))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(that.state === PENDING)&#123;</span><br><span class="line">            that.state = REJECTED;</span><br><span class="line">            that.value = value;</span><br><span class="line">            that.rejectedCallbacks.map(<span class="function"><span class="params">cb</span>=&gt;</span>cb(that.value))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myPromise.prototype.then = <span class="function"><span class="keyword">function</span>(<span class="params">onFulfilled,onRejected</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">this</span>.state == PENGING)&#123;</span><br><span class="line">        <span class="built_in">this</span>.resolvedCallbacks.push(onFulfilled);</span><br><span class="line">        <span class="built_in">this</span>.rejectedCallbacks.push(onRejected);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">this</span>.state == RESOLVED)&#123;</span><br><span class="line">        onFulfilled(<span class="built_in">this</span>.value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">this</span>.state == REJECTED)&#123;</span><br><span class="line">        onRejected(<span class="built_in">this</span>.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/06/%E6%89%8B%E5%86%99promise/" data-id="ckeo20dw1000ktx5k3osuep57" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-前端模块化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/06/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/" class="article-date">
+  <time datetime="2020-08-05T23:49:55.180Z" itemprop="datePublished">2020-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="common-js"><a href="#common-js" class="headerlink" title="common js"></a>common js</h2><blockquote>
+<p>module.exports</p>
+<p>require(‘./a.js’)</p>
+</blockquote>
+<h2 id="ES-module"><a href="#ES-module" class="headerlink" title="ES module"></a>ES module</h2><blockquote>
+<p>Export </p>
+<p>Export default</p>
+<p>Import from</p>
+<p>Import { } from</p>
+</blockquote>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/da2ac9ad2960">https://www.jianshu.com/p/da2ac9ad2960</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/06/%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/" data-id="ckeo20dvw000ftx5k13ngbjz3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js中的继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/05/js%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF/" class="article-date">
+  <time datetime="2020-08-05T02:21:04.702Z" itemprop="datePublished">2020-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="几种继承的方式"><a href="#几种继承的方式" class="headerlink" title="几种继承的方式"></a>几种继承的方式</h2><blockquote>
+<p>继承：要完成属性的继承和方法的继承</p>
+</blockquote>
+<p>组合继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parent</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">this</span>.val = value;</span><br><span class="line">&#125;</span><br><span class="line">parent.prototype.getValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">this</span>.val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">child</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">	parent.call(<span class="built_in">this</span>,val);<span class="comment">//用于继承属性</span></span><br><span class="line">&#125;</span><br><span class="line">child.prototype = <span class="keyword">new</span> parent();<span class="comment">//用于继承方法</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>寄生组合继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//与组合继承不同之处：没有调用new.</span></span><br><span class="line"><span class="comment">//在prototype原型中是没有属性的.</span></span><br><span class="line"></span><br><span class="line">child.prototype = <span class="built_in">Object</span>.create(parent.prototype)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>class继承</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">parent</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(value)&#123;</span><br><span class="line">		<span class="built_in">this</span>.val = value;</span><br><span class="line">	&#125;</span><br><span class="line">	getValue()&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">this</span>.val;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">child</span> <span class="keyword">extends</span> <span class="title">parent</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(value)&#123;</span><br><span class="line">		<span class="built_in">super</span>(value);</span><br><span class="line">		<span class="built_in">this</span>.val = value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/05/js%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF/" data-id="ckeo20dvu000ctx5ka6dpagt0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-call、apply、bind" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/05/call%E3%80%81apply%E3%80%81bind/" class="article-date">
+  <time datetime="2020-08-04T16:19:58.940Z" itemprop="datePublished">2020-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="手写call-apply-bind函数"><a href="#手写call-apply-bind函数" class="headerlink" title="手写call apply bind函数"></a>手写call apply bind函数</h2><blockquote>
+<p>借用其他对象原型链中的方法来实现自己的功能</p>
+</blockquote>
+<p>bind函数   返回的是一个方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name:<span class="string">&#x27;zhang&#x27;</span>,</span><br><span class="line">    age:<span class="number">18</span>,</span><br><span class="line">    fun:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name + <span class="built_in">this</span>.age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    name:<span class="string">&#x27;mo&#x27;</span>,</span><br><span class="line">    age:<span class="number">25</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fun2 = obj.fun.bind(obj2);</span><br><span class="line"></span><br><span class="line">fun2();</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Call  apply  bind函数调用的区别</p>
+<img src="https://i.loli.net/2020/08/15/Op5dBR7tZDlGAxs.png" style="zoom:50%;" />
+
+
+
+
+
+<h4 id="展开表达式"><a href="#展开表达式" class="headerlink" title="展开表达式"></a>展开表达式</h4><img src="https://i.loli.net/2020/08/15/M4qndoNyl7LIWUP.png" style="zoom:50%;" />
+
+<h4 id="arguments对象"><a href="#arguments对象" class="headerlink" title="arguments对象"></a>arguments对象</h4><blockquote>
+<p><strong><code>arguments</code></strong> 是一个对应于传递给函数的参数的类数组对象。</p>
+</blockquote>
+<h3 id="手写call函数"><a href="#手写call函数" class="headerlink" title="手写call函数"></a>手写call函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myCall = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">this</span> !== <span class="string">&#x27;function&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;Error&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    context = context || <span class="built_in">window</span>;</span><br><span class="line">    context.fn = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(args);</span><br><span class="line">    <span class="keyword">var</span> res = context.fn(...args);</span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.fun.myCall(obj2,<span class="string">&#x27;上海&#x27;</span>,<span class="string">&#x27;杭州&#x27;</span>); </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="手写apply函数"><a href="#手写apply函数" class="headerlink" title="手写apply函数"></a>手写apply函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myApply = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">this</span> !== <span class="string">&#x27;function&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;Error&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    context = context || <span class="built_in">window</span>;</span><br><span class="line">    context.fn = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">var</span> res;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">arguments</span>[<span class="number">1</span>])&#123;</span><br><span class="line">        context.fn(...arguments[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        context.fn();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="手写bind函数"><a href="#手写bind函数" class="headerlink" title="手写bind函数"></a>手写bind函数</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/05/call%E3%80%81apply%E3%80%81bind/" data-id="ckeo20dvp0007tx5k8ty43yro" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代码模版" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/%E4%BB%A3%E7%A0%81%E6%A8%A1%E7%89%88/" class="article-date">
+  <time datetime="2020-07-20T14:43:12.715Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/20/%E4%BB%A3%E7%A0%81%E6%A8%A1%E7%89%88/" data-id="ckeo20drq0004tx5kg7pw9m6w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-剪枝" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/%E5%89%AA%E6%9E%9D/" class="article-date">
+  <time datetime="2020-07-20T09:37:32.198Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在问题面临多种选择时，将一些不太可能或较差的解法/分支剪去。</p>
+</blockquote>
+<h2 id="例子：N皇后"><a href="#例子：N皇后" class="headerlink" title="例子：N皇后"></a>例子：N皇后</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/20/%E5%89%AA%E6%9E%9D/" data-id="ckeo20dvy000gtx5kdy2rbo7b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-贪心算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2020-07-20T08:46:26.147Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>对问题求解的时候总是用当前最好的方法来求解</code></pre>
+<h3 id="贪心算法的使用场景"><a href="#贪心算法的使用场景" class="headerlink" title="贪心算法的使用场景"></a>贪心算法的使用场景</h3><blockquote>
+<p>问题能够分解成子问题来解决</p>
+<p>子问题的最优解能够递推到最终问题的最优解</p>
+</blockquote>
+<h3 id="与动态规划算法的区别："><a href="#与动态规划算法的区别：" class="headerlink" title="与动态规划算法的区别："></a>与动态规划算法的区别：</h3><blockquote>
+<p>贪心算法不能回退</p>
+<p>动态规划算法会保存以前的运算结果    有回退功能</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/20/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" data-id="ckeo20dw7000qtx5kdnzt5aos" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-递归&amp;分治" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/%E9%80%92%E5%BD%92&%E5%88%86%E6%B2%BB/" class="article-date">
+  <time datetime="2020-07-20T04:06:50.282Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>一层一层下去   到递归结束条件时再回上来</p>
+<img src="https://i.loli.net/2020/07/20/UbAghPKE4NFLl1p.png" style="zoom: 33%;" />
+
+
+
+<h2 id="递归代码的一个模版"><a href="#递归代码的一个模版" class="headerlink" title="递归代码的一个模版"></a>递归代码的一个模版</h2><blockquote>
+<p>限制条件</p>
+<p>数据处理</p>
+<p>进入下一层</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/20/lOkJ3LqxXiC7GKY.png" style="zoom: 33%;" />
+
+<p>参数：层数的控制与其他参数</p>
+<h2 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h2><blockquote>
+<p>把大问题拆分成很多的小问题</p>
+<p>也用到了递归</p>
+</blockquote>
+<h3 id="分治的一个模版"><a href="#分治的一个模版" class="headerlink" title="分治的一个模版"></a>分治的一个模版</h3><img src="https://i.loli.net/2020/07/20/UK5oHJ8iVd9zQkv.png" style="zoom:33%;" />
+
+<p>递归的终止条件</p>
+<p>准备数据</p>
+<p>大问题拆分为子问题</p>
+<p>得到每一步的子结果</p>
+<p>对子结果进行合并</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ol>
+<li><p>计算pow(x,n)</p>
+<p>n为偶: y = x^(n/2)    res = y*y</p>
+</li>
+</ol>
+<p>​       n为奇:y = x^(n-1/2).  res = y<em>y</em>x</p>
+<p>终止条件： n = 1 or 0</p>
+<p>时间复杂度：O(logn)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myPow</span>(<span class="params">x,n</span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(n == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>/myPow(x,-n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(n%<span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> myPow(x*x,<span class="built_in">Math</span>.floor(n/<span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x * myPow(x*x,<span class="built_in">Math</span>.floor(n/<span class="number">2</span>))) ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(myPow(<span class="number">0.445</span>,<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/20/%E9%80%92%E5%BD%92&%E5%88%86%E6%B2%BB/" data-id="ckeo20drn0001tx5kgkfe2jtk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-算法的时间复杂度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="article-date">
+  <time datetime="2020-07-20T03:52:52.473Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法的时间复杂度"><a href="#算法的时间复杂度" class="headerlink" title="算法的时间复杂度"></a>算法的时间复杂度</h1><h2 id="时间复杂度的情况"><a href="#时间复杂度的情况" class="headerlink" title="时间复杂度的情况"></a>时间复杂度的情况</h2><img src="https://i.loli.net/2020/07/20/j7SEfAgNJovQ94O.png" style="zoom:67%;" />
+
+<img src="https://i.loli.net/2020/07/20/APl86a3E4SIyYbh.png" style="zoom:67%;" />
+
+<p>根据元操作就可以看出来</p>
+<p>一般都是在循环里面</p>
+<h2 id="算法渐进的界"><a href="#算法渐进的界" class="headerlink" title="算法渐进的界"></a>算法渐进的界</h2><p><img src="https://i.loli.net/2020/07/20/l7wMqu2cJPeBrZC.png" style="zoom: 50%;" /><img src="https://i.loli.net/2020/07/20/fRVALgDrSW9NloQ.png"></p>
+<p><img src="https://i.loli.net/2020/07/20/l7wMqu2cJPeBrZC.png" style="zoom: 50%;" /><img src="https://i.loli.net/2020/07/20/fRVALgDrSW9NloQ.png"></p>
+<img src="https://i.loli.net/2020/07/20/TkASoelpVd8Gcma.png" style="zoom:50%;" />
+
+<img src="https://i.loli.net/2020/07/20/Ig4bMSq6RAihfow.png" style="zoom:50%;" />
+
+<img src="https://i.loli.net/2020/07/20/dEhN9grwlGnLmsA.png" style="zoom:50%;" />
+
+
+
+<h2 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h2><blockquote>
+<p>对于递归式子而言</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/20/LKGjAt3Ike7RiHU.png" style="zoom:50%;" />
+
+<img src="https://i.loli.net/2020/07/20/i6rRqmnudgQlpMT.png" style="zoom:50%;" />
+
+<blockquote>
+<p>即：f(n)的时间复杂度小于n^logbA时，T(n) = n^logbA</p>
+<p>f(n)的时间复杂度等于n^logbA时，T(n) = (n^logbA) * logn</p>
+<p>f(n)的时间复杂度小于n^logbA时，T(n) = T(f(n))</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/20/%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" data-id="ckeo20dw4000ntx5ka1ll31hf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-计算机组成原理复习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/" class="article-date">
+  <time datetime="2020-07-12T15:11:29.047Z" itemprop="datePublished">2020-07-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机组成原理复习"><a href="#计算机组成原理复习" class="headerlink" title="计算机组成原理复习"></a>计算机组成原理复习</h1><h2 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h2><p>存储的层次</p>
+<blockquote>
+<p>缓存-主存     主存-辅存</p>
+</blockquote>
+<h3 id="DRAM"><a href="#DRAM" class="headerlink" title="DRAM"></a>DRAM</h3><h4 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h4><ul>
+<li>集中</li>
+<li>分散</li>
+<li>异步</li>
+</ul>
+<h4 id="存储器封装成芯片"><a href="#存储器封装成芯片" class="headerlink" title="存储器封装成芯片"></a>存储器封装成芯片</h4><p>几片一组（位相等）</p>
+<p>几组一片</p>
+<p>总共几片</p>
+<h4 id="存储器与CPU的连接"><a href="#存储器与CPU的连接" class="headerlink" title="存储器与CPU的连接"></a>存储器与CPU的连接</h4><p>容量的扩展</p>
+<ul>
+<li><p>位扩展</p>
+<blockquote>
+<p>把几个芯片当成一个芯片来用</p>
+<p>让它们同时工作  用相同的信号来连接</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/12/jHLFvmGsaxtbTir.png" style="zoom:50%;" />
+</li>
+<li><p>字扩展</p>
+<img src="https://i.loli.net/2020/07/12/4ibPsFK2d6UMj5t.png" style="zoom:50%;" />
+
+</li>
+</ul>
+<p>地址线</p>
+<blockquote>
+<p>CPU地址线的低位往往与芯片连接</p>
+<p>高位可以扩展也可用于片选等</p>
+</blockquote>
+<p>字、位扩展</p>
+<img src="https://i.loli.net/2020/07/15/AnFl9EdWmkaVXZQ.png" style="zoom:67%;" />
+
+<p>芯片的选择</p>
+<blockquote>
+<p>Ram  用户编程</p>
+<p>Rom 系统程序</p>
+</blockquote>
+<h3 id="提高访存速度的措施"><a href="#提高访存速度的措施" class="headerlink" title="提高访存速度的措施"></a>提高访存速度的措施</h3><ul>
+<li>单体多字系统</li>
+</ul>
+<blockquote>
+<p>适用于程序和数据是连续存放的   在一个存储周期里面取出多条指令    送至CPU执行</p>
+</blockquote>
+<ul>
+<li>多体并行系统</li>
+</ul>
+<blockquote>
+<p>多个相同的存储体  可以同时工作  读出的数据要在总线上分时传送</p>
+<p>地址分为体号地址以及体内地址</p>
+<p>低位交叉（低位表示体号）</p>
+</blockquote>
+<h3 id="高速缓冲存储器（cache）"><a href="#高速缓冲存储器（cache）" class="headerlink" title="高速缓冲存储器（cache）"></a>高速缓冲存储器（cache）</h3><blockquote>
+<p>cpu的一个跑腿的</p>
+<p>cpu读数据首先是在cache中读   如果命中则读出</p>
+<p>如果没有命中则回到通过总线到内存中去读进一连串的</p>
+</blockquote>
+<p>cache的映射规则</p>
+<p>字长：一次性处理事务的固定长度</p>
+<p>八位1B</p>
+<p><img src="https://i.loli.net/2020/07/13/dnPjQa2ZmFo7z3B.png"></p>
+<ul>
+<li>直接映射</li>
+<li>全相联映射</li>
+<li>组相联映射</li>
+</ul>
+<blockquote>
+<p>设计主存的地址格式</p>
+</blockquote>
+<h4 id="替换策略"><a href="#替换策略" class="headerlink" title="替换策略"></a>替换策略</h4><ul>
+<li>先进先出</li>
+<li>近期最少使用</li>
+<li>随机</li>
+</ul>
+<h2 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h2><h3 id="I-O设备编址方式"><a href="#I-O设备编址方式" class="headerlink" title="I/O设备编址方式"></a>I/O设备编址方式</h3><ul>
+<li>统一编址    看作存储器的一部分（占用了存储器的空间）</li>
+<li>不统一编址    必须有专门的IO指令</li>
+</ul>
+<p>IO传递信息的方式</p>
+<ul>
+<li>立即响应</li>
+<li>同步</li>
+<li>异步</li>
+</ul>
+<h3 id="信息传送的控制方式"><a href="#信息传送的控制方式" class="headerlink" title="信息传送的控制方式"></a>信息传送的控制方式</h3><ul>
+<li>程序查询方式</li>
+</ul>
+<blockquote>
+<p>不断查询io设备是否准备就绪</p>
+</blockquote>
+<ul>
+<li>程序中断方式</li>
+</ul>
+<blockquote>
+<p>在io准备就绪并向cpu发出请求后才予以响应</p>
+</blockquote>
+<p>DMA</p>
+<blockquote>
+<p>主存与io设备之间有一条单独的数据通路   </p>
+<p>dma读取数据的优先级比cpu高</p>
+</blockquote>
+<p>IO接口</p>
+<blockquote>
+<p>主机与io设备之间设置的一个硬件电路及其相应的软件控制</p>
+<p>数据线  设备选择线  命令线  状态线</p>
+</blockquote>
+<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p>流程</p>
+<ul>
+<li>测试指令</li>
+<li>传送指令</li>
+<li>转移指令</li>
+</ul>
+<h3 id="程序中断方式"><a href="#程序中断方式" class="headerlink" title="程序中断方式"></a>程序中断方式</h3><p>接口电路</p>
+<ul>
+<li>中断请求触发器INTR</li>
+<li>完成触发器D</li>
+<li>排队器</li>
+<li>中断向量地址形成部件</li>
+</ul>
+<blockquote>
+<p>不同设备的中断服务程序有不同的地址</p>
+<p>向量的形成与排队器的INTR有关</p>
+</blockquote>
+<h4 id="中断服务程序的流程"><a href="#中断服务程序的流程" class="headerlink" title="中断服务程序的流程"></a>中断服务程序的流程</h4><p>保护现场  中断服务  恢复现场  中断返回</p>
+<img src="https://i.loli.net/2020/07/13/2h4TBHEUygWwcGo.png" style="zoom:33%;" />
+
+<h3 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h3><h4 id="DMA交换数据的方法"><a href="#DMA交换数据的方法" class="headerlink" title="DMA交换数据的方法"></a>DMA交换数据的方法</h4><ul>
+<li><p>停止CPU访问主存</p>
+</li>
+<li><p>周期挪用</p>
+</li>
+<li><p>DMA与CPU交替访问</p>
+</li>
+</ul>
+<blockquote>
+<p>三种方式颗粒由大到小</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/13/Rw2AnNFZdkirJbC.png" style="zoom:33%;" />
+
+
+
+<h2 id="计算机的运算方法"><a href="#计算机的运算方法" class="headerlink" title="计算机的运算方法"></a>计算机的运算方法</h2><h3 id="无符号数"><a href="#无符号数" class="headerlink" title="无符号数"></a>无符号数</h3><p>原码</p>
+<blockquote>
+<p>不变</p>
+<p>正数的原码 补码 反码都不变</p>
+</blockquote>
+<p>补码</p>
+<blockquote>
+<p>符号位不变  剩余位取反加一 </p>
+</blockquote>
+<p>反码</p>
+<blockquote>
+<p>作为原码到补码的过渡   符号位不变  剩余位全部取反</p>
+</blockquote>
+<p>表示范围</p>
+<img src="https://i.loli.net/2020/07/15/4Lr1miwJC6AspeH.png" style="zoom: 50%;" />
+
+<p>定点表示</p>
+<blockquote>
+<p>小数点的位置固定不变</p>
+</blockquote>
+<p>定点运算</p>
+<ul>
+<li>移位</li>
+</ul>
+<blockquote>
+<p>移位的符号变化：正数都是左右+0   负数  补码（左移+0  右移+1）  负数原码+0  负数反码左右+1</p>
+</blockquote>
+<p>现代计算机中常使用补码作加减法运算</p>
+<ul>
+<li>溢出</li>
+</ul>
+<blockquote>
+<p>符号位相同的两个数参加操作，而结果符号位不同的，即为溢出</p>
+</blockquote>
+<p>ALU</p>
+<ul>
+<li>串行进位</li>
+<li>并行进位</li>
+</ul>
+<h2 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h2><h3 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h3><ul>
+<li>操作码</li>
+<li>地址码</li>
+</ul>
+<h3 id="操作数类型"><a href="#操作数类型" class="headerlink" title="操作数类型"></a>操作数类型</h3><p>地址  数字  字符  逻辑数据</p>
+<p>操作类型</p>
+<p>数据传送   算术逻辑操作  移位  转移  调用与返回  IO输入输出指令</p>
+<h3 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h3><p>指令寻址</p>
+<ul>
+<li>PC + 1</li>
+<li>JMP </li>
+</ul>
+<p>数据寻址</p>
+<ul>
+<li><p>立即寻址</p>
+<blockquote>
+<p>操作数本身就在指令字内   形式地址就是操作数本身</p>
+</blockquote>
+</li>
+<li><p>直接寻址</p>
+<blockquote>
+<p>形式地址就是真实地址</p>
+</blockquote>
+</li>
+<li><p>隐含地址</p>
+<blockquote>
+<p>另一个操作数隐含在操作码或某个寄存器中</p>
+</blockquote>
+</li>
+<li><p>间接地址</p>
+<blockquote>
+<p>指出操作数真实地址所在的存储单元地址</p>
+</blockquote>
+</li>
+<li><p>寄存器寻址</p>
+<blockquote>
+<p>直接指出寄存器编号</p>
+</blockquote>
+</li>
+<li><p>寄存器间接寻址</p>
+</li>
+<li><p>基址寻址</p>
+</li>
+</ul>
+<blockquote>
+<p>EA = A + (BR)</p>
+</blockquote>
+<ul>
+<li>变址寻址</li>
+</ul>
+<blockquote>
+<p>EA = A + (IX)     IX变址寄存器</p>
+</blockquote>
+<ul>
+<li>相对寻址</li>
+</ul>
+<blockquote>
+<p>在PC的基础上加    </p>
+</blockquote>
+<h4 id="RISC技术"><a href="#RISC技术" class="headerlink" title="RISC技术"></a>RISC技术</h4><blockquote>
+<p>用常用指令来组合实现剩下的指令</p>
+</blockquote>
+<h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><h4 id="CPU的寄存器"><a href="#CPU的寄存器" class="headerlink" title="CPU的寄存器"></a>CPU的寄存器</h4><ul>
+<li>用户可见寄存器</li>
+</ul>
+<blockquote>
+<p>通用寄存器  数据寄存器    地址寄存器    条件码寄存器</p>
+</blockquote>
+<ul>
+<li>控制和状态寄存器</li>
+</ul>
+<blockquote>
+<p>MAR    MDR    PC    IR</p>
+</blockquote>
+<h4 id="指令周期"><a href="#指令周期" class="headerlink" title="指令周期"></a>指令周期</h4><blockquote>
+<p>CPU取出并执行一条指令所需的全部时间</p>
+</blockquote>
+<h4 id="中断系统"><a href="#中断系统" class="headerlink" title="中断系统"></a>中断系统</h4><p>中断请求标记</p>
+<blockquote>
+<p>INTR 中断请求触发器</p>
+</blockquote>
+<p>中断判优逻辑</p>
+<blockquote>
+<p>硬件实现——优先级高的封住优先级低的请求</p>
+<p>软件实现——编写排队程序</p>
+</blockquote>
+<p>中断服务程序的入口地址</p>
+<p>硬件向量法</p>
+<p>软件查询法</p>
+<h4 id="中断响应"><a href="#中断响应" class="headerlink" title="中断响应"></a>中断响应</h4><p>响应条件</p>
+<ul>
+<li>EINT（允许中断触发器为1）    INTR（中断请求触发器为1） </li>
+</ul>
+<p>响应中断时间</p>
+<ul>
+<li>指令执行周期结束之后</li>
+</ul>
+<blockquote>
+<p>指令执行周期结束之后CPU才能知道哪个中断源发出了请求</p>
+</blockquote>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h2 id="控制单元"><a href="#控制单元" class="headerlink" title="控制单元"></a>控制单元</h2><h3 id="微操作命令"><a href="#微操作命令" class="headerlink" title="微操作命令"></a>微操作命令</h3><h3 id="多级时序系统"><a href="#多级时序系统" class="headerlink" title="多级时序系统"></a>多级时序系统</h3><ul>
+<li>机器周期</li>
+</ul>
+<blockquote>
+<p>所有指令执行过程的一个基准时间</p>
+</blockquote>
+<h4 id="控制方式"><a href="#控制方式" class="headerlink" title="控制方式"></a>控制方式</h4><ul>
+<li>同步控制方式</li>
+</ul>
+<blockquote>
+<p>定长   不定长时钟周期</p>
+</blockquote>
+<ul>
+<li>异步控制方式</li>
+</ul>
+<blockquote>
+<p>有专门的应答线路控制</p>
+</blockquote>
+<h2 id="控制单元的设计"><a href="#控制单元的设计" class="headerlink" title="控制单元的设计"></a>控制单元的设计</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/" data-id="ckeo20dw6000ptx5k9vcadl0d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/08/21/%E4%B8%BA%E4%BB%80%E4%B9%88js%E4%B8%AD0.1+0.2%EF%BC%81=0.3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/21/%E6%89%8B%E5%86%99instanceof%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/var%20let%20const/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/18/%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/14/this%E6%8C%87%E5%90%91/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
