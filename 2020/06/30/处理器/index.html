@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="处理器设计步骤
+
+
+指令系统：
+
+
+加法减法逻辑
+- 运算型指令
+- 操作数都是寄存器/立即数 
+LOAD/STORE指令
+- 与存储器相连
+条件分支指令
+需要：
+
+存放指令的存储器       存放指令地址的寄存器（PC）
+
+寄存器堆
+
+
+
+
+存储器
+
+
+
+
+数据通路的建立指令存储器及其更新
+
+
+">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-06-30T08:06:09.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-06-30
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E8%B7%AF%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-text">数据通路的建立</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">运算指令的操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7%E7%9A%84%E9%9B%86%E6%88%90"><span class="toc-text">控制信号的集成</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h1><p>设计步骤</p>
+<img src="https://i.loli.net/2020/06/30/GYDlLRmMSVBTN17.png" style="zoom:67%;" />
+
+<p>指令系统：</p>
+<img src="https://i.loli.net/2020/06/30/sv8PnTNIJUXL45D.png" style="zoom:67%;" />
+
+<p>加法减法逻辑</p>
+<pre><code>- 运算型指令
+- 操作数都是寄存器/立即数 </code></pre>
+<p>LOAD/STORE指令</p>
+<pre><code>- 与存储器相连</code></pre>
+<p>条件分支指令</p>
+<p><strong>需要</strong>：</p>
+<blockquote>
+<p>存放指令的存储器       存放指令地址的寄存器（PC）</p>
+</blockquote>
+<p><strong>寄存器堆</strong></p>
+<img src="https://i.loli.net/2020/06/30/Ude3rqLCN4uifEt.png" style="zoom: 67%;" />
+
+
+
+<p><strong>存储器</strong></p>
+<img src="https://i.loli.net/2020/06/30/g8AXwJbfZRouMLQ.png" style="zoom:67%;" />
+
+
+
+<h2 id="数据通路的建立"><a href="#数据通路的建立" class="headerlink" title="数据通路的建立"></a>数据通路的建立</h2><p>指令存储器及其更新</p>
+<img src="https://i.loli.net/2020/06/30/k8VhjTgZlrLqI1d.png" style="zoom: 67%;" />
+
+
+
+<p>发生分支指令时：</p>
+<img src="https://i.loli.net/2020/06/30/ldjcS1K9kDJP4Wm.png" style="zoom:67%;" />
+
+
+
+<p> <strong>IFU</strong></p>
+<blockquote>
+<p>在时钟信号的驱动下自动工作</p>
+</blockquote>
+<p><strong>加法和减法指令</strong></p>
+<img src="https://i.loli.net/2020/06/30/i1PngKCyWqNZE6d.png" style="zoom:67%;" />
+
+<p>数据通路</p>
+<img src="https://i.loli.net/2020/06/30/nP8GcXgNhbOpxtV.png" style="zoom:67%;" />
+
+
+
+<h2 id="运算指令的操作"><a href="#运算指令的操作" class="headerlink" title="运算指令的操作"></a>运算指令的操作</h2><h2 id="控制信号的集成"><a href="#控制信号的集成" class="headerlink" title="控制信号的集成"></a>控制信号的集成</h2><blockquote>
+<p>根据opcode 和func 生成各种控制信号</p>
+</blockquote>
+<img src="https://i.loli.net/2020/06/30/aCPbmO6Sny9BcRX.png" style="zoom:67%;" />
+
+
+
+
+
+
+
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

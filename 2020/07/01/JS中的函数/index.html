@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="JS中的函数函数声明的方式
+function(arg){
+​    console.log(arg);
+}
+
+
+let   fun1  = function(arg){
+​    console.log(arg);
+}
+
+
+整合到对象中
+let  user  = {
+​    name:’’,
+​ ">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-07-01T02:43:20.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-07-01
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">JS中的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">函数声明的方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E7%89%B9%E7%82%B9"><span class="toc-text">全局函数定义特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87"><span class="toc-text">匿名函数与函数提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-text">立即执行函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">默认参数的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="toc-text">函数参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arguments"><span class="toc-text">arguments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="toc-text">箭头函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-text">递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-text">回调函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E8%AF%AD%E6%B3%95"><span class="toc-text">点语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8E%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84this%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="toc-text">函数与方法中的this的不同</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this%E7%9A%84%E6%9E%84%E9%80%A0%E5%8E%9F%E7%90%86"><span class="toc-text">this的构造原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#call%E4%B8%8Eapply"><span class="toc-text">call与apply</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8call-apply%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%B1%9E%E6%80%A7%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-text">使用call,apply方法实现属性的继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bind"><span class="toc-text">bind</span></a></li></ol></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="JS中的函数"><a href="#JS中的函数" class="headerlink" title="JS中的函数"></a>JS中的函数</h1><h3 id="函数声明的方式"><a href="#函数声明的方式" class="headerlink" title="函数声明的方式"></a>函数声明的方式</h3><blockquote>
+<p>function(arg){</p>
+<p>​    console.log(arg);</p>
+<p>}</p>
+</blockquote>
+<blockquote>
+<p>let   fun1  = function(arg){</p>
+<p>​    console.log(arg);</p>
+<p>}</p>
+</blockquote>
+<blockquote>
+<p>整合到对象中</p>
+<p>let  user  = {</p>
+<p>​    name:’’,</p>
+<p>​    setUsername(name){</p>
+<p>​    this.name = name;</p>
+<p>}</p>
+<p>​    getUsername(){</p>
+<p>return this.name;</p>
+<p>}</p>
+<p>}</p>
+</blockquote>
+<h3 id="全局函数定义特点"><a href="#全局函数定义特点" class="headerlink" title="全局函数定义特点"></a>全局函数定义特点</h3><blockquote>
+<p>直接全局定义函数会放到window对象中</p>
+</blockquote>
+<blockquote>
+<p>let  fun1 = function(){</p>
+<p>}//这样定义函数就不会</p>
+</blockquote>
+<p>​        <strong>一般最好把函数放到类中</strong></p>
+<h3 id="匿名函数与函数提升"><a href="#匿名函数与函数提升" class="headerlink" title="匿名函数与函数提升"></a>匿名函数与函数提升</h3><blockquote>
+<p>函数也是一个引用类型        </p>
+<p>函数会变量提升</p>
+<ul>
+<li>匿名函数不会提升 </li>
+</ul>
+</blockquote>
+<h3 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h3><blockquote>
+<p>(function(){</p>
+<p>})()</p>
+</blockquote>
+<h3 id="默认参数的使用"><a href="#默认参数的使用" class="headerlink" title="默认参数的使用"></a>默认参数的使用</h3><blockquote>
+<p>function   avg(total,year = 1){</p>
+<p>}//如果传第二个参数则有参数    不然就默认为1</p>
+</blockquote>
+<h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><blockquote>
+<p>参数的数量不确定时    </p>
+<p>arguments是一个包含所有参数的数组</p>
+<p>还可以使用  …  点语法来收集</p>
+</blockquote>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><blockquote>
+<p>弊端：要考虑this的问题    递归    事件处理    作用域</p>
+</blockquote>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><blockquote>
+<p>只考虑两层    递推与截止条件</p>
+</blockquote>
+<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><blockquote>
+<p>在其他函数中调用的函数</p>
+</blockquote>
+<h3 id="点语法"><a href="#点语法" class="headerlink" title="点语法"></a>点语法</h3><blockquote>
+<p>展开/收集</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/06/30/gU8aDtjshMY6e9k.png"></p>
+<blockquote>
+<p>函数里面用法也差不多    展开语法接收参数</p>
+</blockquote>
+<h3 id="函数与方法中的this的不同"><a href="#函数与方法中的this的不同" class="headerlink" title="函数与方法中的this的不同"></a>函数与方法中的this的不同</h3><blockquote>
+<p>类方法中的this指向：当前类的一个引用</p>
+<p>在全局环境下this就是window</p>
+<p>普通函数中的this指向window</p>
+<img src="https://i.loli.net/2020/07/01/Ss7m4HfWjX9CnOu.png" style="zoom: 67%;" />
+</blockquote>
+<p><strong>通过常量改变this指向</strong></p>
+<blockquote>
+<p>const self = this</p>
+<p>作用域中的this传递到函数中</p>
+</blockquote>
+<p><strong>箭头函数中的this</strong></p>
+<blockquote>
+<p>箭头函数中的this指向**<em>父级**</em>作用域中的this</p>
+<p><img src="https://i.loli.net/2020/07/01/UGb3j2cQ8xopOy4.png"></p>
+</blockquote>
+<h2 id="this的构造原理"><a href="#this的构造原理" class="headerlink" title="this的构造原理"></a>this的构造原理</h2><p> <img src="https://i.loli.net/2020/07/01/iV4Lv2Gq9wmp76l.png"></p>
+<blockquote>
+<p>构造函数中的this本身是为空的     可以改变它</p>
+<p>this可以被改变</p>
+<p>call  apply  bind方法都可以改变this    有一些细微的差别</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/07/01/cZwbuKUsHMCLrlQ.png"></p>
+<h3 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h3><blockquote>
+<p>传递参数的方法不同</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/01/OC56ef1i9TcFZLM.png" style="zoom: 80%;" />
+
+
+
+<h3 id="使用call-apply方法实现属性的继承"><a href="#使用call-apply方法实现属性的继承" class="headerlink" title="使用call,apply方法实现属性的继承"></a>使用call,apply方法实现属性的继承</h3><blockquote>
+<p><img src="https://i.loli.net/2020/07/01/Jv5UYWdhK8mEpuf.png"></p>
+</blockquote>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><blockquote>
+<p>bind并不是<strong>立即</strong>执行函数</p>
+<p>而是生成一个改变了指针的函数</p>
+</blockquote>
+<p>传参方式：</p>
+<ul>
+<li>定义的时候</li>
+<li>后期调用的时候</li>
+</ul>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>page</title>
+  <meta name="author" content="mzh">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <nav class="navbar">
+  <div class="nav-container">
+  <div class="nav navbar-nav navbar-left">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">Mzh</a>
+    </div>
+    
+
+  </div>
+  <div id="site_search" class="">
+  <input type="text" id="local-search-input" name="q" placeholder="search" class="form-control"/>
+</div>
+<div id="local-search-result"></div>
+
+
+  <div class="nav navbar-nav navbar-right">
+    <div class="dropdown">
+      <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <svg class="i-link" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <path d="M18 8 C18 8 24 2 27 5 30 8 29 12 24 16 19 20 16 21 14 17 M14 24 C14 24 8 30 5 27 2 24 3 20 8 16 13 12 16 11 18 15"></path>
+        </svg>
+      </a>
+      <base href="/">
+      <ul class="dropdown-content">
+        
+          <div>
+            <a href="/links.html">
+        友情链接
+      </a>
+    </div>
+     
+          <div>
+            <a target="_blank" rel="noopener" href="https://github.com/JinYi2000">
+        Github
+      </a>
+    </div>
+     
+    </ul>
+    </div>
+    <div class="archives"><a href="/archives">
+      <svg class="i-archive" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <path d="M4 10 L4 28 28 28 28 10 M2 4 L2 10 30 10 30 4 Z M12 15 L20 15"></path>
+      </svg>
+    </a></div>
+  </div>
+  </div>
+</nav>
+
+<ul class="posts">
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/12/vue双向绑定原理/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    思路整理
+
+
+数据监听器 observer    能够对数据对象的所有属性进行监听
+指令解析器compile  对每个元素节点的指令进行扫描和解析  
+实现一个watcher作为连接observer和compile的桥梁
+mvvm入口函数
+
+  
+  <a href="/2020/08/12/vue双向绑定原理/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-12T13:49:20.947Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-12
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/12/object.defineProperty/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    object.defineProperty
+定义对象的属性
+
+访问器描述符
+configurable 能否修改属性的特性(是否可以删除)
+
+enumerable 是否可以被枚举
+
+Value 值
+
+writable 是否可写
+
+
+存取描述符
+  
+  <a href="/2020/08/12/object.defineProperty/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-12T10:20:16.181Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-12
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/10/CSS/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    伪类选择器
+为元素的不同状态或不确定存在的元素设置样式规则
+
+盒子模型
+相邻元素的纵向外边距会合并
+
+弹性盒模型
+在盒子上加元素来控制其中弹性元素的排列方式
+  
+  <a href="/2020/08/10/CSS/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-10T06:34:38.826Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-10
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/09/移动端适配/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    viewport移动端的视口
+布局视口
+
+网页布局的布局宽度
+
+
+视觉视口
+
+从浏览器内看到的网站显示区域（放大镜中显示的内容）
+
+
+理想视口
+
+理想的宽度（设备分辨率）
+
+
+
+像素像素分为设备像素和逻辑像素（css像素）
+屏幕的DPR实际
+  
+  <a href="/2020/08/09/移动端适配/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-09T08:09:52.935Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-09
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/09/webpack/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    
+  
+  <a href="/2020/08/09/webpack/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-09T01:49:02.681Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-09
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/08/webpack性能优化/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    减少webpack打包时间loader
+优化文件搜索范围（除去node_modules）
+
+将babel编译过的文件缓存起来
+
+
+HappyPack
+可以将loader同步转换为并行的
+
+Dllplugin
+将特定的类库提前打包然后引入
+
+
+  
+  <a href="/2020/08/08/webpack性能优化/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-08T00:37:01.795Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-08
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/07/前端性能优化/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    JS性能优化JS需要有引擎才能运行起来。
+在V8引擎下加入了Turbofan编译器（编译成为执行效率更高的machine code）
+
+
+
+
+
+
+图片性能优化图片加载优化
+将修饰图片用CSS替代
+cdn加载图片
+小图使用base64格式
+选
+  
+  <a href="/2020/08/07/前端性能优化/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-07T04:30:32.961Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-07
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/06/svn命令行操作/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    https://www.cnblogs.com/luckythan/p/4478706.html
+svn checkout path
+Svn commit -m ‘…’
+svn update
+Svn propset svn:ignore n
+  
+  <a href="/2020/08/06/svn命令行操作/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-06T15:54:06.637Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-06
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/06/前端的安全防范/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    xss
+持久型 
+
+写入数据库中
+
+
+非持久型
+
+修改url参数来加入攻击代码
+(如果页面要从url中获取参数)
+
+
+
+XSS应对方法
+转义字符
+CSP
+
+
+建立白名单，告诉浏览器哪些资源可以执行
+
+开启csp方式    content-s
+  
+  <a href="/2020/08/06/前端的安全防范/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-06T13:00:12.922Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-06
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/06/浏览器渲染原理/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    HTML文件的渲染
+接受字节数据（0，1）
+
+字节数据转换为字符串（代码）
+
+将这些字符串通过词法分析转换为标记(token) —— 标记化
+
+标记化之后这些标记会转换成node node再根据相互之间的联系构建为一棵DOM树
+
+
+
+CSS
+  
+  <a href="/2020/08/06/浏览器渲染原理/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-06T10:49:55.437Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-06
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+</ul>
+<ul class="pager">
+    <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next</a>
+</ul>
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

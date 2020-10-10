@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="图片base64替换小图可以将小图用base64来表示，以减少请求次数
+首页的大图优化一张接一张依次加载。  图片每加载完 一张加载下一张，并且轮播图片的数量 +1
+如何实现一张接一张依次加载——回调函数
+出现了问题：加载中的图片也会显示在最前方
+未加载完成的图片无法设置opacity属性？
+解决方">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-09-25T03:05:16.059Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-09-25
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-text">图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#base64%E6%9B%BF%E6%8D%A2%E5%B0%8F%E5%9B%BE"><span class="toc-text">base64替换小图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E7%9A%84%E5%A4%A7%E5%9B%BE%E4%BC%98%E5%8C%96"><span class="toc-text">首页的大图优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E4%BA%86%E9%97%AE%E9%A2%98%EF%BC%9A%E5%8A%A0%E8%BD%BD%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E4%B9%9F%E4%BC%9A%E6%98%BE%E7%A4%BA%E5%9C%A8%E6%9C%80%E5%89%8D%E6%96%B9"><span class="toc-text">出现了问题：加载中的图片也会显示在最前方</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94lazy-load"><span class="toc-text">首屏优化——lazy-load</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="toc-text">懒加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-text">页面滚动事件的优化</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><h4 id="base64替换小图"><a href="#base64替换小图" class="headerlink" title="base64替换小图"></a>base64替换小图</h4><p>可以将小图用base64来表示，以减少请求次数</p>
+<h3 id="首页的大图优化"><a href="#首页的大图优化" class="headerlink" title="首页的大图优化"></a>首页的大图优化</h3><p>一张接一张依次加载。  图片每加载完 一张加载下一张，并且轮播图片的数量 +1</p>
+<p>如何实现一张接一张依次加载——回调函数</p>
+<h4 id="出现了问题：加载中的图片也会显示在最前方"><a href="#出现了问题：加载中的图片也会显示在最前方" class="headerlink" title="出现了问题：加载中的图片也会显示在最前方"></a>出现了问题：加载中的图片也会显示在最前方</h4><blockquote>
+<p>未加载完成的图片无法设置opacity属性？</p>
+<p>解决方法：先在开始加载图片（设置src的时候）将透明度设置为0，在图片加载完成的时候再将透明度改成1</p>
+</blockquote>
+<h3 id="首屏优化——lazy-load"><a href="#首屏优化——lazy-load" class="headerlink" title="首屏优化——lazy-load"></a>首屏优化——lazy-load</h3><h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><blockquote>
+<p>等用户下拉的瞬间再去请求、即时呈现。</p>
+</blockquote>
+<h3 id="页面滚动事件的优化"><a href="#页面滚动事件的优化" class="headerlink" title="页面滚动事件的优化"></a>页面滚动事件的优化</h3><p>页面滚动会大大占用性能，因此使用节流操作，一段时间段内只进行少数几次的操作。</p>
+<p>在窗口大小改变的过程中，会有大量的重绘操作（js获取节点、改变图片大小）,影响性能。因此使用防抖操作，只在最后一次改动结束之后进行响应。</p>
+<p>如图为不同截流参数下的优化情况</p>
+<img src="https://i.loli.net/2020/09/28/9p5yFnDvlQWV3tC.png" style="zoom: 33%;" />
+
+<p><img src="https://i.loli.net/2020/09/28/QnTl6Sca3d94AJI.png"></p>
+<p><img src="https://i.loli.net/2020/09/28/wdK1gETFXBs892G.png"></p>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

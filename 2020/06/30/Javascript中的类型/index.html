@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="Javascript中的类型undefined
+表示未定义     只有一个值undefined    任何变量在赋值前是undefined类型，值为undefined
+但是undefined是一个变量而不是关键字    有时候用void 0来获取undefined的值
+
+
+null
+null 的意">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-06-30T13:17:41.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-06-30
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">Javascript中的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-text">undefined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">null</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boolean"><span class="toc-text">boolean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string"><span class="toc-text">string</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#number"><span class="toc-text">number</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#symbol"><span class="toc-text">symbol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E9%80%94"><span class="toc-text">用途</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#object"><span class="toc-text">object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">类型转换</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="Javascript中的类型"><a href="#Javascript中的类型" class="headerlink" title="Javascript中的类型"></a>Javascript中的类型</h1><h2 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h2><blockquote>
+<p>表示未定义     只有一个值undefined    任何变量在赋值前是undefined类型，值为undefined</p>
+<p>但是undefined是一个变量而不是关键字    有时候用void 0来获取undefined的值</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/06/30/vfZMltcIdzGThX8.png"></p>
+<h2 id="null"><a href="#null" class="headerlink" title="null"></a>null</h2><blockquote>
+<p>null 的意思就是空      是JS关键字    不用担心不小心被篡改</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/06/30/jeXBTr2xh37Sb5g.png"></p>
+<h2 id="boolean"><a href="#boolean" class="headerlink" title="boolean"></a>boolean</h2><blockquote>
+<p>表示逻辑上的真假     true  false</p>
+</blockquote>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><blockquote>
+<p>String 的意义并非“字符串”，而是字符串的 UTF16 编码</p>
+</blockquote>
+<h2 id="number"><a href="#number" class="headerlink" title="number"></a>number</h2><blockquote>
+<p>具有精度限制</p>
+<p>因此浮点数运算具有精度问题    相差 了一个微小的值 ：Number.EPSILON</p>
+</blockquote>
+<h2 id="symbol"><a href="#symbol" class="headerlink" title="symbol"></a>symbol</h2><blockquote>
+<p>一个永远不会重复的标记</p>
+</blockquote>
+<p> 用法：  </p>
+<ul>
+<li><p>var hd = Symbol(‘mzh’)</p>
+</li>
+<li><p>var hd = Symbol.for(‘jinyi’)     这样声明就可以重复了</p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2020/06/30/6mMUNXW3eq4oiaJ.png"></p>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><blockquote>
+<p>eg:防止字符串耦合</p>
+</blockquote>
+<img src="https://i.loli.net/2020/06/30/XfAF92wCINDc7ht.png" style="zoom:50%;" />
+
+
+
+<h2 id="object"><a href="#object" class="headerlink" title="object"></a>object</h2><blockquote>
+<p>对象，属性的集合</p>
+<p>除开原始类型之外都是对象</p>
+<p>储存的是指针</p>
+<p>原始类型储存的是值</p>
+</blockquote>
+<p>属性</p>
+<ul>
+<li>数据属性</li>
+<li>访问器属性</li>
+<li>key可以是字符串或Symbol类型</li>
+</ul>
+<p>Number    String    Boolean  </p>
+<ul>
+<li>和new搭配时产生对象</li>
+<li>直接调用时强制类型转换</li>
+</ul>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><blockquote>
+<p>一般用  === 比较</p>
+</blockquote>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

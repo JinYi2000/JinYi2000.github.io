@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="子组件无法在父组件中使用
+
+改成就可以了，因为不应该与html元素重名
+
+
+
+
+
+
+header设置为fixed之后，形成了bfc,以至于设置为了float的logo元素也被包含在了高度里面。
+
+父元素设置了半透明，导致其中的字体继承了opacity属性，也变成了半透明，改如何解决？
+设置了!imp">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-09-16T08:23:17.568Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-09-16
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      
+    
+    <div class="picture-container">
+      
+    </div>
+    <ol>
+<li><p>子组件<header></header>无法在父组件中使用</p>
+<blockquote>
+<p>改成<myHeader></myHeader>就可以了，因为不应该与html元素重名</p>
+</blockquote>
+</li>
+<li><img src="https://i.loli.net/2020/09/17/Cu63VGpqUyoK9ij.png" style="zoom: 33%;" />
+
+</li>
+</ol>
+<p>header设置为fixed之后，形成了bfc,以至于设置为了float的logo元素也被包含在了高度里面。</p>
+<ol start="3">
+<li><p>父元素设置了半透明，导致其中的字体继承了opacity属性，也变成了半透明，改如何解决？</p>
+<p>设置了!important,无用。</p>
+<p>应该设置背景色为rgba  rgba的第四个参数为透明度</p>
+</li>
+<li><p>如何实现顶部header在滚动的过程中由透明变为有色？</p>
+</li>
+</ol>
+<p>`window.addEventListener(‘scroll’,this.scrollToTop)<br>    scrollToTop(){<br>            var dis = window.pageYOffset;<br>            console.log(dis);</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span>(dis &gt; <span class="number">859.5</span>)&#123;     </span><br><span class="line">        <span class="keyword">var</span> header = <span class="built_in">document</span>.getElementsByClassName(<span class="string">&#x27;header&#x27;</span>); </span><br><span class="line">        <span class="built_in">console</span>.log(header[<span class="number">0</span>]);   </span><br><span class="line">        header[<span class="number">0</span>].className = <span class="string">&#x27;header2&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;           </span><br><span class="line">        <span class="keyword">var</span> header = <span class="built_in">document</span>.getElementsByClassName(<span class="string">&#x27;header2&#x27;</span>); </span><br><span class="line">        <span class="built_in">console</span>.log(header[<span class="number">0</span>]);  </span><br><span class="line">        header[<span class="number">0</span>].className = <span class="string">&#x27;header&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<p>监听滚动的距离</p>
+<ol start="5">
+<li><p>js改动了lfet之后后面float:left的元素不跟着往前。  而在浏览器中更改了left属性之后，后面的元素会跟着往前，为什么呢？</p>
+<p>因为控制台中修改的是class一个类的属性</p>
+</li>
+<li><p>用getElementByClassName返回的不是list,而是htmlCollection</p>
+</li>
+<li><p>在讲元素高度改为百分比的时候出现问题？</p>
+<p>元素的高度设置为百分比时，是根据其父元素的高度来的。</p>
+<p>浏览器没有对文件限定具体的高度，而是简单地向下堆砌。</p>
+</li>
+<li><p>如何实现页面的自适应问题？</p>
+<p>图片自适应的实现：对window.resize事件进行监听；通过js来动态把图片高度按比例控制在一个数值。</p>
+</li>
+<li><p>对于图片加载的优化</p>
+</li>
+<li><p>防抖之后定时器正常执行，但是定时器定时结束之后依然执行很多次。</p>
+<p><img src="https://i.loli.net/2020/09/28/mVJaXIG9jKtyxso.png"></p>
+<p>原因：闭包返回一个函数之后应该将这个函数赋值给一个变量，之后一直执行那个变量。</p>
+<p>​            如果只是closure()()的话会生成各种不同的函数，其所含变量函数都不同。</p>
+</li>
+</ol>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

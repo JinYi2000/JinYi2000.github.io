@@ -1,0 +1,463 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="计算机组成原理复习存储器存储的层次
+
+缓存-主存     主存-辅存
+
+DRAM刷新
+集中
+分散
+异步
+
+存储器封装成芯片几片一组（位相等）
+几组一片
+总共几片
+存储器与CPU的连接容量的扩展
+
+位扩展
+
+把几个芯片当成一个芯片来用
+让它们同时工作  用相同的信号来连接
+
+
+
+字扩展
+
+
+
+
+地址线">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-07-12T15:11:29.047Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-07-12
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0"><span class="toc-text">计算机组成原理复习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-text">存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DRAM"><span class="toc-text">DRAM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%B7%E6%96%B0"><span class="toc-text">刷新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E5%B0%81%E8%A3%85%E6%88%90%E8%8A%AF%E7%89%87"><span class="toc-text">存储器封装成芯片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%8ECPU%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="toc-text">存储器与CPU的连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E8%AE%BF%E5%AD%98%E9%80%9F%E5%BA%A6%E7%9A%84%E6%8E%AA%E6%96%BD"><span class="toc-text">提高访存速度的措施</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%86%B2%E5%AD%98%E5%82%A8%E5%99%A8%EF%BC%88cache%EF%BC%89"><span class="toc-text">高速缓冲存储器（cache）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="toc-text">替换策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87"><span class="toc-text">输入输出设备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#I-O%E8%AE%BE%E5%A4%87%E7%BC%96%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-text">I&#x2F;O设备编址方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E4%BC%A0%E9%80%81%E7%9A%84%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="toc-text">信息传送的控制方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-text">程序查询方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F"><span class="toc-text">程序中断方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E6%9C%8D%E5%8A%A1%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-text">中断服务程序的流程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DMA"><span class="toc-text">DMA</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DMA%E4%BA%A4%E6%8D%A2%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">DMA交换数据的方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95"><span class="toc-text">计算机的运算方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="toc-text">无符号数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="toc-text">指令系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-text">指令格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-text">操作数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-text">寻址方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RISC%E6%8A%80%E6%9C%AF"><span class="toc-text">RISC技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU"><span class="toc-text">CPU</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CPU%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">CPU的寄存器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F"><span class="toc-text">指令周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F"><span class="toc-text">中断系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%93%8D%E5%BA%94"><span class="toc-text">中断响应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83"><span class="toc-text">控制单元</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">微操作命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E6%97%B6%E5%BA%8F%E7%B3%BB%E7%BB%9F"><span class="toc-text">多级时序系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="toc-text">控制方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">控制单元的设计</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="计算机组成原理复习"><a href="#计算机组成原理复习" class="headerlink" title="计算机组成原理复习"></a>计算机组成原理复习</h1><h2 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h2><p>存储的层次</p>
+<blockquote>
+<p>缓存-主存     主存-辅存</p>
+</blockquote>
+<h3 id="DRAM"><a href="#DRAM" class="headerlink" title="DRAM"></a>DRAM</h3><h4 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h4><ul>
+<li>集中</li>
+<li>分散</li>
+<li>异步</li>
+</ul>
+<h4 id="存储器封装成芯片"><a href="#存储器封装成芯片" class="headerlink" title="存储器封装成芯片"></a>存储器封装成芯片</h4><p>几片一组（位相等）</p>
+<p>几组一片</p>
+<p>总共几片</p>
+<h4 id="存储器与CPU的连接"><a href="#存储器与CPU的连接" class="headerlink" title="存储器与CPU的连接"></a>存储器与CPU的连接</h4><p>容量的扩展</p>
+<ul>
+<li><p>位扩展</p>
+<blockquote>
+<p>把几个芯片当成一个芯片来用</p>
+<p>让它们同时工作  用相同的信号来连接</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/12/jHLFvmGsaxtbTir.png" style="zoom:50%;" />
+</li>
+<li><p>字扩展</p>
+<img src="https://i.loli.net/2020/07/12/4ibPsFK2d6UMj5t.png" style="zoom:50%;" />
+
+</li>
+</ul>
+<p>地址线</p>
+<blockquote>
+<p>CPU地址线的低位往往与芯片连接</p>
+<p>高位可以扩展也可用于片选等</p>
+</blockquote>
+<p>字、位扩展</p>
+<img src="https://i.loli.net/2020/07/15/AnFl9EdWmkaVXZQ.png" style="zoom:67%;" />
+
+<p>芯片的选择</p>
+<blockquote>
+<p>Ram  用户编程</p>
+<p>Rom 系统程序</p>
+</blockquote>
+<h3 id="提高访存速度的措施"><a href="#提高访存速度的措施" class="headerlink" title="提高访存速度的措施"></a>提高访存速度的措施</h3><ul>
+<li>单体多字系统</li>
+</ul>
+<blockquote>
+<p>适用于程序和数据是连续存放的   在一个存储周期里面取出多条指令    送至CPU执行</p>
+</blockquote>
+<ul>
+<li>多体并行系统</li>
+</ul>
+<blockquote>
+<p>多个相同的存储体  可以同时工作  读出的数据要在总线上分时传送</p>
+<p>地址分为体号地址以及体内地址</p>
+<p>低位交叉（低位表示体号）</p>
+</blockquote>
+<h3 id="高速缓冲存储器（cache）"><a href="#高速缓冲存储器（cache）" class="headerlink" title="高速缓冲存储器（cache）"></a>高速缓冲存储器（cache）</h3><blockquote>
+<p>cpu的一个跑腿的</p>
+<p>cpu读数据首先是在cache中读   如果命中则读出</p>
+<p>如果没有命中则回到通过总线到内存中去读进一连串的</p>
+</blockquote>
+<p>cache的映射规则</p>
+<p>字长：一次性处理事务的固定长度</p>
+<p>八位1B</p>
+<p><img src="https://i.loli.net/2020/07/13/dnPjQa2ZmFo7z3B.png"></p>
+<ul>
+<li>直接映射</li>
+<li>全相联映射</li>
+<li>组相联映射</li>
+</ul>
+<blockquote>
+<p>设计主存的地址格式</p>
+</blockquote>
+<h4 id="替换策略"><a href="#替换策略" class="headerlink" title="替换策略"></a>替换策略</h4><ul>
+<li>先进先出</li>
+<li>近期最少使用</li>
+<li>随机</li>
+</ul>
+<h2 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h2><h3 id="I-O设备编址方式"><a href="#I-O设备编址方式" class="headerlink" title="I/O设备编址方式"></a>I/O设备编址方式</h3><ul>
+<li>统一编址    看作存储器的一部分（占用了存储器的空间）</li>
+<li>不统一编址    必须有专门的IO指令</li>
+</ul>
+<p>IO传递信息的方式</p>
+<ul>
+<li>立即响应</li>
+<li>同步</li>
+<li>异步</li>
+</ul>
+<h3 id="信息传送的控制方式"><a href="#信息传送的控制方式" class="headerlink" title="信息传送的控制方式"></a>信息传送的控制方式</h3><ul>
+<li>程序查询方式</li>
+</ul>
+<blockquote>
+<p>不断查询io设备是否准备就绪</p>
+</blockquote>
+<ul>
+<li>程序中断方式</li>
+</ul>
+<blockquote>
+<p>在io准备就绪并向cpu发出请求后才予以响应</p>
+</blockquote>
+<p>DMA</p>
+<blockquote>
+<p>主存与io设备之间有一条单独的数据通路   </p>
+<p>dma读取数据的优先级比cpu高</p>
+</blockquote>
+<p>IO接口</p>
+<blockquote>
+<p>主机与io设备之间设置的一个硬件电路及其相应的软件控制</p>
+<p>数据线  设备选择线  命令线  状态线</p>
+</blockquote>
+<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p>流程</p>
+<ul>
+<li>测试指令</li>
+<li>传送指令</li>
+<li>转移指令</li>
+</ul>
+<h3 id="程序中断方式"><a href="#程序中断方式" class="headerlink" title="程序中断方式"></a>程序中断方式</h3><p>接口电路</p>
+<ul>
+<li>中断请求触发器INTR</li>
+<li>完成触发器D</li>
+<li>排队器</li>
+<li>中断向量地址形成部件</li>
+</ul>
+<blockquote>
+<p>不同设备的中断服务程序有不同的地址</p>
+<p>向量的形成与排队器的INTR有关</p>
+</blockquote>
+<h4 id="中断服务程序的流程"><a href="#中断服务程序的流程" class="headerlink" title="中断服务程序的流程"></a>中断服务程序的流程</h4><p>保护现场  中断服务  恢复现场  中断返回</p>
+<img src="https://i.loli.net/2020/07/13/2h4TBHEUygWwcGo.png" style="zoom:33%;" />
+
+<h3 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h3><h4 id="DMA交换数据的方法"><a href="#DMA交换数据的方法" class="headerlink" title="DMA交换数据的方法"></a>DMA交换数据的方法</h4><ul>
+<li><p>停止CPU访问主存</p>
+</li>
+<li><p>周期挪用</p>
+</li>
+<li><p>DMA与CPU交替访问</p>
+</li>
+</ul>
+<blockquote>
+<p>三种方式颗粒由大到小</p>
+</blockquote>
+<img src="https://i.loli.net/2020/07/13/Rw2AnNFZdkirJbC.png" style="zoom:33%;" />
+
+
+
+<h2 id="计算机的运算方法"><a href="#计算机的运算方法" class="headerlink" title="计算机的运算方法"></a>计算机的运算方法</h2><h3 id="无符号数"><a href="#无符号数" class="headerlink" title="无符号数"></a>无符号数</h3><p>原码</p>
+<blockquote>
+<p>不变</p>
+<p>正数的原码 补码 反码都不变</p>
+</blockquote>
+<p>补码</p>
+<blockquote>
+<p>符号位不变  剩余位取反加一 </p>
+</blockquote>
+<p>反码</p>
+<blockquote>
+<p>作为原码到补码的过渡   符号位不变  剩余位全部取反</p>
+</blockquote>
+<p>表示范围</p>
+<img src="https://i.loli.net/2020/07/15/4Lr1miwJC6AspeH.png" style="zoom: 50%;" />
+
+<p>定点表示</p>
+<blockquote>
+<p>小数点的位置固定不变</p>
+</blockquote>
+<p>定点运算</p>
+<ul>
+<li>移位</li>
+</ul>
+<blockquote>
+<p>移位的符号变化：正数都是左右+0   负数  补码（左移+0  右移+1）  负数原码+0  负数反码左右+1</p>
+</blockquote>
+<p>现代计算机中常使用补码作加减法运算</p>
+<ul>
+<li>溢出</li>
+</ul>
+<blockquote>
+<p>符号位相同的两个数参加操作，而结果符号位不同的，即为溢出</p>
+</blockquote>
+<p>ALU</p>
+<ul>
+<li>串行进位</li>
+<li>并行进位</li>
+</ul>
+<h2 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h2><h3 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h3><ul>
+<li>操作码</li>
+<li>地址码</li>
+</ul>
+<h3 id="操作数类型"><a href="#操作数类型" class="headerlink" title="操作数类型"></a>操作数类型</h3><p>地址  数字  字符  逻辑数据</p>
+<p>操作类型</p>
+<p>数据传送   算术逻辑操作  移位  转移  调用与返回  IO输入输出指令</p>
+<h3 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h3><p>指令寻址</p>
+<ul>
+<li>PC + 1</li>
+<li>JMP </li>
+</ul>
+<p>数据寻址</p>
+<ul>
+<li><p>立即寻址</p>
+<blockquote>
+<p>操作数本身就在指令字内   形式地址就是操作数本身</p>
+</blockquote>
+</li>
+<li><p>直接寻址</p>
+<blockquote>
+<p>形式地址就是真实地址</p>
+</blockquote>
+</li>
+<li><p>隐含地址</p>
+<blockquote>
+<p>另一个操作数隐含在操作码或某个寄存器中</p>
+</blockquote>
+</li>
+<li><p>间接地址</p>
+<blockquote>
+<p>指出操作数真实地址所在的存储单元地址</p>
+</blockquote>
+</li>
+<li><p>寄存器寻址</p>
+<blockquote>
+<p>直接指出寄存器编号</p>
+</blockquote>
+</li>
+<li><p>寄存器间接寻址</p>
+</li>
+<li><p>基址寻址</p>
+</li>
+</ul>
+<blockquote>
+<p>EA = A + (BR)</p>
+</blockquote>
+<ul>
+<li>变址寻址</li>
+</ul>
+<blockquote>
+<p>EA = A + (IX)     IX变址寄存器</p>
+</blockquote>
+<ul>
+<li>相对寻址</li>
+</ul>
+<blockquote>
+<p>在PC的基础上加    </p>
+</blockquote>
+<h4 id="RISC技术"><a href="#RISC技术" class="headerlink" title="RISC技术"></a>RISC技术</h4><blockquote>
+<p>用常用指令来组合实现剩下的指令</p>
+</blockquote>
+<h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><h4 id="CPU的寄存器"><a href="#CPU的寄存器" class="headerlink" title="CPU的寄存器"></a>CPU的寄存器</h4><ul>
+<li>用户可见寄存器</li>
+</ul>
+<blockquote>
+<p>通用寄存器  数据寄存器    地址寄存器    条件码寄存器</p>
+</blockquote>
+<ul>
+<li>控制和状态寄存器</li>
+</ul>
+<blockquote>
+<p>MAR    MDR    PC    IR</p>
+</blockquote>
+<h4 id="指令周期"><a href="#指令周期" class="headerlink" title="指令周期"></a>指令周期</h4><blockquote>
+<p>CPU取出并执行一条指令所需的全部时间</p>
+</blockquote>
+<h4 id="中断系统"><a href="#中断系统" class="headerlink" title="中断系统"></a>中断系统</h4><p>中断请求标记</p>
+<blockquote>
+<p>INTR 中断请求触发器</p>
+</blockquote>
+<p>中断判优逻辑</p>
+<blockquote>
+<p>硬件实现——优先级高的封住优先级低的请求</p>
+<p>软件实现——编写排队程序</p>
+</blockquote>
+<p>中断服务程序的入口地址</p>
+<p>硬件向量法</p>
+<p>软件查询法</p>
+<h4 id="中断响应"><a href="#中断响应" class="headerlink" title="中断响应"></a>中断响应</h4><p>响应条件</p>
+<ul>
+<li>EINT（允许中断触发器为1）    INTR（中断请求触发器为1） </li>
+</ul>
+<p>响应中断时间</p>
+<ul>
+<li>指令执行周期结束之后</li>
+</ul>
+<blockquote>
+<p>指令执行周期结束之后CPU才能知道哪个中断源发出了请求</p>
+</blockquote>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h2 id="控制单元"><a href="#控制单元" class="headerlink" title="控制单元"></a>控制单元</h2><h3 id="微操作命令"><a href="#微操作命令" class="headerlink" title="微操作命令"></a>微操作命令</h3><h3 id="多级时序系统"><a href="#多级时序系统" class="headerlink" title="多级时序系统"></a>多级时序系统</h3><ul>
+<li>机器周期</li>
+</ul>
+<blockquote>
+<p>所有指令执行过程的一个基准时间</p>
+</blockquote>
+<h4 id="控制方式"><a href="#控制方式" class="headerlink" title="控制方式"></a>控制方式</h4><ul>
+<li>同步控制方式</li>
+</ul>
+<blockquote>
+<p>定长   不定长时钟周期</p>
+</blockquote>
+<ul>
+<li>异步控制方式</li>
+</ul>
+<blockquote>
+<p>有专门的应答线路控制</p>
+</blockquote>
+<h2 id="控制单元的设计"><a href="#控制单元的设计" class="headerlink" title="控制单元的设计"></a>控制单元的设计</h2>
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

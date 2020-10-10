@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="HTML文件的渲染
+接受字节数据（0，1）
+
+字节数据转换为字符串（代码）
+
+将这些字符串通过词法分析转换为标记(token) —— 标记化
+
+标记化之后这些标记会转换成node node再根据相互之间的联系构建为一棵DOM树
+
+
+
+CSS文件的渲染
+确定每一个节点的样式到底是什么
+递归CSSOM树">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-08-06T10:49:55.437Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-06
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML%E6%96%87%E4%BB%B6%E7%9A%84%E6%B8%B2%E6%9F%93"><span class="toc-text">HTML文件的渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E6%96%87%E4%BB%B6%E7%9A%84%E6%B8%B2%E6%9F%93"><span class="toc-text">CSS文件的渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%B8%B2%E6%9F%93%E6%A0%91"><span class="toc-text">生成渲染树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E6%B8%B2%E6%9F%93%E6%A0%91%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E8%BF%9B%E8%A1%8C%E5%B8%83%E5%B1%80"><span class="toc-text">在渲染树的基础上进行布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%8A%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%BB%98%E5%88%B6%E5%88%B0%E5%B1%8F%E5%B9%95%E4%B8%8A"><span class="toc-text">把每个节点绘制到屏幕上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E%E6%B8%B2%E6%9F%93%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-text">阻塞渲染的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E7%BB%98-%E5%9B%9E%E6%B5%81"><span class="toc-text">重绘  回流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81"><span class="toc-text">减少重绘和回流</span></a></li></ol></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="HTML文件的渲染"><a href="#HTML文件的渲染" class="headerlink" title="HTML文件的渲染"></a>HTML文件的渲染</h2><ol>
+<li><p>接受字节数据（0，1）</p>
+</li>
+<li><p>字节数据转换为字符串（代码）</p>
+</li>
+<li><p>将这些字符串通过词法分析转换为标记(token) —— 标记化</p>
+</li>
+<li><p>标记化之后这些标记会转换成node node再根据相互之间的联系构建为一棵DOM树</p>
+</li>
+</ol>
+<p><img src="https://i.loli.net/2020/08/06/oRrBjg2MeY7J68X.png"></p>
+<h2 id="CSS文件的渲染"><a href="#CSS文件的渲染" class="headerlink" title="CSS文件的渲染"></a>CSS文件的渲染</h2><blockquote>
+<p>确定每一个节点的样式到底是什么</p>
+<p>递归CSSOM树来确定具体的元素是什么样式</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/08/06/26kb5yI1XeSKvJQ.png"></p>
+<h2 id="生成渲染树"><a href="#生成渲染树" class="headerlink" title="生成渲染树"></a>生成渲染树</h2><blockquote>
+<p>渲染树只会包括需要显示的节点和这些节点的样式。</p>
+<p>生成之后根据渲染树来进行布局（回流）</p>
+</blockquote>
+<h3 id="在渲染树的基础上进行布局"><a href="#在渲染树的基础上进行布局" class="headerlink" title="在渲染树的基础上进行布局"></a>在渲染树的基础上进行布局</h3><blockquote>
+<p>计算每个节点的几何结构</p>
+</blockquote>
+<h3 id="把每个节点绘制到屏幕上"><a href="#把每个节点绘制到屏幕上" class="headerlink" title="把每个节点绘制到屏幕上"></a>把每个节点绘制到屏幕上</h3><h3 id="阻塞渲染的情况"><a href="#阻塞渲染的情况" class="headerlink" title="阻塞渲染的情况"></a>阻塞渲染的情况</h3><ul>
+<li><p>html css 渲染树</p>
+</li>
+<li><p>遇到script标签时，会暂停构建dom，完成之后才从暂停的地方 开始。</p>
+<blockquote>
+<p>script标签放在body标签底部</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="重绘-回流"><a href="#重绘-回流" class="headerlink" title="重绘  回流"></a>重绘  回流</h3><p>重绘</p>
+<blockquote>
+<p>需要更改外观而不会影响布局</p>
+</blockquote>
+<p>回流</p>
+<blockquote>
+<p>布局或者几何属性需要改变</p>
+<p>（更严重）</p>
+</blockquote>
+<blockquote>
+<p>当eventloop执行完Microtasks后，会判断dicument是否需要更新。</p>
+</blockquote>
+<h4 id="减少重绘和回流"><a href="#减少重绘和回流" class="headerlink" title="减少重绘和回流"></a>减少重绘和回流</h4><ul>
+<li>使用transform替代.top</li>
+<li>使用visibility替换display:none</li>
+<li>…</li>
+</ul>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="存储器存储层次结构
+
+DRAM基本结构
+
+
+
+
+
+
+SRAM
+
+主存的工作原理
+SDRAM性能参数
+cache
+就好像从图书馆仓库取出一本书      空间：取了明朝的还可能取清朝的      时间：同一本书可能同一时间内多个人去取
+
+
+
+
+
+cache的读写操作
+
+
+
+cache的映射策略直接映射">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-06-29T07:07:47.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-06-29
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-text">存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-text">存储层次结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DRAM"><span class="toc-text">DRAM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SRAM"><span class="toc-text">SRAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">主存的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cache"><span class="toc-text">cache</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cache%E7%9A%84%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C"><span class="toc-text">cache的读写操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cache%E7%9A%84%E6%98%A0%E5%B0%84%E7%AD%96%E7%95%A5"><span class="toc-text">cache的映射策略</span></a></li></ol></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h1><h2 id="存储层次结构"><a href="#存储层次结构" class="headerlink" title="存储层次结构"></a>存储层次结构</h2><img src="https://i.loli.net/2020/06/28/xUWv8YazyHm2NTw.png" style="zoom: 67%;" />
+
+<h3 id="DRAM"><a href="#DRAM" class="headerlink" title="DRAM"></a>DRAM</h3><p>基本结构</p>
+<img src="https://i.loli.net/2020/06/28/HSoyBKWFQr1O27D.png" style="zoom: 67%;" />
+
+<img src="https://i.loli.net/2020/06/28/ocCgeS3tUFvswHr.png" style="zoom: 67%;" />
+
+
+
+<h2 id="SRAM"><a href="#SRAM" class="headerlink" title="SRAM"></a>SRAM</h2><img src="https://i.loli.net/2020/06/29/yEOSKdPbgMN4cXk.png" style="zoom: 33%;" />
+
+<h2 id="主存的工作原理"><a href="#主存的工作原理" class="headerlink" title="主存的工作原理"></a>主存的工作原理</h2><p><img src="https://i.loli.net/2020/06/29/sv9IWKdxrN7PVoD.png"></p>
+<p><strong>SDRAM</strong>性能参数<br><img src="https://i.loli.net/2020/06/29/DcwNA9ekx5UGaYP.png" style="zoom: 50%;" /></p>
+<h2 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h2><blockquote>
+<p>就好像从图书馆仓库取出一本书      空间：取了明朝的还可能取清朝的      时间：同一本书可能同一时间内多个人去取</p>
+</blockquote>
+<img src="https://i.loli.net/2020/06/29/H4ueLvWEFnarQol.png" style="zoom: 67%;" />
+
+
+
+<h3 id="cache的读写操作"><a href="#cache的读写操作" class="headerlink" title="cache的读写操作"></a>cache的读写操作</h3><img src="https://i.loli.net/2020/06/29/HFJOtybSoRjrDnz.png" style="zoom: 67%;" />
+
+
+
+<h3 id="cache的映射策略"><a href="#cache的映射策略" class="headerlink" title="cache的映射策略"></a>cache的映射策略</h3><p><strong>直接映射</strong></p>
+<img src="https://i.loli.net/2020/06/29/4gCrdlmWVEZsPFD.png" style="zoom:67%;" />
+
+<p><strong>全相联</strong></p>
+<blockquote>
+<p>需要把所有cache中的数据取出来比较</p>
+<ul>
+<li>二路相联：取两块</li>
+<li>四路相联：取四块</li>
+</ul>
+</blockquote>
+<img src="https://i.loli.net/2020/06/29/Ep7s3GcwOLzMtAN.png" style="zoom:67%;" />
+
+<p><strong>cache</strong> <strong>的替换算法</strong></p>
+<img src="https://i.loli.net/2020/06/29/idl79eIYWJmsFBu.png" style="zoom:67%;" />
+
+<p><strong>存储容量的计算</strong></p>
+<blockquote>
+<p>计算机内部以2为底   计算机外部以10为底</p>
+</blockquote>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

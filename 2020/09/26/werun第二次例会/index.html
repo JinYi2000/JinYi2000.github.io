@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Hexo</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="Werun第二次例会（前端）
+svn上传
+
+
+node_modules文件夹  ignore  
+
+
+接口对接
+
+
+postman测试接口
+http状态码
+
+400 参数类型出错    比如number传成string
+405请求类型出错    get post
+415错误   unsupporte">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-09-26T06:09:32.117Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-09-26
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Werun%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BE%8B%E4%BC%9A%EF%BC%88%E5%89%8D%E7%AB%AF%EF%BC%89"><span class="toc-text">Werun第二次例会（前端）</span></a></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="Werun第二次例会（前端）"><a href="#Werun第二次例会（前端）" class="headerlink" title="Werun第二次例会（前端）"></a>Werun第二次例会（前端）</h2><ol>
+<li>svn上传</li>
+</ol>
+<blockquote>
+<p>node_modules文件夹  ignore  </p>
+</blockquote>
+<ol start="2">
+<li>接口对接</li>
+</ol>
+<blockquote>
+<p>postman测试接口</p>
+<p>http状态码</p>
+<blockquote>
+<p>400 参数类型出错    比如number传成string</p>
+<p>405请求类型出错    get post</p>
+<p>415错误   unsupported media         更改请求头</p>
+<p>5开头：服务器错误</p>
+</blockquote>
+</blockquote>
+<ol start="3">
+<li><p>常用工具：</p>
+<p>Vue-devtools</p>
+<img src="https://i.loli.net/2020/09/26/XYtuKFvrNJinHZc.png" style="zoom: 67%;" />
+</li>
+<li><p>界面绘制：</p>
+<ul>
+<li><p>BFC（块级格式化上下文，用于清楚浮动，防止margin重叠等）</p>
+<blockquote>
+<p>块级格式化上下文，是一个独立的渲染区域，并且有一定的布局规则。</p>
+<p>BFC区域不会与float box重叠</p>
+<p>BFC是页面上的一个独立容器，子元素不会影响到外面</p>
+<p>计算BFC的高度时，浮动元素也会参与计算</p>
+<p>那些元素会生成BFC：</p>
+<p>根元素</p>
+<p>float不为none的元素</p>
+<p>position为fixed和absolute的元素</p>
+<p>display为inline-block、table-cell、table-caption，flex，inline-flex的元素</p>
+<p>overflow不为visible的元素</p>
+</blockquote>
+</li>
+<li><p>三栏布局的实现方式    </p>
+</li>
+</ul>
+</li>
+<li><p>vue生命周期</p>
+<ul>
+<li><p>beforeCreate()</p>
+<blockquote>
+<p>拿不到任何数据</p>
+</blockquote>
+</li>
+<li><p>created()</p>
+<blockquote>
+<p>已经可以拿到data中的数据了，但是<strong>dom还没有挂载</strong>。会判断有无el，如果没有el则停止后面的模板挂载        </p>
+</blockquote>
+</li>
+<li><p>beforeMount()</p>
+<blockquote>
+<p>和 created 拿到的数据相同 在挂载开始之前被调用：相关的 render 函数首次被调用。</p>
+</blockquote>
+</li>
+<li><p>mounted()</p>
+<blockquote>
+<p>el被创建dom已经更新</p>
+</blockquote>
+</li>
+<li><p>destroyed()</p>
+<blockquote>
+<p>Vue 实例销毁后调用</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="6">
+<li><p>常见bug:</p>
+<p><code>a complete log of this run can be found in: ......</code></p>
+<p>解决方法：删除node_modules     重新cnpm install</p>
+</li>
+</ol>
+<ol start="7">
+<li>学习网站：<ul>
+<li>掘金    掘金小册</li>
+<li>mdn</li>
+<li>廖雪峰——js</li>
+<li>Github</li>
+<li>牛客网</li>
+</ul>
+</li>
+<li>学习方向：<ul>
+<li>性能优化<ul>
+<li>webpack</li>
+<li>图片</li>
+</ul>
+</li>
+<li>设计模式</li>
+<li>webpack深究</li>
+<li>Js 深入</li>
+<li>vue源码<ul>
+<li>双向绑定…</li>
+</ul>
+</li>
+<li>http请求头、响应头   计算机网络</li>
+<li>浏览器相关<ul>
+<li>缓存</li>
+<li>输入url到页面显示…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>
