@@ -82,6 +82,55 @@
   
   
     <h1 class="index-title">
+        <a href="/2020/08/21/为什么js中0.1+0.2！=0.3/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    因为js采用IEEE754双精度版本（64位）
+
+有些十进制用二进制数表示是循环的
+如果被裁减的话会出现精度丢失的问题
+解决方法
+var a = (0.1 + 0.2).toFixed(10);
+a == 0.3 //true
+  
+  <a href="/2020/08/21/为什么js中0.1+0.2！=0.3/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-21T06:46:06.829Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-21
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
         <a href="/2020/08/21/手写instanceof函数/">
             
         </a>
@@ -547,61 +596,6 @@ npm init -y    生成package.json
   </svg>
   &nbsp;
   2020-08-09
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/08/webpack性能优化/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    减少webpack打包时间loader
-优化文件搜索范围（除去node_modules）
-
-将babel编译过的文件缓存起来
-
-
-HappyPack
-可以将loader同步转换为并行的
-
-Dllplugin
-将特定的类库提前打包然后引入
-
-
-  
-  <a href="/2020/08/08/webpack性能优化/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-08T00:37:01.795Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-08
 </time>
 
 

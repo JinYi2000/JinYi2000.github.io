@@ -82,6 +82,52 @@
   
   
     <h1 class="index-title">
+        <a href="/2020/09/25/werun官网性能优化/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    图片base64替换小图可以将小图用base64来表示，以减少请求次数
+首页的大图优化一张接一张依次加载。  图片每加载完 一张加载下一张，并且轮播图片的数量 +1
+如何实现一张接一张依次加载——回调函数
+出现了问题：加载中的图片也会显示在
+  
+  <a href="/2020/09/25/werun官网性能优化/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-09-25T03:05:16.059Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-09-25
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
         <a href="/2020/09/22/werun官网接口列表/">
             
         </a>
@@ -509,55 +555,6 @@ Cache-control
   </svg>
   &nbsp;
   2020-09-12
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/21/为什么js中0.1+0.2！=0.3/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    因为js采用IEEE754双精度版本（64位）
-
-有些十进制用二进制数表示是循环的
-如果被裁减的话会出现精度丢失的问题
-解决方法
-var a = (0.1 + 0.2).toFixed(10);
-a == 0.3 //true
-  
-  <a href="/2020/08/21/为什么js中0.1+0.2！=0.3/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-21T06:46:06.829Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-21
 </time>
 
 
