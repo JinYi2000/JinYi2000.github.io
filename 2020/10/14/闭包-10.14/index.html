@@ -11,20 +11,19 @@
   <title>Mzh&#39;s blog</title>
   <meta name="author" content="mzh">
   <meta name="description" content="闭包与作用域函数环境与作用域只要能够被再次访问到就都能生成闭包
+延伸函数生命周期函数每次调用的时候会开启新的内存空间
+如果上一次的不会被访问到     就会被清掉
 
-例如：挂载到window上也会生成闭包
+把函数里面的东西返回给外部    就能保证函数里面的东西被保存下来
 
-函数里面数据作用的范围就是函数体内
 
- 每次调用函数    函数里面的数据都是不同的
- 子函数里面的数据不会向父级进行传递
 
-作用域链
 
-活动对象
-一层又一层的执行环境
 
-延伸函数生命周期函数">
+使用闭包的目的
+封装数据
+
+12345678910111">
   
   
   
@@ -82,25 +81,12 @@
     </div>
     <hr>
     
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">闭包与作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%8E%AF%E5%A2%83%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">函数环境与作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E5%87%BD%E6%95%B0%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">延伸函数生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E4%BD%BF%E7%94%A8%E5%BD%A2%E6%80%81"><span class="toc-text">构造函数中作用域的使用形态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#let-const-val-%E5%9C%A8for%E5%BE%AA%E7%8E%AF%E9%87%8C%E9%9D%A2"><span class="toc-text">let const val 在for循环里面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#val%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E9%97%AE%E9%A2%98"><span class="toc-text">val定义函数问题</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">闭包与作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%8E%AF%E5%A2%83%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">函数环境与作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%E5%87%BD%E6%95%B0%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">延伸函数生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="toc-text">使用闭包的目的</span></a></li></ol></li></ol></li></ol></li></ol>
     
     <div class="picture-container">
       
     </div>
     <h1 id="闭包与作用域"><a href="#闭包与作用域" class="headerlink" title="闭包与作用域"></a>闭包与作用域</h1><h2 id="函数环境与作用域"><a href="#函数环境与作用域" class="headerlink" title="函数环境与作用域"></a>函数环境与作用域</h2><p>只要能够被再次访问到就都能生成闭包</p>
-<blockquote>
-<p>例如：挂载到window上也会生成闭包</p>
-</blockquote>
-<p>函数里面数据作用的范围就是函数体内</p>
-<blockquote>
-<p> 每次调用函数    函数里面的数据都是不同的</p>
-<p> 子函数里面的数据不会向父级进行传递</p>
-</blockquote>
-<p>作用域链</p>
-<blockquote>
-<p>活动对象</p>
-<p>一层又一层的执行环境</p>
-</blockquote>
 <h2 id="延伸函数生命周期"><a href="#延伸函数生命周期" class="headerlink" title="延伸函数生命周期"></a>延伸函数生命周期</h2><p>函数每次调用的时候会开启新的内存空间</p>
 <p>如果上一次的不会被访问到     就会被清掉</p>
 <blockquote>
@@ -110,20 +96,24 @@
 
 
 
+<h4 id="使用闭包的目的"><a href="#使用闭包的目的" class="headerlink" title="使用闭包的目的"></a>使用闭包的目的</h4><ul>
+<li>封装数据</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">closure</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> name</span><br><span class="line">	<span class="keyword">return</span>&#123;</span><br><span class="line">		getName()&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span><br><span class="line">		&#125;,</span><br><span class="line">		setName(name0)&#123;</span><br><span class="line">			<span class="built_in">this</span>.name = name0</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clo = closure()</span><br><span class="line"></span><br><span class="line">将clo中，只有getName和setName函数而没有name属性</span><br><span class="line">实现了对name属性的封装</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="构造函数中作用域的使用形态"><a href="#构造函数中作用域的使用形态" class="headerlink" title="构造函数中作用域的使用形态"></a>构造函数中作用域的使用形态</h2><blockquote>
-<p>和函数差不多一样</p>
-<p>为每一个变量保留一个</p>
-</blockquote>
-<h2 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h2><blockquote>
-<p>{   }</p>
-<p>val没有块级作用域</p>
-<blockquote>
-<p>块级作用域出现在val之后</p>
-</blockquote>
-</blockquote>
-<h2 id="let-const-val-在for循环里面"><a href="#let-const-val-在for循环里面" class="headerlink" title="let const val 在for循环里面"></a>let const val 在for循环里面</h2><h3 id="val定义函数问题"><a href="#val定义函数问题" class="headerlink" title="val定义函数问题"></a>val定义函数问题</h3>
+
+<ul>
+<li>暂存数据</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">b</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> a + b</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum1 = sum(<span class="number">3</span>)</span><br><span class="line">sum1(<span class="number">2</span>)<span class="comment">//5</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>让对象拥有私有属性</li>
+</ul>
+
 
   </article>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

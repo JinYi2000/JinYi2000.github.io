@@ -74,7 +74,7 @@ new做">
     </div>
     <hr>
     
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-text">JS中的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9C%A8ES6%E4%B8%AD%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-text">类在ES6中的写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-text">JS中的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9C%A8ES6%E4%B8%AD%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-text">类在ES6中的写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#object-assign"><span class="toc-text">object.assign</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getter-setter"><span class="toc-text">getter  setter</span></a></li></ol></li></ol></li></ol>
     
     <div class="picture-container">
       
@@ -104,7 +104,82 @@ new做">
 <blockquote>
 <p>有一个constructor函数作为构造函数</p>
 </blockquote>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li><p>获取父类属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	Father.call(<span class="built_in">this</span>,name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>call、apply、bind</p>
+<p>用法：</p>
+<blockquote>
+<p>call:   fn.call(obj,a,b,…)</p>
+<p>apply:   fn.apply(obj,[a,b,…])</p>
+<p>bind:   fn.apply(obj)(a,b,…) </p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>获取父类的方法</p>
+<blockquote>
+<p>Child.prorotype = new Father()</p>
+<p>Child.prototyype = Object.create(Parent.prototype)</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>继承在es6中的写法</p>
+<blockquote>
+<p>class Child extends Father{</p>
+<p>​        constructor(name){</p>
+<p>​                super(name);</p>
+<p>​        }</p>
+<p>}</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>HasOwnProperty</p>
+<blockquote>
+<p>判断自身属性中是否含有指定的属性</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="object-assign"><a href="#object-assign" class="headerlink" title="object.assign"></a>object.assign</h4><blockquote>
+<p>将所有可枚举属性的值从一个或多个源对象复制到目标对象</p>
+<p>返回目标对象</p>
+</blockquote>
+<h3 id="getter-setter"><a href="#getter-setter" class="headerlink" title="getter  setter"></a>getter  setter</h3><blockquote>
+<p>将对象属性绑定到在查询/设置该属性时会被调用的函数</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">child</span></span>&#123;</span><br><span class="line">		<span class="keyword">get</span> <span class="title">name</span>()&#123;</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">set</span> <span class="title">name</span>()&#123;</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </article>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
