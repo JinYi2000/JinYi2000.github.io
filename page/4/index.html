@@ -82,6 +82,223 @@
   
   
     <h1 class="index-title">
+        <a href="/2020/08/18/var let const/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    varvar 存在提升，可以在声明前使用。
+变量提升只会把声明挪到作用域顶部
+Var 在全局作用域下声明变量会挂载到window上
+let constLet const因为暂时性死区，不能在声明前使用
+function函数提升会把整个函数提
+  
+  <a href="/2020/08/18/var let const/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-18T06:46:46.972Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-18
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/18/深浅拷贝/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    浅拷贝
+如果有属性是对象的话拷贝的是地址
+
+
+Object.assign
+var b = Object.assign(&#123;&#125;,a);
+
+点展开符
+var b = &#123;...a&#125;;
+
+
+深拷贝
+属性是对象的
+  
+  <a href="/2020/08/18/深浅拷贝/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-18T03:44:14.946Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-18
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/14/this指向/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    箭头函数
+包裹在箭头函数外面的普通函数的this指向
+
+普通函数
+Obj.foo()
+
+指向obj
+
+
+foo()
+
+指向window
+
+
+New 
+
+固化在new实例上
+
+
+
+call,apply,bind
+绑定在第一个参数上
+且只认第一
+  
+  <a href="/2020/08/14/this指向/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-13T22:32:25.063Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-14
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/12/vue双向绑定原理/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    思路整理
+
+
+数据监听器 observer    能够对数据对象的所有属性进行监听
+指令解析器compile  对每个元素节点的指令进行扫描和解析  
+实现一个watcher作为连接observer和compile的桥梁
+mvvm入口函数
+
+  
+  <a href="/2020/08/12/vue双向绑定原理/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-12T13:49:20.947Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-12
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
         <a href="/2020/08/12/object.defineProperty/">
             
         </a>
@@ -384,224 +601,6 @@ cdn加载图片
   </svg>
   &nbsp;
   2020-08-07
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/06/svn命令行操作/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    https://www.cnblogs.com/luckythan/p/4478706.html
-svn checkout path
-Svn commit -m ‘…’
-svn update
-Svn propset svn:ignore n
-  
-  <a href="/2020/08/06/svn命令行操作/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-06T15:54:06.637Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-06
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/06/前端的安全防范/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    xss
-持久型 
-
-写入数据库中
-
-
-非持久型
-
-修改url参数来加入攻击代码
-(如果页面要从url中获取参数)
-
-
-
-XSS应对方法
-转义字符
-CSP
-
-
-建立白名单，告诉浏览器哪些资源可以执行
-
-开启csp方式    content-s
-  
-  <a href="/2020/08/06/前端的安全防范/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-06T13:00:12.922Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-06
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/06/浏览器渲染原理/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    HTML文件的渲染
-接受字节数据（0，1）
-
-字节数据转换为字符串（代码）
-
-将这些字符串通过词法分析转换为标记(token) —— 标记化
-
-标记化之后这些标记会转换成node node再根据相互之间的联系构建为一棵DOM树
-
-
-
-CSS
-  
-  <a href="/2020/08/06/浏览器渲染原理/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-06T10:49:55.437Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-06
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/06/浏览器缓存/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    缓存位置
-当依次查找缓存都没有命中的时候，才会去请求网络。
-
-
-Service worker
-memory cache
-disk cache
-push cache
-网络请求
-
-强缓存给资源设置缓存时间，只有过期了才会重新请求
-协商缓存给资源
-  
-  <a href="/2020/08/06/浏览器缓存/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-06T08:31:22.416Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-06
 </time>
 
 

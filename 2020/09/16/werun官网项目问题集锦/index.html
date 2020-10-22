@@ -128,7 +128,33 @@ header设置为fixed之后，形成了bfc,以至于设置为了float的logo元�
 <p>原因：闭包返回一个函数之后应该将这个函数赋值给一个变量，之后一直执行那个变量。</p>
 <p>​            如果只是closure()()的话会生成各种不同的函数，其所含变量函数都不同。</p>
 </li>
+<li><p><img src="https://i.loli.net/2020/10/22/2qSk58zFI9h4Lpg.png"></p>
+</li>
 </ol>
+<p>在进行了部署之后有一个图标（静态资源加载出错）（404应该是路径出错）</p>
+<p>尝试方法1:在index.js中设置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assetsPublicPath: <span class="string">&#x27;./&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>12 . 点击header向下滑动不丝滑，而是直接跳转到相应的位置；且有时候位置不正确。</p>
+<ul>
+<li>获取元素的offsetTop属性；</li>
+<li>再在scrollTo中加入smooth即可实现平滑滚动</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.scrollTo(&#123;</span><br><span class="line">                top:topHeight,</span><br><span class="line">                left:<span class="number">0</span>,</span><br><span class="line">                behavior:<span class="string">&#x27;smooth&#x27;</span></span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="13">
+<li>在滚动的过程中，网页顶部是否透明在判断时采用的策略是节流。</li>
+</ol>
+<p>这就会导致一个问题：如果滚动到顶部的速度过快，就会来不及变成透明的。</p>
+<p>解决方法：添加一个定时器，在执行判断操作之后约两秒钟再判断一次，即可自动变色。</p>
+<p>14.首页轮播图有时候切换的速度会很快，而不是预设的三秒</p>
+<p>猜测：无意中添加了多个定时器导致的bug</p>
 
 
   </article>
