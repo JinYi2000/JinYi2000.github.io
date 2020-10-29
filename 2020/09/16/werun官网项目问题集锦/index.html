@@ -10,7 +10,8 @@
   
   <title>Mzh&#39;s blog</title>
   <meta name="author" content="mzh">
-  <meta name="description" content="子组件无法在父组件中使用
+  <meta name="description" content="werun官网项目问题集锦
+子组件无法在父组件中使用
 
 改成就可以了，因为不应该与html元素重名
 
@@ -21,8 +22,7 @@
 
 header设置为fixed之后，形成了bfc,以至于设置为了float的logo元素也被包含在了高度里面。
 
-父元素设置了半透明，导致其中的字体继承了opacity属性，也变成了半透明，改如何解决？
-设置了!imp">
+父元素设置了半透明，导致其中的字体继承了opacity属性，也变成了半透明，">
   
   
   
@@ -80,12 +80,12 @@ header设置为fixed之后，形成了bfc,以至于设置为了float的logo元�
     </div>
     <hr>
     
-      
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#werun%E5%AE%98%E7%BD%91%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6"><span class="toc-text">werun官网项目问题集锦</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%9Avue%E4%BC%9A%E7%AD%89%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%85%A8%E9%83%A8%E5%8F%98%E5%8C%96%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%E5%86%8D%E6%89%A7%E8%A1%8C%E6%9B%B4%E6%96%B0"><span class="toc-text">原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
     
     <div class="picture-container">
       
     </div>
-    <ol>
+    <h1 id="werun官网项目问题集锦"><a href="#werun官网项目问题集锦" class="headerlink" title="werun官网项目问题集锦"></a>werun官网项目问题集锦</h1><ol>
 <li><p>子组件<header></header>无法在父组件中使用</p>
 <blockquote>
 <p>改成<myHeader></myHeader>就可以了，因为不应该与html元素重名</p>
@@ -155,7 +155,23 @@ header设置为fixed之后，形成了bfc,以至于设置为了float的logo元�
 <p>解决方法：添加一个定时器，在执行判断操作之后约两秒钟再判断一次，即可自动变色。</p>
 <p>14.首页轮播图有时候切换的速度会很快，而不是预设的三秒</p>
 <p>猜测：无意中添加了多个定时器导致的bug</p>
+<p>尝试解决方法：使用单例模式，设置一个属性，在设置完定时器之后将定时器的值赋给这个属性；在设置定时器之前作一个判断，如果值不为0，则不在添加定时器</p>
+<p>结果：此方法无效，因为在从详情页重新跳转回主页之后，会发现数据又被初始化了一次，判断标识失效。</p>
+<p>尝试2:将数据放到vuex中</p>
+<p>结果：可以实现但是为了一个单独的变量安装vuex过于浪费</p>
+<p>最终解决方法：将定时器属性添加到window对象上</p>
+<p>15.首页大图的获取是在获取到数据之后渲染相应个数的图片元素</p>
+<p>问题在于：获取数据的函数写在钩子函数mounted里面；等到获取到数据之后，dom元素已经渲染完了，无法再动态创建图片元素。</p>
+<p>尝试办法：根据钩子函数的特性，将获取函数的函数放到created钩子函数中（这时候dom元素还未被创建）</p>
+<p>结果：如果放在beforeCreate中的话，会发现相应的函数还没有被创建；而如果放在created中的话，发现问题依然存在。</p>
+<p>但是在elements中查看页面元素的时候发现这些图片的dom元素是存在的</p>
+<p>最终的解决方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.$nextTick(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">		...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<p>nextTick方法的作用是获取更新之后的dom</p>
+<p>在下次dom更新循环结束之后执行延迟回调</p>
+<p>在修改完数据之后执行延迟回调</p>
+<h5 id="原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新"><a href="#原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新" class="headerlink" title="原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新"></a>原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新</h5>
 
   </article>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

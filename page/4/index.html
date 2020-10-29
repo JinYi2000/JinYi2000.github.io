@@ -82,6 +82,154 @@
   
   
     <h1 class="index-title">
+        <a href="/2020/09/12/html/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    
+  
+  <a href="/2020/09/12/html/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-09-12T11:13:41.754Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-09-12
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/21/为什么js中0.1+0.2！=0.3/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    因为js采用IEEE754双精度版本（64位）
+
+有些十进制用二进制数表示是循环的
+如果被裁减的话会出现精度丢失的问题
+解决方法
+var a = (0.1 + 0.2).toFixed(10);
+a == 0.3 //true
+  
+  <a href="/2020/08/21/为什么js中0.1+0.2！=0.3/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-21T06:46:06.829Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-21
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
+        <a href="/2020/08/21/手写instanceof函数/">
+            
+        </a>
+    </h1>
+  
+
+
+  <div class="excerpt">
+  
+    prototype
+构造函数的原型对象
+它是一个对象
+只有函数才有prototype属性
+
+__ proto__
+对象的属性
+指向对象的构造函数的原型对象
+
+
+
+
+
+手写instance函数12345678910111213function
+  
+  <a href="/2020/08/21/手写instanceof函数/">
+    more
+  </a>
+  </div>
+  <div class="index-meta">
+    <time datetime="2020-08-21T00:43:46.698Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-08-21
+</time>
+
+
+
+
+
+
+  </div>
+</li>
+<hr>
+
+
+
+
+
+  
+    
+<li class="post-item">
+  
+  
+    <h1 class="index-title">
         <a href="/2020/08/18/var let const/">
             
         </a>
@@ -445,162 +593,6 @@ writable 是否可写
   </svg>
   &nbsp;
   2020-08-09
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/09/webpack使用/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    webpack使用
-进入文件夹 
-npm init -y    生成package.json
-123456789101112131415mozhanghao@zhdeMacBook-Pro webpack % npm init -yWrot
-  
-  <a href="/2020/08/09/webpack使用/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-09T01:49:02.681Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-09
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/08/webpack性能优化/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    减少webpack打包时间loader
-优化文件搜索范围（除去node_modules）
-
-将babel编译过的文件缓存起来
-
-
-HappyPack
-可以将loader同步转换为并行的
-
-Dllplugin
-将特定的类库提前打包然后引入
-
-
-  
-  <a href="/2020/08/08/webpack性能优化/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-08T00:37:01.795Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-08
-</time>
-
-
-
-
-
-
-  </div>
-</li>
-<hr>
-
-
-
-
-
-  
-    
-<li class="post-item">
-  
-  
-    <h1 class="index-title">
-        <a href="/2020/08/07/前端性能优化/">
-            
-        </a>
-    </h1>
-  
-
-
-  <div class="excerpt">
-  
-    JS性能优化JS需要有引擎才能运行起来。
-在V8引擎下加入了Turbofan编译器（编译成为执行效率更高的machine code）
-
-
-
-
-
-
-图片性能优化图片加载优化
-将修饰图片用CSS替代
-cdn加载图片
-小图使用base64格式
-选
-  
-  <a href="/2020/08/07/前端性能优化/">
-    more
-  </a>
-  </div>
-  <div class="index-meta">
-    <time datetime="2020-08-07T04:30:32.961Z" itemprop="datePublished">
-  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
-  </svg>
-  &nbsp;
-  2020-08-07
 </time>
 
 
