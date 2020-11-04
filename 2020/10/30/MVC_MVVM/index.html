@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Mzh&#39;s blog</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="MVC
+model 数据模型  负责操作所有数据
+View 视图负责  ui界面
+Controller 控制器  负责其他
+
+MVVM
+object.defineProperty
+
+用法：
+123var a = &amp;#123;name:&amp;#x27;alan&amp;#x27;,age:20&amp;#125;Obje">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Mzh&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Mzh&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-10-30T07:26:27.620Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-10-30
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM"><span class="toc-text">MVVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8A%AB%E6%8C%81"><span class="toc-text">数据的劫持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-text">观察者模式</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><ul>
+<li>model 数据模型  负责操作所有数据</li>
+<li>View 视图负责  ui界面</li>
+<li>Controller 控制器  负责其他</li>
+</ul>
+<h2 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h2><ol>
+<li>object.defineProperty</li>
+</ol>
+<p>用法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>:<span class="string">&#x27;alan&#x27;</span>,<span class="attr">age</span>:<span class="number">20</span>&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a,<span class="string">&#x27;sex&#x27;</span>,&#123;<span class="attr">value</span>:<span class="string">&#x27;boy&#x27;</span>&#125;)</span><br><span class="line">a------&#123;<span class="attr">name</span>: <span class="string">&quot;alan&quot;</span>, <span class="attr">age</span>: <span class="number">20</span>, <span class="attr">sex</span>: <span class="string">&quot;boy&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>复杂功能：</p>
+<p>属性描述符</p>
+<ul>
+<li>Configurable:是否可以被删除</li>
+<li>Enumerable:是否可以被循环</li>
+</ul>
+<p>数值描述符</p>
+<ul>
+<li>value</li>
+<li>writable(能否被修改)</li>
+</ul>
+<p>存取描述符</p>
+<blockquote>
+<p>相应的值是函数   分别在取和设置值的时候被调用</p>
+</blockquote>
+<ul>
+<li><p>get</p>
+</li>
+<li><p>set</p>
+</li>
+</ul>
+<p><strong>数据描述符与存取描述符不可以同时存在</strong></p>
+<h3 id="数据的劫持"><a href="#数据的劫持" class="headerlink" title="数据的劫持"></a>数据的劫持</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>:<span class="string">&#x27;alan&#x27;</span>,<span class="attr">age</span>:<span class="number">20</span>,<span class="attr">sex</span>:<span class="string">&#x27;boy&#x27;</span>&#125;;</span><br><span class="line"><span class="comment">// Object.defineProperty(a,&#x27;sex&#x27;,&#123;</span></span><br><span class="line"><span class="comment">//     get:()=&gt;&#123;</span></span><br><span class="line"><span class="comment">//         console.log(&#x27;ok&#x27;)</span></span><br><span class="line"><span class="comment">//         return this.sex</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!obj || <span class="keyword">typeof</span> obj !==<span class="string">&#x27;object&#x27;</span>) <span class="keyword">return</span> </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">        <span class="keyword">let</span> val = obj[key] !!!</span><br><span class="line">        <span class="built_in">Object</span>.defineProperty(obj,key,&#123;</span><br><span class="line">            configurable:<span class="literal">true</span>,</span><br><span class="line">            enumerable:<span class="literal">true</span>,</span><br><span class="line">            get:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;get data&#x27;</span>);</span><br><span class="line">                <span class="keyword">return</span> val</span><br><span class="line">            &#125;,</span><br><span class="line">            set:<span class="function"><span class="keyword">function</span>(<span class="params">newVal</span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;set val&#x27;</span>)</span><br><span class="line">                val = newVal</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> val == <span class="string">&#x27;object&#x27;</span>)&#123;</span><br><span class="line">            observe(val)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">observe(a)</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> val = obj[key] !!!</span><br></pre></td></tr></table></figure>
+
+<p>这里的let之所以用let是因为let只能够在块级作用域中使用，而var声明的变量不存在块级作用域</p>
+<p>如果不使用let的话，val的值就一直是最后修改的那个变量</p>
+<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3>
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>
