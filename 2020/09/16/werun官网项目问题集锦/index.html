@@ -80,7 +80,7 @@ header设置为fixed之后，形成了bfc,以至于设置为了float的logo元�
     </div>
     <hr>
     
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#werun%E5%AE%98%E7%BD%91%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6"><span class="toc-text">werun官网项目问题集锦</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%9Avue%E4%BC%9A%E7%AD%89%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%85%A8%E9%83%A8%E5%8F%98%E5%8C%96%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%E5%86%8D%E6%89%A7%E8%A1%8C%E6%9B%B4%E6%96%B0"><span class="toc-text">原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#werun%E5%AE%98%E7%BD%91%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6"><span class="toc-text">werun官网项目问题集锦</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%9Avue%E4%BC%9A%E7%AD%89%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%85%A8%E9%83%A8%E5%8F%98%E5%8C%96%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%E5%86%8D%E6%89%A7%E8%A1%8C%E6%9B%B4%E6%96%B0"><span class="toc-text">原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http-server%E5%8F%AF%E4%BB%A5%E6%89%93%E5%BC%80%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">http server可以打开本地服务器</span></a></li></ol></li></ol></li></ol>
     
     <div class="picture-container">
       
@@ -172,8 +172,30 @@ header设置为fixed之后，形成了bfc,以至于设置为了float的logo元�
 <p>在下次dom更新循环结束之后执行延迟回调</p>
 <p>在修改完数据之后执行延迟回调</p>
 <h5 id="原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新"><a href="#原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新" class="headerlink" title="原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新"></a>原理：vue会等事件循环中的所有数据全部变化完成之后再执行更新</h5><p>16.web部署到线上之后接口报错404？</p>
-<p>猜测：很多接口的调用都是在自组件中发出的  可能与调用请求的位置有关</p>
+<p>猜测：很多接口的调用都是在子组件中发出的  可能与调用请求的位置有关</p>
 <p><img src="https://i.loli.net/2020/11/04/RwZfodUk4NuL23K.png"></p>
+<p>猜测2:观察了一下dist中接口调用的路径与已经部署的项目所调用的路径</p>
+<img src="https://i.loli.net/2020/11/06/phX9yfRuwBWqb8a.png" style="zoom: 50%;" />
+
+<p>发现url中少了homepage</p>
+<p>之前在跨域中的配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line">      <span class="string">&#x27;/&#x27;</span>:&#123;</span><br><span class="line">        target:<span class="string">&#x27;http://121.89.162.99:8180/homepage/&#x27;</span>,<span class="comment">//https://club.werun.top/homepage/</span></span><br><span class="line">        changeOrigin:<span class="literal">true</span>,</span><br><span class="line">        pathRewrite:&#123;</span><br><span class="line">          <span class="string">&#x27;^/&#x27;</span>:<span class="string">&#x27;&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此猜测在部署之后跨域的地址被服务器的地址替换掉了</p>
+<p>因此作出修改：对axios的公共地址进行配置</p>
+<p>在main.js中添加公共地址：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.baseURL = <span class="string">&#x27;homepage/&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    结果：失败，url中有了两个</p>
+<img src="https://i.loli.net/2020/11/06/VSxLjZ7JyzgUuGY.png" style="zoom:50%;" />
+
+<h3 id="http-server可以打开本地服务器"><a href="#http-server可以打开本地服务器" class="headerlink" title="http server可以打开本地服务器"></a>http server可以打开本地服务器</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38289645/article/details/84589052">https://blog.csdn.net/weixin_38289645/article/details/84589052</a></p>
+<blockquote>
+<p>在本地服务器也显示404</p>
+</blockquote>
+<p>猜测3:问题转变为vue跨域配置不起作用</p>
 
 
   </article>
