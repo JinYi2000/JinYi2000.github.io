@@ -195,7 +195,19 @@ header设置为fixed之后，形成了bfc,以至于设置为了float的logo元�
 <blockquote>
 <p>在本地服务器也显示404</p>
 </blockquote>
+<p>尝试设置url的地方：</p>
+<ul>
+<li>axios的baseurl</li>
+<li>config/dev.env.js</li>
+<li>config/prod.env.js</li>
+</ul>
 <p>猜测3:问题转变为vue跨域配置不起作用</p>
+<p>结果：无论在baseurl还是请求url前面加homepage，在部署完请求的时候都会产生两个homepage</p>
+<p>猜测4:怀疑是路径的问题</p>
+<p>把config/index.js中的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">build:&#123;</span><br><span class="line">	assetsPublicPath:<span class="string">&#x27;/&#x27;</span>    <span class="comment">//这里改成了绝对路径。 本来是&#x27;./&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：部署之后白屏，页面直接出不来（加载不到js）</p>
 
 
   </article>
