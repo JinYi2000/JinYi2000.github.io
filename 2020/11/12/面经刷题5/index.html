@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Mzh&#39;s blog</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="作者：Penumbra链接：https://www.nowcoder.com/discuss/415182来源：牛客网
+一面
+这一面主要问了基础部分, 一部分题目我会带上提示
+
+
+TCP 三次握手/四次挥手/等待2MSL意义/建立连接但客户端故障
+我这里还提了握手失败/泛洪攻击/RST包
+
+TCP ">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Mzh&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Mzh&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-11-12T12:32:45.886Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-11-12
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2"><span class="toc-text">一面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%9D%A2"><span class="toc-text">二面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E9%9D%A2-amp-%E5%9B%9B%E9%9D%A2"><span class="toc-text">三面&amp;四面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E9%9D%A2"><span class="toc-text">五面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HR%E9%9D%A2"><span class="toc-text">HR面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-amp-%E6%9C%AA%E6%9D%A5%E5%89%8D%E7%AB%AF%E5%B1%95%E6%9C%9B"><span class="toc-text">总结&amp;未来前端展望</span></a></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <p>作者：Penumbra<br>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/415182">https://www.nowcoder.com/discuss/415182</a><br>来源：牛客网</p>
+<h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><blockquote>
+<p>这一面主要问了基础部分, 一部分题目我会带上提示</p>
+</blockquote>
+<ul>
+<li><p>TCP 三次握手/四次挥手/等待2MSL意义/建立连接但<a href="">客户端</a>故障</p>
+<p>我这里还提了握手失败/泛洪攻击/RST包</p>
+</li>
+<li><p>TCP 慢启动/拥塞控制, 快速重传/快速恢复, 这也是我准备比较多的, 毕竟之前没接触过.</p>
+</li>
+<li><p>TCP UDP QUIC(QUIC是Http3的底层协议)</p>
+</li>
+<li><p>Http2相对于Http1.1新增的</p>
+</li>
+<li><p>浏览器渲染过程, 注意只是渲染过程, 就是从<strong>解析DOM树</strong>到<strong>展示在屏幕</strong>这个过程</p>
+<p>主要是 <strong>令牌化</strong>/<strong>建树</strong>/<strong>收集样式表</strong>/<strong>布局渲染树</strong>/<strong>绘制列表</strong>/<strong>栅格化</strong>/<strong>绘制图块</strong>/…这些过程, 推荐阅读<a target="_blank" rel="noopener" href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/">浏览器的工作原理：新式网络浏览器幕后揭秘</a></p>
+</li>
+<li><p>强缓存与协商缓存, 主要讲了下<code>E-Tag</code>和<code>Last-Modified</code>以及对应的标识, 强缓存方案与协商缓存方案的场景, 比如<code>index.html</code>该用哪个? </p>
+</li>
+<li><p>CSS的水平居中与垂直居中, 这个由于我平时CSS写的不多, 通常是在UI库基础上做微调, 只回答了之前记录的方案.</p>
+</li>
+<li><p>移动端1px, 老问题啦.</p>
+</li>
+<li><p>Git操作, 主要是revert与reset, 我们工作室使用的是Git Flow, 并且区分Master和Dev分支这种, 小哥说了一个Git Flow无法handle的场景, 即一个feature还未合并到Master, 但是后面的一个feature已经通过提测, 这时要如何处理?</p>
+</li>
+<li><p>React: 新旧生命周期的问题, 为什么要废弃旧版的(<strong>约束开发者</strong>以及<code>Fiber</code>架构可能会将其打断), 新版的有什么特点(<code>getDerivedStateFromProps(nextProps, prevState)</code>, 这个方法是静态方法, <strong>也就说你无法在里面获取到this</strong>, 还有就是入参为<code>prevState</code>, 这样就保证<code>state</code>和<code>props</code>之间更隔离). 还有就是我觉得很好玩的<code>getDerivedStateFromErrors</code>和<code>componentDidCatch</code>的协作.</p>
+</li>
+<li><p>React: PureComponent, 浅比较, 关于浅比较这个我在自己之前一篇讲<a target="_blank" rel="noopener" href="https://linbudu.top/posts/2020/02/20/%E5%85%B3%E4%BA%8Euseselector%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83.html"><strong>useSelector</strong>的文章</a>中提到过. 放一下<code>shouldComponentUpdate</code>中<code>shallowEuqal</code>的<a href="">源码</a>:</p>
+<p><a href="#">复制代码</a></p>
+<p><code>const</code> <code>hasOwn = Object.prototype.hasOwnProperty;</code> <code>function is(x, y) &#123;`` ``if</code> <code>(x === y) &#123;``  ``return</code> <code>x !== ``0</code> <code>|| y !== ``0</code> <code>|| ``1</code> <code>/ x === ``1</code> <code>/ y;`` ``&#125; ``else</code> <code>&#123;``  ``return</code> <code>x !== x &amp;&amp; y !== y;`` ``&#125;``&#125;</code> <code>export ``default</code> <code>function shallowEqual(objA, objB) &#123;`` ``if</code> <code>(is(objA, objB)) ``return</code> <code>true``;`` ``if</code> <code>(``  ``typeof objA !== ``&quot;object&quot;</code> <code>||``  ``objA === ``null</code> <code>||``  ``typeof objB !== ``&quot;object&quot;</code> <code>||``  ``objB === ``null`` ``) &#123;``  ``return</code> <code>false``;`` ``&#125;</code> <code> ``const</code> <code>keysA = Object.keys(objA);`` ``const</code> <code>keysB = Object.keys(objB);</code> <code> ``if</code> <code>(keysA.length !== keysB.length) ``return</code> <code>false``;</code> <code> ``for</code> <code>(let i = ``0``; i &lt; keysA.length; i++) &#123;``  ``if</code> <code>(!hasOwn.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) &#123;``   ``return</code> <code>false``;``  ``&#125;`` ``&#125;`` ``return</code> <code>true``;``&#125;</code></p>
+</li>
+<li><p>React: setState之后发生的, 这个当时没怎么看, 只是回答了一下批量更新, 还有在<strong>合成事件</strong>与<strong>原生异步事件</strong>中的不同表现, 我个人认为其本质还是<strong>同步</strong>的哈.<br>多次setState的合并与获取最新的state, 其实这俩个是同一处代码(好像是<code>particalState</code>), 内部对参数的<code>Object</code>类型和<code>Function</code>类型做了不同的处理, 为函数的情况下, 会在setState调用完成并且组件开始rerender的时候被调用.</p>
+</li>
+<li><p>Node: stream和Buffer, 面试前不久刚写过流式的文件上传所以记忆犹新, 回答了四种流(<strong>可写/可读/可写可读/可转换</strong>), 以及常用的几个pipe方法. </p>
+<p>Buffer的话主要提了一下它是堆外内存(V8的常驻内存由<strong>代码区/栈/堆/堆外内存</strong>组成)啥的.</p>
+</li>
+<li><p>Node: 内存管理, 这个也是面试前看到过通过启动命令更改堆内存上限的文章所以了解的多了一下, 主要关键词有 <strong>新生代/老生代假说</strong>, <strong>Scavenge<a href="">算法</a></strong>(采用复制实现内存回收, 典型的牺牲空间换时间), <strong>From/To空间</strong>, <strong>标记清除</strong>, <strong>标记整理</strong>, <strong>增量标记</strong>(将标记阶段拆分为控制在5ms内的小步骤, 每隔一段时间执行, 提高程序流畅性.)</p>
+</li>
+</ul>
+<p>一面主要问的都是基础, 面试官给我的感觉就像学长一样! 还给我解答了一哈回答得不好的问题. 一面时间大概一个多小时, 感觉问题都问到我心坎上了? 就是没有问到不太会的问题.</p>
+<ul>
+<li>Web安全, XSS与XSRF攻击. 这里还扯了一下Axios的<code>X-XSRF-TOKEN</code>机制. 可惜是在面试后才看到冴羽大大的<a target="_blank" rel="noopener" href="https://juejin.im/post/5e718ecc6fb9a07cda098c2d">预测最近面试会考 Cookie 的 SameSite 属性</a>, 不然还能加一波分?</li>
+</ul>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><p>可能因为简历上写的工程化比较多, 二三四面都问了比较多工程化的东西.</p>
+<ul>
+<li>微信小程序, 这个是二面的重点提问之一, 包括以下几个方面:<ul>
+<li>生命周期, 包括<strong>应用级的</strong>和<strong>页面级</strong>的.</li>
+<li>架构, <strong>View</strong> - <strong>Native</strong> - <strong><a href="">JavaScript</a>**的层级, 系统层能力, 如</strong>微信开放能力/离线存储/网络请求<strong>等. 视图层的话, 安卓下是<a href="">腾讯</a>自主研发的</strong>基于Blink的X5内核**, IOS的话则是自带的<strong>WebKit-Webview</strong></li>
+<li>使用async/await, 小程序目前好像并不能原生支持async/await语法, 需要引入FB的<strong>Regenerator</strong>库. 说到这个, 我很好奇Taro/Remax这些方案中是如何处理async/await的, 降级为Promise吗?</li>
+<li>鉴权, code2session这个api, 使用<code>sessionKey</code>生成token, openid作为主键入数据库, 再返回自定义的登录态标识.</li>
+<li>与 <strong>H5/RN/Flutter/PWA</strong> 这些差异, 主要是和 <strong>H5/PWA</strong> , 我其实不太认同 <strong>PWA是小程序祖师爷</strong> 这种说法, 甚至认为不是一个性质, 只是他们的目的/玩法是相似的.</li>
+<li>WXS, 我顺便提了一哈, 因为当时小程序也用到了, 主要特点就是<strong>运行在View层的逻辑</strong>, 并且由于<a href="">JavaScript</a>在IOS下运行在JSCore, 安卓下运行在V8的原因, 在IOS上WXS可以达到JS数十倍的性能, 但在安卓上和JS持平.</li>
+<li>setState, 很神奇的一点: <strong>数据改变同步而视图更新异步</strong>, 主要也是因为上面提到的架构的原因. 有兴趣的可以再查阅相关资料.</li>
+<li>小程序如何做到禁止访问Dom, 我的理解是小程序压根就没提供DOM/BOM的API, 并且在打包编译的JS里也获取不到Window对象.</li>
+</ul>
+</li>
+<li>@Penumbra/cli, 这是我自己写的一个思路类似<code>Feflow</code>的脚手架, 也是 <strong>脚手架核心</strong>+<strong>模板插件包</strong>+<strong>构建器</strong> 的一个组合, 模板插件包的话, <a href="">前端</a>包含 <code>Webpack</code>/<code>Parcel</code> + <code>TypeScript</code>/<code>JavaScript</code>的组合, 后端包含<code>Koa</code>/<code>Egg</code> + <code>RESTFul</code>/<code>GraphQL</code>的组合. 主要问了这些问题:<ul>
+<li>为什么要整这个东西, 解决了哪些问题?</li>
+<li>带来了什么好处?</li>
+<li>为什么还添加了<code>Parcel</code>, 这个主要是因为一些小<a href="">项目</a>小demo用<code>Parcel</code>是真的简单, 比如这个我自己搭的一个<a target="_blank" rel="noopener" href="https://github.com/linbudu599/Parcel-Tsx-Template">Parcel-Tsx-Template</a>, <strong>真-开箱即用</strong>, <strong>真-零配置</strong>. 但是要写什么正式<a href="">项目</a>的话, 还是老老实实Webpack.</li>
+</ul>
+</li>
+<li>Parcel和Webpack, 由上面的展开问的, 说了一下二者的差异(内置HMR与代码分割, 预置配置), 还有就是<code>Parcel</code>其实也有<code>Loader</code>和<code>Plugin</code>, 之前翻了一下<a href="">源码</a>, 叫<code>@Parcel/transformer-xxx</code>这种. 还有就是<code>Parcel</code>打包前会做<strong>资源树分析优化</strong>, 并且过于黑盒, 内部写死了一套配置(好像叫<code>config.json</code>).</li>
+<li>还顺便提了下<strong>Umi</strong>, 因为简历上有个<code>Umi</code> + <code>Dva</code> + <code>Antd Pro</code>的<a href="">项目</a>, 分析了下<code>Umi</code>啥的: 我个人觉得Umi是”<strong>框架的框架</strong>“, 即在<code>Webpack</code>的基础上做了一套性能调优到极限的配置和满足大部分开发需求的生态(<strong>插件</strong>)等等. </li>
+<li>错误监控, 我们目前使用的方式是<code>Sentry</code>以及Release时上传<code>Source-Map</code>文件的方式. 自己实现的话, React的思路主要是一个最外层的<code>&lt;ErrorBoundry /&gt;</code>组件, 借助<code>getDerivedStateFromError</code>与<code>componentDidCatch</code>来捕获错误.</li>
+<li>Https加密机制</li>
+<li>Git Rebase 与 Git Merge</li>
+<li>Flutter 与 React Native底层, 我只讲到Skia引擎, 毕竟Flutter还没写过完整<a href="">项目</a>…</li>
+<li>Serverless, 这一块我主要讲了<code>FaaS</code>以及<code>BaaS</code>, 还有<code>Serverless</code>对<a href="">前端</a>意义, 这个问题千人千面, 我自己的理解不一定是对的, 就不展开来讲了. </li>
+</ul>
+<p>二面主要针对<a href="">项目</a>进行发问, 不得不说果然是前辈, 很多<a href="">项目</a>死角都被揪出来了, 还好的确之前花了时间思考了下也答上来了. 建议复盘<a href="">项目</a>可以找个有经验的同学来帮你想想这个<a href="">项目</a>会从哪些角度被提问, 毕竟<strong>当局者迷</strong>嘛.</p>
+<h2 id="三面-amp-四面"><a href="#三面-amp-四面" class="headerlink" title="三面&amp;四面"></a>三面&amp;四面</h2><p>三面和四面发问的角度和提出的问题比较类似, 因此就放在一起讲了.</p>
+<ul>
+<li><p>介绍<a href="">项目</a>, 我通常会问面试官是对<strong>业务型<a href="">项目</a>**还是</strong>设施型<a href="">项目</a>**比较感兴趣, 业务型的话就介绍小程序, 设施型就介绍<code>@Penumbra/cli</code>. </p>
+</li>
+<li><p>小程序由于 UI/交互/前后端都是自己搞的, 所以能讲的真的蛮多, 但是通常会更聚焦于这个小程序的业务场景(<strong>图书资源整合</strong>), 这也是在介绍<a href="">项目</a>时我觉得比较好的一种方式:</p>
+<p>不要东扯一点西扯一点, 以 <strong>技术栈</strong> -&gt; <strong>业务场景</strong> -&gt; <strong>亮点</strong> -&gt; <strong>难点</strong> -&gt; <strong>提炼总结</strong> -&gt; <strong>自我提升</strong> 这几个步骤来叙述会更加条理清晰, 其中亮点/难点以<code>STAR</code>法则介绍最佳.</p>
+</li>
+<li><p><code>@Penumbra/cli</code>这个, 上面已经介绍过, 就不再赘述. 主要为了体现 <strong>新工程目录建立繁琐</strong> -&gt; <strong>应当成员之间统一目录结构</strong> 这个意识.</p>
+</li>
+<li><p>GraphQL, 难得遇到会问这个的, 要知道我可是把这个作为简历亮点的, 但是却无人问津…, 主要介绍了这些:</p>
+<ul>
+<li>GraphQL的意义, 与RESTFul的差异</li>
+<li>对后端的影响, 其实吧我觉得现在不太可能用<code>GraphQL</code>作为应用的主API(除非出现了为图式查询而生的数据库, 至于FB和GitHub的GraphQL API我觉得是其内部有自研的方案), 也就是让后端同学来搞, 大部分场景应该还是后端同学搞微服务, 然后<a href="">前端</a>同学自己来写一个BFF层做接口的<strong>聚合/清洗/鉴权</strong>等等, 也就是说并不会”这个世界充满了对后端的压迫, 后端什么时候才能站起来, 气抖冷”hhhh. 既然让<a href="">前端</a>写, 那肯定是用Node了, 这个时候<code>Apollo</code>这些方案就真的很香了(下面会多介绍下.)</li>
+<li>Apollo生态, 在这里我想大胆猜测下, 未来的BFF层一定少不了这三个东西: <code>Apollo-Server</code> &amp; <code>TypeGraphQL</code> &amp; <code>Apollo-Rest-Datasource</code>, 至于它们是什么感兴趣同学可以去查查. Apollo不仅提供了服务端支持, 也提供了<a href="">客户端</a>支持, 即<code>Apollo-Client</code>, 同时使用<code>Server</code>和<code>Client</code>来构建应用真的能起到1+1&gt;2的效果, 因为二者就像是一体的.</li>
+<li>推广阻力, 其实只要一个团队比较年轻就没有什么阻力, 主要是可能有一定的学习/开发/维护成本~ 嚷嚷着”学不动了”在<a href="">前端</a>世界里可能真的寸步难行.</li>
+</ul>
+</li>
+<li><p>Webpack性能调优, 我从 <strong>打包速率</strong> / <strong>打包大小</strong> / <strong>交互友好</strong> 三个方面入手的, 这里可以稍微列举一下我觉得比较好用/有趣的Plugin:</p>
+<ul>
+<li><strong>friendly-errors-webpack-plugin</strong>, 主要是对抛出的错误做了界面优化, 很多cli都在用.</li>
+<li><strong>speed-measure-webpack-plugin</strong>, 测量各个环节的打包耗时, 也可以找出哪一个loader/plugin耗时最久.</li>
+<li><strong>terser-webpack-plugin</strong>, 压缩JS</li>
+<li><strong>webpack-bundle-analyzer</strong>, 分析打包产物</li>
+<li><strong>webpack-visualizer-plugin</strong>, 同样是分析打包产物, 但是更直观</li>
+<li><strong>webpack-parallel-uglify-plugin</strong>, 并行压缩, 好像和terser功能重复了.</li>
+<li><strong>webpackbar</strong>, 强烈推荐! 在打包时会有进度条(<code>VuePress</code>就用的这个)</li>
+<li><strong>preload-webpack-plugin</strong>, 预加载</li>
+</ul>
+</li>
+<li><p>至于从配置入手的话, 主要是<strong>减少查找文件时间</strong>和<strong>减少build代码体积</strong>, 前者可以通过<code>resolve</code>字段中配置<code>extension</code>, loader中配置<code>exclude</code>, 后者的话则主要是<strong>Tree-Shaking</strong>(注意, CSS也可以做摇树优化), 代码分割(动态加载以及Lodash/Antd这种庞大的模块), Source-Map模式, 压缩代码等等.</p>
+</li>
+<li><p>React函数式组件, 我觉得以后会是主流?</p>
+</li>
+<li><p>React Hooks:</p>
+<ul>
+<li><p>useState</p>
+</li>
+<li><p>useEffect, 不传dep与传入[], 分别对标类组件的哪个生命周期.</p>
+</li>
+<li><p>useLayoutEffect</p>
+</li>
+<li><p>useRef, 还有<strong>useImperativeHandle</strong>与<strong>forwardRef</strong>, 摘抄一下之前的笔记, 也可参考[<a target="_blank" rel="noopener" href="https://juejin.im/post/5c0dd44b51882530e4617e92">译]React高级话题之Forwarding Refs</a></p>
+<ul>
+<li>useRef，使函数式组件也能够享受到获取 DOM 元素或者自定义组件，父组件获取子组件引用而后调用子组件方法，如 focus 等。</li>
+<li>forwardRef，可以获取父组件的 ref 实例作为子组件的参数（与 props 同级），然后再把这个 ref 绑定到自己内部节点，就可以实现 ref 的透传了！</li>
+<li>useImperativeHandle，常与 forwardRef 搭配使用，可以控制向父组件暴露的属性以及方法，第一个参数即为 forwardRef 包裹后得到的父组件 ref 实例。</li>
+</ul>
+</li>
+<li><p>useMemo与useCallback</p>
+<p>其他的没怎么用到过就老实交代不记得了.</p>
+</li>
+</ul>
+</li>
+<li><p>Hooks思想, 比如Vue3的新API, 社区React生态也在纷纷拥抱Hooks思想, 比如上面提到的的<code>React-Redux</code>的<strong>useSelector</strong>和<code>useDispatch</code>, <code>React-Use</code>还有<code>Umi-Hooks</code>等等.</p>
+</li>
+<li><p>Node的Cluster模块, 主从模式, 底层的Libuv.</p>
+</li>
+<li><p>CI/CD, 我们工作室的流程还是挺完善的, 包括<strong>commitlint</strong> -&gt; <strong>Husky + Lint-Staged</strong> + <strong>Code Review*n</strong> + <strong>ZEIT/now测试环境</strong>, 然后才是Gitlab pipeline到OSS. </p>
+</li>
+<li><p>埋点, 这一块我之前调研过, 可以读读我之前写的这篇<a target="_blank" rel="noopener" href="https://linbudu.top/posts/2020/03/11/%E5%85%B3%E4%BA%8E%E5%9F%8B%E7%82%B9%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0.html">关于埋点的一些思考</a>, 主要是以GA为代表的一键式埋点方案, 以MixAlpha/<a href="">神策数据</a>为代表的可视化埋点等. </p>
+</li>
+<li><p>测试, Jest/Enzyme/Puppeteer编写单元/集成/E2E测试. 稍微问了下单测覆盖率, 很没底气的说了可能就50%不到hhh.</p>
+</li>
+<li><p>Flutter, 感觉这种不是比较熟练的技术放到简历上不太好, 比如我用Flutter只能写写简单的Widget和页面这种, 于是就没问得太多.</p>
+</li>
+</ul>
+<h2 id="五面"><a href="#五面" class="headerlink" title="五面"></a>五面</h2><p>五面的面试官可能比较忙, 因此整个面试过程大概就二十分钟左右. 也是介绍了一下小程序与脚手架, 面试官应该是高P, 主要关注我在团队中的角色, 我对自己的定义集中在 <strong>参与<a href="">前端</a>技术栈选型</strong>&amp;<strong>推动新的<a href="">前端</a>架构</strong>&amp;<strong>参与对新人培训指导</strong>等, 这一块的话也是以自己的经历为主, 如果你是独行侠, 也可以讲一讲自己在社区的贡献等等, 不要直接说你喜欢独来独往一个人全干.</p>
+<h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><p>这一面就是常见的问题啦: </p>
+<ul>
+<li>大学成绩</li>
+<li>兴趣爱好</li>
+<li>有没有女朋友 俩人以后的<a href="">职业规划</a></li>
+<li>个人<a href="">职业规划</a></li>
+<li>成就感</li>
+<li>团队协作经历</li>
+<li>从小到大比较顺利还是坎坷(?)</li>
+<li>为什么学习<a href="">前端</a></li>
+<li>手上有别的offer吗</li>
+<li>为什么想来阿里, 当然是因为阿里是<a href="">前端</a>的宝地了</li>
+</ul>
+<p>这些问题比较主观, 为了避免误导我就不放自己答案了.</p>
+<h2 id="总结-amp-未来前端展望"><a href="#总结-amp-未来前端展望" class="headerlink" title="总结&amp;未来前端展望"></a>总结&amp;未来<a href="">前端</a>展望</h2><p>只能说面试真的是很玄学的东西, 如果每一面都能遇见和你相当match的面试官, 那整个面试流程真的会很轻松愉快. 春招逐渐接近尾声, 也希望大家都能拿到自己满意的offer, 还在面试的同学可以读读我整理的<a target="_blank" rel="noopener" href="https://github.com/linbudu599/FE-Basics"><strong>前端基础</strong></a>, 感觉有用的话就点个⭐吧~</p>
+<p>对未来<a href="">前端</a>的展望是二面问到的问题, 我个人的想法主要分这么三点:</p>
+<ul>
+<li><strong>多端方案</strong>, 随着5G的发展, 物联网设备也在逐渐成熟, 到时候<a href="">前端</a>程序员要适配的屏幕可能又多了几种? 我觉得未来可能会出现真正的<strong>多端解决方案</strong>, 即更全面的<code>Rax</code>或者<code>Taro</code>, 真正的一次编写处处运行. 当然理想是好的, 在它还未乘着七彩祥云到来前, 还是专心学好每一端吧~</li>
+<li><strong>侵入后端</strong>, <code>Serverless</code>无疑是<a href="">前端</a>仔的下一个风口, 它给予了我们向后端进发的能力, 让我们”自己和自己联调”, 也无需操心自己写的服务被流量打爆掉. 后端同学则能够解放出来, 去做一些更有意义的事情.(真的不是抢饭吃)</li>
+<li><strong>智能化</strong>, 虽然现在到处都是<strong>赋能</strong>这个概念, 但是我还是觉得, <a href="">前端</a>的终极之一就是赋能其他岗位, 让运营mm能够自己搭自己想要的活动页, 让产品爸爸自己选要对哪些控件/事件/指标进行埋点, 让不想从零学<a href="">前端</a>的后端直接拖拖拽拽配一个界面出来, 还有就是<a href="">前端</a>同学, 直接设计图生成UI代码(梦还是要有的). 虽然现在业界已经有一些方案, 但都还存在着或多或少的问题. 这也是我最感兴趣的方向之一.</li>
+</ul>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>
