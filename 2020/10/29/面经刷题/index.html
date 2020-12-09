@@ -1,0 +1,1283 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Mzh&#39;s blog</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="前端-钉钉一面1.写个防抖函数， 有什么问题
+12345678910myAnswer: function debounce(fn)&amp;#123;  if(!timer)&amp;#123;    	var timer = setTimeout(fn,30)  &amp;#125;	else&amp;#123;    	cle">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Mzh&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Mzh&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-10-29T13:48:18.021Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-10-29
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF-%E9%92%89%E9%92%89%E4%B8%80%E9%9D%A2"><span class="toc-text">前端-钉钉一面</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2"><span class="toc-text">2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3"><span class="toc-text">3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2%EF%BC%8850min%EF%BC%89"><span class="toc-text">一面（50min）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E9%9D%A2%EF%BC%8840-min%EF%BC%89"><span class="toc-text">二面（40+min）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%A4%E5%8F%89%E9%9D%A2%EF%BC%8825-min%EF%BC%89"><span class="toc-text">交叉面（25+min）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HR%E9%9D%A2%EF%BC%8840min%EF%BC%89"><span class="toc-text">HR面（40min）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4"><span class="toc-text">4</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E5%89%8D%E7%AB%AF%E4%B8%80%E9%9D%A2%E9%9D%A2%E7%BB%8F"><span class="toc-text">阿里前端一面面经</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5"><span class="toc-text">5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2"><span class="toc-text">一面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%9D%A2"><span class="toc-text">二面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E9%9D%A2-amp-%E5%9B%9B%E9%9D%A2"><span class="toc-text">三面&amp;四面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E9%9D%A2"><span class="toc-text">五面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HR%E9%9D%A2"><span class="toc-text">HR面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-amp-%E6%9C%AA%E6%9D%A5%E5%89%8D%E7%AB%AF%E5%B1%95%E6%9C%9B"><span class="toc-text">总结&amp;未来前端展望</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6"><span class="toc-text">6</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ICBU-%E9%98%BF%E9%87%8C%E5%9B%BD%E9%99%85%E7%AB%99"><span class="toc-text">ICBU 阿里国际站</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2-4-1-42min"><span class="toc-text">一面 4.1 42min</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%9D%A2-4-2-40min"><span class="toc-text">二面 4.2 40min</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E9%9D%A2-4-8-36min"><span class="toc-text">三面 4.8 36min</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E9%9D%A2-4-9-55min"><span class="toc-text">四面 4.9 55min</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E9%9D%A2-hr%E9%9D%A2-4-16-35min"><span class="toc-text">五面 hr面 4.16 35min</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7"><span class="toc-text">7</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2%EF%BC%882020-3-6%EF%BC%89"><span class="toc-text">一面（2020 3.6）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2%E8%BF%BD%E5%8A%A0%E9%9D%A2%EF%BC%882020-3-7%EF%BC%89"><span class="toc-text">一面追加面（2020 3.7）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%9D%A2%EF%BC%882020-3-9%EF%BC%89"><span class="toc-text">二面（2020 3.9）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E9%9D%A2%EF%BC%88leader%E9%9D%A2%EF%BC%89"><span class="toc-text">三面（leader面）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E9%9D%A2%EF%BC%88%E6%8A%80%E6%9C%AF%E7%BB%88%E9%9D%A2%EF%BC%89"><span class="toc-text">四面（技术终面）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E9%9D%A2%EF%BC%88P9-%E4%BA%A4%E5%8F%89%E9%9D%A2%EF%BC%89"><span class="toc-text">五面（P9 交叉面）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8"><span class="toc-text">8</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%93%E5%89%8D%E6%83%85%E5%86%B5"><span class="toc-text">当前情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%85%BE%E8%AE%AF"><span class="toc-text">腾讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%B9%A0"><span class="toc-text">实习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2-1"><span class="toc-text">一面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8"><span class="toc-text">字节跳动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%B9%A0-1"><span class="toc-text">实习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2-2"><span class="toc-text">一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E9%9D%A2-1"><span class="toc-text">二面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BF%E9%87%8C"><span class="toc-text">阿里</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%B9%A0-2"><span class="toc-text">实习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E9%9D%A2-3"><span class="toc-text">一面</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zhouyou"><span class="toc-text">zhouyou</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E8%AE%B0%E5%BD%95%E6%80%BB%E7%BB%93"><span class="toc-text">面试记录总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E8%8E%B7%E5%BE%97-OFFER%EF%BC%89"><span class="toc-text">阿里巴巴（获得 OFFER）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-3-25-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E6%B7%98%E5%AE%9D%EF%BC%89%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-3-25 阿里巴巴（淘宝）一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2019-3-28-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E6%B7%98%E5%AE%9D%EF%BC%89%E4%BA%8C%E9%9D%A2"><span class="toc-text">2. 2019-3-28 阿里巴巴（淘宝）二面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2019-4-1-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E6%B7%98%E5%AE%9D%EF%BC%89%E4%B8%89%E9%9D%A2"><span class="toc-text">3. 2019-4-1 阿里巴巴（淘宝）三面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2019-4-3-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E6%B7%98%E5%AE%9D%EF%BC%89%E5%9B%9B%E9%9D%A2%EF%BC%88hr%EF%BC%89"><span class="toc-text">4. 2019-4-3 阿里巴巴（淘宝）四面（hr）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2019-4-29-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E9%98%BF%E9%87%8C%E4%BA%91%EF%BC%89%E4%B8%80%E9%9D%A2"><span class="toc-text">5. 2019-4-29 阿里巴巴（阿里云）一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2019-5-27-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E9%98%BF%E9%87%8C%E4%BA%91%EF%BC%89%E4%BA%8C%E9%9D%A2"><span class="toc-text">6. 2019-5-27 阿里巴巴（阿里云）二面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2019-5-29-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E6%B7%98%E5%AE%9D%E4%BA%8C%E8%BD%AE%EF%BC%89%E4%B8%80%E9%9D%A2"><span class="toc-text">7. 2019-5-29 阿里巴巴（淘宝二轮）一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2019-5-31-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E6%B7%98%E5%AE%9D%E4%BA%8C%E8%BD%AE%EF%BC%89%E4%BA%8C%E9%9D%A2"><span class="toc-text">8. 2019-5-31 阿里巴巴（淘宝二轮）二面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-2019-5-31-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%EF%BC%88%E6%B7%98%E5%AE%9D%E4%BA%8C%E8%BD%AE%EF%BC%89%E4%B8%89%E9%9D%A2%EF%BC%88hr%EF%BC%89"><span class="toc-text">9. 2019-5-31 阿里巴巴（淘宝二轮）三面（hr）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%85%BE%E8%AE%AF%EF%BC%88%E8%8E%B7%E5%BE%97-OFFER%EF%BC%89"><span class="toc-text">腾讯（获得 OFFER）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-4-26-%E8%85%BE%E8%AE%AF%EF%BC%88TEG%EF%BC%89%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-4-26 腾讯（TEG）一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2019-4-29-%E8%85%BE%E8%AE%AF%EF%BC%88TEG%EF%BC%89%E4%BA%8C%E9%9D%A2"><span class="toc-text">2. 2019-4-29 腾讯（TEG）二面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2019-5-9-%E8%85%BE%E8%AE%AF%EF%BC%88TEG%EF%BC%89%E4%B8%89%E9%9D%A2"><span class="toc-text">3. 2019-5-9 腾讯（TEG）三面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2019-5-17-%E8%85%BE%E8%AE%AF%EF%BC%88TEG%EF%BC%89%E5%9B%9B%E9%9D%A2%EF%BC%88hr%EF%BC%89"><span class="toc-text">4. 2019-5-17 腾讯（TEG）四面（hr）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E6%98%93%E4%BA%92%E5%A8%B1%EF%BC%88%E8%8E%B7%E5%BE%97-OFFER%EF%BC%89"><span class="toc-text">网易互娱（获得 OFFER）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-4-15-%E7%BD%91%E6%98%93%E4%BA%92%E5%A8%B1%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-4-15 网易互娱一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2019-4-18-%E7%BD%91%E6%98%93%E4%BA%92%E5%A8%B1%E4%BA%8C%E9%9D%A2"><span class="toc-text">2. 2019-4-18 网易互娱二面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8-1"><span class="toc-text">字节跳动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-3-23-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-3-23 字节跳动一面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E4%BC%97%E9%93%B6%E8%A1%8C"><span class="toc-text">微众银行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-4-1-%E5%BE%AE%E4%BC%97%E9%93%B6%E8%A1%8C%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-4-1 微众银行一面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%B7%E5%AE%B6%E4%B9%90%EF%BC%88%E8%8E%B7%E5%BE%97-OFFER%EF%BC%89"><span class="toc-text">酷家乐（获得 OFFER）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-4-18-%E9%85%B7%E5%AE%B6%E4%B9%90%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-4-18 酷家乐一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2019-4-22-%E9%85%B7%E5%AE%B6%E4%B9%90%E4%BA%8C%E9%9D%A2"><span class="toc-text">2. 2019-4-22 酷家乐二面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2019-4-25-%E9%85%B7%E5%AE%B6%E4%B9%90%E4%B8%89%E9%9D%A2"><span class="toc-text">3. 2019-4-25 酷家乐三面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%AC%E4%B8%9C"><span class="toc-text">京东</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-4-22-%E4%BA%AC%E4%B8%9C%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-4-22 京东一面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BF%E8%81%94%E7%BD%91%E7%BB%9C"><span class="toc-text">亿联网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-4-24-%E4%BA%BF%E8%81%94%E7%BD%91%E7%BB%9C%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-4-24 亿联网络一面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OPPO%EF%BC%88%E8%8E%B7%E5%BE%97-OFFER%EF%BC%89"><span class="toc-text">OPPO（获得 OFFER）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-4-26-OPPO%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-4-26 OPPO一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2019-5-8-OPPO%E4%BA%8C%E9%9D%A2%EF%BC%88hr%EF%BC%89"><span class="toc-text">2. 2019-5-8 OPPO二面（hr）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8E%E4%B8%BA%EF%BC%88%E8%8E%B7%E5%BE%97-OFFER%EF%BC%89"><span class="toc-text">华为（获得 OFFER）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2019-4-28-%E5%8D%8E%E4%B8%BA%E4%B8%80%E9%9D%A2"><span class="toc-text">1. 2019-4-28 华为一面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2019-4-28-%E5%8D%8E%E4%B8%BA%E4%BA%8C%E9%9D%A2"><span class="toc-text">2. 2019-4-28 华为二面</span></a></li></ol></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="前端-钉钉一面"><a href="#前端-钉钉一面" class="headerlink" title="前端-钉钉一面"></a>前端-钉钉一面</h2><p>1.写个防抖函数， 有什么问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">myAnswer: </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!timer)&#123;</span><br><span class="line">    	<span class="keyword">var</span> timer = <span class="built_in">setTimeout</span>(fn,<span class="number">30</span>)</span><br><span class="line">  &#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">    	clearTimeInterval(timer)</span><br><span class="line">    	timer = <span class="built_in">setTimeout</span>(fn,<span class="number">30</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改：闭包；改变this</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">修改：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn,wait</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> timer;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> self = <span class="built_in">this</span>;</span><br><span class="line">      <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">      <span class="keyword">if</span>(timer)&#123;</span><br><span class="line">        <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">      &#125;</span><br><span class="line">      timer = <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">				fn.apply(self,args)</span><br><span class="line">      &#125;,wait)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">his:<span class="function"><span class="keyword">function</span> <span class="title">debounde</span>(<span class="params">handler, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> time;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> _self = <span class="built_in">this</span>;</span><br><span class="line">        <span class="keyword">var</span> _args = <span class="built_in">arguments</span>;</span><br><span class="line">        time &amp;&amp; <span class="built_in">clearTimeout</span>(time);</span><br><span class="line">        time = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            handler.call(_self, _args);</span><br><span class="line">        &#125;, delay)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">官网项目：</span><br><span class="line">debounce_reSize()&#123;</span><br><span class="line">            <span class="keyword">var</span> timer = <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">const</span> self = <span class="built_in">this</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(timer)&#123;</span><br><span class="line">                    <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">                &#125;</span><br><span class="line">                timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                self.reSize(); </span><br><span class="line">                &#125;, <span class="number">500</span>);</span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sizeChanged = <span class="built_in">this</span>.debounce_reSize();</span><br><span class="line">        <span class="built_in">window</span>.onresize = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            sizeChanged();</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>2.封装个组件， Vue / React / 原生JS </p>
+<p> 点击组件时弹出组件的位置信息，并在下方出现一个div </p>
+<p>关键：获取元素的位置信息、创建元素</p>
+<p> 3.怎么学<a href="">前端</a>的，vue双向绑定<br> 4.表单中的input，id和name的区别 </p>
+<ul>
+<li><p>input中的name可以在与服务器进行数据交互时作为数据的标示，可以在服务器端根据其name取得元素提交的值</p>
+</li>
+<li><p>而id就是身份的标示，用于css选取元素</p>
+<p>5.跨域，解决方案 </p>
+</li>
+<li><p>jsonp</p>
+<blockquote>
+<p>原理：js文件不受跨域限制</p>
+<p>具体实现：前台向后台发送url、fn;后台接受到之后返回给前台一段js    fn( { key:val } )    即可实现传值</p>
+</blockquote>
+</li>
+<li><p>cors</p>
+<blockquote>
+<p>Cross-origin-resource-sharing 跨域资源共享</p>
+<p> 服务器在返回结果中加上响应头 Access-Control-Allow-Origin:a.com   就可以完成ajax请求，前端什么都不需要做</p>
+</blockquote>
+</li>
+<li><p>服务器中转</p>
+<blockquote>
+<p>vue中：代理服务器    服务器与服务器之间无需跨域</p>
+</blockquote>
+</li>
+</ul>
+<p> 6.css引入方式，选择器优先级 </p>
+<ul>
+<li><p>行内式（写style这个标签属性）</p>
+</li>
+<li><p>内嵌式（style标签）</p>
+</li>
+<li><p>外链式（link href=…）</p>
+</li>
+<li><p>导入式（@import (url)） </p>
+<p>7.原型链 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">函数的原型 function.__proto__</span><br><span class="line">对象的原型 obj.prototype</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>8.JS的模块化方案，CommonJS, ES6 Modle区别 </p>
+<p> 9.http请求方法，post和put区别 </p>
+<p> 10.异步请求方案 </p>
+<p> 11.垂直居中 </p>
+<p> 12.<a href="">算法</a>：区间合并<br> 输入: [[1,6],[2,7],[23,34],[8,15]]<br> 输出: [[1,7],[8,15],[23,34]]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> merge = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> arr1 = arr.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;<span class="keyword">return</span> a[<span class="number">0</span>] - b[<span class="number">0</span>]&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> res = [];</span><br><span class="line">    <span class="keyword">let</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> cur = arr1[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (j &lt; arr1.length) &#123;</span><br><span class="line">        <span class="keyword">let</span> next = arr1[j];</span><br><span class="line">        <span class="keyword">if</span> (cur[<span class="number">0</span>] &lt;= next[<span class="number">0</span>] &amp;&amp; cur[<span class="number">1</span>] &gt;= next[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (next[<span class="number">1</span>] &gt;= cur[<span class="number">1</span>]) &#123;</span><br><span class="line">                cur = [cur[<span class="number">0</span>], next[<span class="number">1</span>]];</span><br><span class="line">            &#125; <span class="comment">// 前后能合并</span></span><br><span class="line">            j++; <span class="comment">// 前者包含后者，跳过</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cur[<span class="number">1</span>] &lt; next[<span class="number">0</span>]) &#123;</span><br><span class="line">            res.push(cur);</span><br><span class="line">            cur = arr[j];</span><br><span class="line">            j += <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (j == arr1.length) &#123;</span><br><span class="line">                res.push(cur);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * input = [[1,3], [2,6], [15,18], [8,10]]</span></span><br><span class="line"><span class="comment"> * output = [[1,6],[8,10],[15,18]]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> input = [[<span class="number">1</span>,<span class="number">3</span>], [<span class="number">2</span>,<span class="number">6</span>], [<span class="number">15</span>,<span class="number">18</span>], [<span class="number">8</span>,<span class="number">10</span>]];</span><br><span class="line"><span class="keyword">var</span> output = merge(input);</span><br><span class="line"><span class="built_in">console</span>.log(output)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p><strong>CSS</strong> </p>
+<p>  标准盒模型？怪异盒模型？区别？ box-sizing？ </p>
+<p>  block？inline？inline-block? </p>
+<p>  CSS选择器有哪些？优先级？ </p>
+<p>  父子盒子 哪些属性可以继承？ </p>
+<p>  伪类？伪元素？ </p>
+<p>  水平垂直居中？ </p>
+<p>  display弹性布局？display:1? </p>
+<p>  position有哪些属性？区别？定位参考点？ </p>
+<p>  双飞翼布局？ </p>
+<p>  清除浮动？ </p>
+<p>  BFC？ </p>
+<p>  解决上下盒子margin重合？ </p>
+<p>  <strong>JS</strong> </p>
+<p>  基本数据类型？ </p>
+<p>  ES6 </p>
+<p>  var?let?const? </p>
+<p>  sort？ </p>
+<p>  set与map?区别？ </p>
+<p>  pop() push() unshift() shift() </p>
+<p>  slice()和splice()区别 </p>
+<p>  ==和===？ </p>
+<p>  innerhtml和innertext？ </p>
+<p>  箭头函数？与普通函数区别？ </p>
+<p>  New一个对象发生了什么？ </p>
+<p>  arguments与rest? </p>
+<p>  怎么判断是数组？怎么判断是NULL?怎么区别undefined和null？ </p>
+<p>  数组拷贝？ </p>
+<p>  深拷贝？ </p>
+<p>  Event Loop机制 </p>
+<p>  reduce函数 </p>
+<p>  冒泡？捕获？ </p>
+<p>  on和addeventlisenter区别？<br> promise和async和await？ generator？ </p>
+<p>  promise.all(),promise.race() </p>
+<p>  闭包？原理？</p>
+<p>  call，apply，bind？ </p>
+<p>  v-for中 key 值的作用 </p>
+<p>  v-if 和 v-show 区别 </p>
+<p>  vue router: hash和history区别 </p>
+<p>  vue双向绑定原理 </p>
+<p>  vue虚拟dom </p>
+<p>  vue生命周期 </p>
+<p>  vue父子组建传值？ </p>
+<p>  vuex原理？ </p>
+<p>  eventbus原理？ </p>
+<p>  computed和watch区别 </p>
+<p>  js原型链 </p>
+<p>  <strong>其他</strong> </p>
+<p>   http和https？  </p>
+<p>   对称加密？  </p>
+<p>   http1.1和http2.0？  </p>
+<p>   get和post？  options听过吗？    </p>
+<p>   http状态码？  </p>
+<p>   304？强缓存和协商缓存？  </p>
+<p>   浏览器访问过程？  </p>
+<p>   浏览器渲染过程？重排重绘区别？  </p>
+<p> webpack基本原理？ </p>
+<p>  防抖和截流？ </p>
+<p>  session和cookie区别？ </p>
+<p>  localstorage，sessionstorage和cookie？ </p>
+<p>  语义化？ </p>
+<p>  xss攻击和csrf攻击？ </p>
+<p>  <strong><a href="">算法</a></strong> </p>
+<p>   青蛙跳（ <a href="">斐波那契数列</a>） </p>
+<p>  防抖/截流 </p>
+<p>  settimeout输出12345 </p>
+<p>  实现下vue双向绑定的watcher、observe、compile </p>
+<p>  快速<a href="">排序</a>、冒泡<a href="">排序</a> </p>
+<p>  <a href="">二分查找</a> </p>
+<p>  数组去重 </p>
+<p>  数组偏平化 </p>
+<p>  快速找出1-100的质数 </p>
+<p>  最长不含重复字符的子字符串 </p>
+<p>  有效闭合标签 </p>
+<p>  检查闭合嵌套的html标签 </p>
+<p>  非递归中序遍历<a href="">二叉树</a> </p>
+<p>  层序遍历<a href="">二叉树</a> </p>
+<p>  一道头条的<a href="">动态规划</a>题： <a target="_blank" rel="noopener" href="https://juejin.im/post/5c5ba697f265da2d8b6319f6">https://juejin.im/post/5c5ba697f265da2d8b6319f6</a> </p>
+<p>  正则表达式查询一段字符串加数字</p>
+<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><h1 id="一面（50min）"><a href="#一面（50min）" class="headerlink" title="一面（50min）"></a>一面（50min）</h1><ol>
+<li><p>元素如何水平垂直居中  </p>
+</li>
+<li><p>fixed relative absolute的区别  </p>
+</li>
+<li><p>事件冒泡/捕获  </p>
+</li>
+<li><p>跨域的方法  </p>
+</li>
+<li><p>一个关键字搜索框，如何设计内部的数据结构以及<a href="">前端</a>如何做？ </p>
+</li>
+<li><p>vue的双向绑定原理  </p>
+</li>
+<li><p>2个<a href="">算法题</a>： </p>
+<p>Leetcode165.<a href="">比较版本号</a>和Leetcode25. K 个一组翻转<a href="">链表</a> </p>
+</li>
+</ol>
+<h1 id="二面（40-min）"><a href="#二面（40-min）" class="headerlink" title="二面（40+min）"></a>二面（40+min）</h1><ol>
+<li>逻辑题：11223344<a href="">排序</a>后，使序列满足两个1之间有1个数，两个2之间有2个数，两个3之间有3个数，两个4之间有4个数。 </li>
+<li>js深拷贝 </li>
+</ol>
+<h1 id="交叉面（25-min）"><a href="#交叉面（25-min）" class="headerlink" title="交叉面（25+min）"></a>交叉面（25+min）</h1><ol>
+<li>解释MVVM框架 </li>
+<li>数据双向绑定愿意 </li>
+<li>虚拟DOM及优缺点 </li>
+<li>逻辑题：一共有八个小球，其中七个小球的重量一样，另一个小球不知道是轻是重，问最少称几次可以找到这个球 </li>
+</ol>
+<h1 id="HR面（40min）"><a href="#HR面（40min）" class="headerlink" title="HR面（40min）"></a>HR面（40min）</h1><ol>
+<li>自我介绍 </li>
+<li>聊<a href="">项目</a>细节和挑战 </li>
+<li>未来的发展 </li>
+<li>城市选择 </li>
+</ol>
+<h1 id="4"><a href="#4" class="headerlink" title="4"></a>4</h1><p>作者：吃一颗百香果<br>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/521471">https://www.nowcoder.com/discuss/521471</a><br>来源：牛客网</p>
+<h1 id="阿里前端一面面经"><a href="#阿里前端一面面经" class="headerlink" title="阿里前端一面面经"></a>阿里前端一面面经</h1><p>1 自我介绍 </p>
+<p>  2 <a href="">项目</a>7分钟 </p>
+<p>  3 flutter 怎么做到跨平台 </p>
+<p>  4 flutter 相比于原生和其他跨端方案性能好的原因 </p>
+<p>  5 flutter 和小程序区别 </p>
+<p>  6 svg canvas区别 </p>
+<p>  7 localStorage和sessionStorage区别和 使用场景 </p>
+<p>  8 两个页面通信方式 </p>
+<p>  9 postMessage详细入参使用 </p>
+<p>  10 正则表达式 replace和match </p>
+<p>  11 await async怎么实现的 </p>
+<p>  12 generator </p>
+<p>  13 怎么同时处理多个异步函数 </p>
+<p>  14 Promise.all的入参咋样的 </p>
+<p>  15 react 生命周期 </p>
+<p>  16 jsx到vdom的过程 </p>
+<p>  17 vdom 原理 优缺点 </p>
+<p>  18 vdom怎么转换到多端的界面的 </p>
+<p>  19 怎么去了解新技术的，最近学了啥新东西 </p>
+<p>  20 serverless 介绍和使用，面试官说和我用过同一个平台hh </p>
+<p>  21 微<a href="">前端</a>（不会.. </p>
+<p>  22 serverless 优势，应用场景 </p>
+<p>  23 webpack 整个流程， loader plugin区别 </p>
+<p>  24 还了不了解其他打包工具，说了rollup但是只知道名字..拉跨</p>
+<h1 id="5"><a href="#5" class="headerlink" title="5"></a>5</h1><p>作者：Penumbra<br>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/415182">https://www.nowcoder.com/discuss/415182</a><br>来源：牛客网</p>
+<h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><blockquote>
+<p>这一面主要问了基础部分, 一部分题目我会带上提示</p>
+</blockquote>
+<ul>
+<li><p>TCP 三次握手/四次挥手/等待2MSL意义/建立连接但<a href="">客户端</a>故障</p>
+<p>我这里还提了握手失败/泛洪攻击/RST包</p>
+</li>
+<li><p>TCP 慢启动/拥塞控制, 快速重传/快速恢复, 这也是我准备比较多的, 毕竟之前没接触过.</p>
+</li>
+<li><p>TCP UDP QUIC(QUIC是Http3的底层协议)</p>
+</li>
+<li><p>Http2相对于Http1.1新增的</p>
+</li>
+<li><p>浏览器渲染过程, 注意只是渲染过程, 就是从<strong>解析DOM树</strong>到<strong>展示在屏幕</strong>这个过程</p>
+<p>主要是 <strong>令牌化</strong>/<strong>建树</strong>/<strong>收集样式表</strong>/<strong>布局渲染树</strong>/<strong>绘制列表</strong>/<strong>栅格化</strong>/<strong>绘制图块</strong>/…这些过程, 推荐阅读<a target="_blank" rel="noopener" href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/">浏览器的工作原理：新式网络浏览器幕后揭秘</a></p>
+</li>
+<li><p>强缓存与协商缓存, 主要讲了下<code>E-Tag</code>和<code>Last-Modified</code>以及对应的标识, 强缓存方案与协商缓存方案的场景, 比如<code>index.html</code>该用哪个? </p>
+</li>
+<li><p>CSS的水平居中与垂直居中, 这个由于我平时CSS写的不多, 通常是在UI库基础上做微调, 只回答了之前记录的方案.</p>
+</li>
+<li><p>移动端1px, 老问题啦.</p>
+</li>
+<li><p>Git操作, 主要是revert与reset, 我们工作室使用的是Git Flow, 并且区分Master和Dev分支这种, 小哥说了一个Git Flow无法handle的场景, 即一个feature还未合并到Master, 但是后面的一个feature已经通过提测, 这时要如何处理?</p>
+</li>
+<li><p>React: 新旧生命周期的问题, 为什么要废弃旧版的(<strong>约束开发者</strong>以及<code>Fiber</code>架构可能会将其打断), 新版的有什么特点(<code>getDerivedStateFromProps(nextProps, prevState)</code>, 这个方法是静态方法, <strong>也就说你无法在里面获取到this</strong>, 还有就是入参为<code>prevState</code>, 这样就保证<code>state</code>和<code>props</code>之间更隔离). 还有就是我觉得很好玩的<code>getDerivedStateFromErrors</code>和<code>componentDidCatch</code>的协作.</p>
+</li>
+<li><p>React: PureComponent, 浅比较, 关于浅比较这个我在自己之前一篇讲<a target="_blank" rel="noopener" href="https://linbudu.top/posts/2020/02/20/%E5%85%B3%E4%BA%8Euseselector%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83.html"><strong>useSelector</strong>的文章</a>中提到过. 放一下<code>shouldComponentUpdate</code>中<code>shallowEuqal</code>的<a href="">源码</a>:</p>
+<p><a href="#">复制代码</a></p>
+<p><code>const</code> <code>hasOwn = Object.prototype.hasOwnProperty;</code> <code>function is(x, y) &#123;`` ``if</code> <code>(x === y) &#123;``  ``return</code> <code>x !== ``0</code> <code>|| y !== ``0</code> <code>|| ``1</code> <code>/ x === ``1</code> <code>/ y;`` ``&#125; ``else</code> <code>&#123;``  ``return</code> <code>x !== x &amp;&amp; y !== y;`` ``&#125;``&#125;</code> <code>export ``default</code> <code>function shallowEqual(objA, objB) &#123;`` ``if</code> <code>(is(objA, objB)) ``return</code> <code>true``;`` ``if</code> <code>(``  ``typeof objA !== ``&quot;object&quot;</code> <code>||``  ``objA === ``null</code> <code>||``  ``typeof objB !== ``&quot;object&quot;</code> <code>||``  ``objB === ``null`` ``) &#123;``  ``return</code> <code>false``;`` ``&#125;</code> <code> ``const</code> <code>keysA = Object.keys(objA);`` ``const</code> <code>keysB = Object.keys(objB);</code> <code> ``if</code> <code>(keysA.length !== keysB.length) ``return</code> <code>false``;</code> <code> ``for</code> <code>(let i = ``0``; i &lt; keysA.length; i++) &#123;``  ``if</code> <code>(!hasOwn.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) &#123;``   ``return</code> <code>false``;``  ``&#125;`` ``&#125;`` ``return</code> <code>true``;``&#125;</code></p>
+</li>
+<li><p>React: setState之后发生的, 这个当时没怎么看, 只是回答了一下批量更新, 还有在<strong>合成事件</strong>与<strong>原生异步事件</strong>中的不同表现, 我个人认为其本质还是<strong>同步</strong>的哈.<br>多次setState的合并与获取最新的state, 其实这俩个是同一处代码(好像是<code>particalState</code>), 内部对参数的<code>Object</code>类型和<code>Function</code>类型做了不同的处理, 为函数的情况下, 会在setState调用完成并且组件开始rerender的时候被调用.</p>
+</li>
+<li><p>Node: stream和Buffer, 面试前不久刚写过流式的文件上传所以记忆犹新, 回答了四种流(<strong>可写/可读/可写可读/可转换</strong>), 以及常用的几个pipe方法. </p>
+<p>Buffer的话主要提了一下它是堆外内存(V8的常驻内存由<strong>代码区/栈/堆/堆外内存</strong>组成)啥的.</p>
+</li>
+<li><p>Node: 内存管理, 这个也是面试前看到过通过启动命令更改堆内存上限的文章所以了解的多了一下, 主要关键词有 <strong>新生代/老生代假说</strong>, <strong>Scavenge<a href="">算法</a></strong>(采用复制实现内存回收, 典型的牺牲空间换时间), <strong>From/To空间</strong>, <strong>标记清除</strong>, <strong>标记整理</strong>, <strong>增量标记</strong>(将标记阶段拆分为控制在5ms内的小步骤, 每隔一段时间执行, 提高程序流畅性.)</p>
+</li>
+</ul>
+<p>一面主要问的都是基础, 面试官给我的感觉就像学长一样! 还给我解答了一哈回答得不好的问题. 一面时间大概一个多小时, 感觉问题都问到我心坎上了? 就是没有问到不太会的问题.</p>
+<ul>
+<li>Web安全, XSS与XSRF攻击. 这里还扯了一下Axios的<code>X-XSRF-TOKEN</code>机制. 可惜是在面试后才看到冴羽大大的<a target="_blank" rel="noopener" href="https://juejin.im/post/5e718ecc6fb9a07cda098c2d">预测最近面试会考 Cookie 的 SameSite 属性</a>, 不然还能加一波分?</li>
+</ul>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><p>可能因为简历上写的工程化比较多, 二三四面都问了比较多工程化的东西.</p>
+<ul>
+<li>微信小程序, 这个是二面的重点提问之一, 包括以下几个方面:<ul>
+<li>生命周期, 包括<strong>应用级的</strong>和<strong>页面级</strong>的.</li>
+<li>架构, <strong>View</strong> - <strong>Native</strong> - <strong><a href="">JavaScript</a>**的层级, 系统层能力, 如</strong>微信开放能力/离线存储/网络请求<strong>等. 视图层的话, 安卓下是<a href="">腾讯</a>自主研发的</strong>基于Blink的X5内核**, IOS的话则是自带的<strong>WebKit-Webview</strong></li>
+<li>使用async/await, 小程序目前好像并不能原生支持async/await语法, 需要引入FB的<strong>Regenerator</strong>库. 说到这个, 我很好奇Taro/Remax这些方案中是如何处理async/await的, 降级为Promise吗?</li>
+<li>鉴权, code2session这个api, 使用<code>sessionKey</code>生成token, openid作为主键入数据库, 再返回自定义的登录态标识.</li>
+<li>与 <strong>H5/RN/Flutter/PWA</strong> 这些差异, 主要是和 <strong>H5/PWA</strong> , 我其实不太认同 <strong>PWA是小程序祖师爷</strong> 这种说法, 甚至认为不是一个性质, 只是他们的目的/玩法是相似的.</li>
+<li>WXS, 我顺便提了一哈, 因为当时小程序也用到了, 主要特点就是<strong>运行在View层的逻辑</strong>, 并且由于<a href="">JavaScript</a>在IOS下运行在JSCore, 安卓下运行在V8的原因, 在IOS上WXS可以达到JS数十倍的性能, 但在安卓上和JS持平.</li>
+<li>setState, 很神奇的一点: <strong>数据改变同步而视图更新异步</strong>, 主要也是因为上面提到的架构的原因. 有兴趣的可以再查阅相关资料.</li>
+<li>小程序如何做到禁止访问Dom, 我的理解是小程序压根就没提供DOM/BOM的API, 并且在打包编译的JS里也获取不到Window对象.</li>
+</ul>
+</li>
+<li>@Penumbra/cli, 这是我自己写的一个思路类似<code>Feflow</code>的脚手架, 也是 <strong>脚手架核心</strong>+<strong>模板插件包</strong>+<strong>构建器</strong> 的一个组合, 模板插件包的话, <a href="">前端</a>包含 <code>Webpack</code>/<code>Parcel</code> + <code>TypeScript</code>/<code>JavaScript</code>的组合, 后端包含<code>Koa</code>/<code>Egg</code> + <code>RESTFul</code>/<code>GraphQL</code>的组合. 主要问了这些问题:<ul>
+<li>为什么要整这个东西, 解决了哪些问题?</li>
+<li>带来了什么好处?</li>
+<li>为什么还添加了<code>Parcel</code>, 这个主要是因为一些小<a href="">项目</a>小demo用<code>Parcel</code>是真的简单, 比如这个我自己搭的一个<a target="_blank" rel="noopener" href="https://github.com/linbudu599/Parcel-Tsx-Template">Parcel-Tsx-Template</a>, <strong>真-开箱即用</strong>, <strong>真-零配置</strong>. 但是要写什么正式<a href="">项目</a>的话, 还是老老实实Webpack.</li>
+</ul>
+</li>
+<li>Parcel和Webpack, 由上面的展开问的, 说了一下二者的差异(内置HMR与代码分割, 预置配置), 还有就是<code>Parcel</code>其实也有<code>Loader</code>和<code>Plugin</code>, 之前翻了一下<a href="">源码</a>, 叫<code>@Parcel/transformer-xxx</code>这种. 还有就是<code>Parcel</code>打包前会做<strong>资源树分析优化</strong>, 并且过于黑盒, 内部写死了一套配置(好像叫<code>config.json</code>).</li>
+<li>还顺便提了下<strong>Umi</strong>, 因为简历上有个<code>Umi</code> + <code>Dva</code> + <code>Antd Pro</code>的<a href="">项目</a>, 分析了下<code>Umi</code>啥的: 我个人觉得Umi是”<strong>框架的框架</strong>“, 即在<code>Webpack</code>的基础上做了一套性能调优到极限的配置和满足大部分开发需求的生态(<strong>插件</strong>)等等. </li>
+<li>错误监控, 我们目前使用的方式是<code>Sentry</code>以及Release时上传<code>Source-Map</code>文件的方式. 自己实现的话, React的思路主要是一个最外层的<code>&lt;ErrorBoundry /&gt;</code>组件, 借助<code>getDerivedStateFromError</code>与<code>componentDidCatch</code>来捕获错误.</li>
+<li>Https加密机制</li>
+<li>Git Rebase 与 Git Merge</li>
+<li>Flutter 与 React Native底层, 我只讲到Skia引擎, 毕竟Flutter还没写过完整<a href="">项目</a>…</li>
+<li>Serverless, 这一块我主要讲了<code>FaaS</code>以及<code>BaaS</code>, 还有<code>Serverless</code>对<a href="">前端</a>意义, 这个问题千人千面, 我自己的理解不一定是对的, 就不展开来讲了. </li>
+</ul>
+<p>二面主要针对<a href="">项目</a>进行发问, 不得不说果然是前辈, 很多<a href="">项目</a>死角都被揪出来了, 还好的确之前花了时间思考了下也答上来了. 建议复盘<a href="">项目</a>可以找个有经验的同学来帮你想想这个<a href="">项目</a>会从哪些角度被提问, 毕竟<strong>当局者迷</strong>嘛.</p>
+<h2 id="三面-amp-四面"><a href="#三面-amp-四面" class="headerlink" title="三面&amp;四面"></a>三面&amp;四面</h2><p>三面和四面发问的角度和提出的问题比较类似, 因此就放在一起讲了.</p>
+<ul>
+<li><p>介绍<a href="">项目</a>, 我通常会问面试官是对<strong>业务型<a href="">项目</a>**还是</strong>设施型<a href="">项目</a>**比较感兴趣, 业务型的话就介绍小程序, 设施型就介绍<code>@Penumbra/cli</code>. </p>
+</li>
+<li><p>小程序由于 UI/交互/前后端都是自己搞的, 所以能讲的真的蛮多, 但是通常会更聚焦于这个小程序的业务场景(<strong>图书资源整合</strong>), 这也是在介绍<a href="">项目</a>时我觉得比较好的一种方式:</p>
+<p>不要东扯一点西扯一点, 以 <strong>技术栈</strong> -&gt; <strong>业务场景</strong> -&gt; <strong>亮点</strong> -&gt; <strong>难点</strong> -&gt; <strong>提炼总结</strong> -&gt; <strong>自我提升</strong> 这几个步骤来叙述会更加条理清晰, 其中亮点/难点以<code>STAR</code>法则介绍最佳.</p>
+</li>
+<li><p><code>@Penumbra/cli</code>这个, 上面已经介绍过, 就不再赘述. 主要为了体现 <strong>新工程目录建立繁琐</strong> -&gt; <strong>应当成员之间统一目录结构</strong> 这个意识.</p>
+</li>
+<li><p>GraphQL, 难得遇到会问这个的, 要知道我可是把这个作为简历亮点的, 但是却无人问津…, 主要介绍了这些:</p>
+<ul>
+<li>GraphQL的意义, 与RESTFul的差异</li>
+<li>对后端的影响, 其实吧我觉得现在不太可能用<code>GraphQL</code>作为应用的主API(除非出现了为图式查询而生的数据库, 至于FB和GitHub的GraphQL API我觉得是其内部有自研的方案), 也就是让后端同学来搞, 大部分场景应该还是后端同学搞微服务, 然后<a href="">前端</a>同学自己来写一个BFF层做接口的<strong>聚合/清洗/鉴权</strong>等等, 也就是说并不会”这个世界充满了对后端的压迫, 后端什么时候才能站起来, 气抖冷”hhhh. 既然让<a href="">前端</a>写, 那肯定是用Node了, 这个时候<code>Apollo</code>这些方案就真的很香了(下面会多介绍下.)</li>
+<li>Apollo生态, 在这里我想大胆猜测下, 未来的BFF层一定少不了这三个东西: <code>Apollo-Server</code> &amp; <code>TypeGraphQL</code> &amp; <code>Apollo-Rest-Datasource</code>, 至于它们是什么感兴趣同学可以去查查. Apollo不仅提供了服务端支持, 也提供了<a href="">客户端</a>支持, 即<code>Apollo-Client</code>, 同时使用<code>Server</code>和<code>Client</code>来构建应用真的能起到1+1&gt;2的效果, 因为二者就像是一体的.</li>
+<li>推广阻力, 其实只要一个团队比较年轻就没有什么阻力, 主要是可能有一定的学习/开发/维护成本~ 嚷嚷着”学不动了”在<a href="">前端</a>世界里可能真的寸步难行.</li>
+</ul>
+</li>
+<li><p>Webpack性能调优, 我从 <strong>打包速率</strong> / <strong>打包大小</strong> / <strong>交互友好</strong> 三个方面入手的, 这里可以稍微列举一下我觉得比较好用/有趣的Plugin:</p>
+<ul>
+<li><strong>friendly-errors-webpack-plugin</strong>, 主要是对抛出的错误做了界面优化, 很多cli都在用.</li>
+<li><strong>speed-measure-webpack-plugin</strong>, 测量各个环节的打包耗时, 也可以找出哪一个loader/plugin耗时最久.</li>
+<li><strong>terser-webpack-plugin</strong>, 压缩JS</li>
+<li><strong>webpack-bundle-analyzer</strong>, 分析打包产物</li>
+<li><strong>webpack-visualizer-plugin</strong>, 同样是分析打包产物, 但是更直观</li>
+<li><strong>webpack-parallel-uglify-plugin</strong>, 并行压缩, 好像和terser功能重复了.</li>
+<li><strong>webpackbar</strong>, 强烈推荐! 在打包时会有进度条(<code>VuePress</code>就用的这个)</li>
+<li><strong>preload-webpack-plugin</strong>, 预加载</li>
+</ul>
+</li>
+<li><p>至于从配置入手的话, 主要是<strong>减少查找文件时间</strong>和<strong>减少build代码体积</strong>, 前者可以通过<code>resolve</code>字段中配置<code>extension</code>, loader中配置<code>exclude</code>, 后者的话则主要是<strong>Tree-Shaking</strong>(注意, CSS也可以做摇树优化), 代码分割(动态加载以及Lodash/Antd这种庞大的模块), Source-Map模式, 压缩代码等等.</p>
+</li>
+<li><p>React函数式组件, 我觉得以后会是主流?</p>
+</li>
+<li><p>React Hooks:</p>
+<ul>
+<li><p>useState</p>
+</li>
+<li><p>useEffect, 不传dep与传入[], 分别对标类组件的哪个生命周期.</p>
+</li>
+<li><p>useLayoutEffect</p>
+</li>
+<li><p>useRef, 还有<strong>useImperativeHandle</strong>与<strong>forwardRef</strong>, 摘抄一下之前的笔记, 也可参考[<a target="_blank" rel="noopener" href="https://juejin.im/post/5c0dd44b51882530e4617e92">译]React高级话题之Forwarding Refs</a></p>
+<ul>
+<li>useRef，使函数式组件也能够享受到获取 DOM 元素或者自定义组件，父组件获取子组件引用而后调用子组件方法，如 focus 等。</li>
+<li>forwardRef，可以获取父组件的 ref 实例作为子组件的参数（与 props 同级），然后再把这个 ref 绑定到自己内部节点，就可以实现 ref 的透传了！</li>
+<li>useImperativeHandle，常与 forwardRef 搭配使用，可以控制向父组件暴露的属性以及方法，第一个参数即为 forwardRef 包裹后得到的父组件 ref 实例。</li>
+</ul>
+</li>
+<li><p>useMemo与useCallback</p>
+<p>其他的没怎么用到过就老实交代不记得了.</p>
+</li>
+</ul>
+</li>
+<li><p>Hooks思想, 比如Vue3的新API, 社区React生态也在纷纷拥抱Hooks思想, 比如上面提到的的<code>React-Redux</code>的<strong>useSelector</strong>和<code>useDispatch</code>, <code>React-Use</code>还有<code>Umi-Hooks</code>等等.</p>
+</li>
+<li><p>Node的Cluster模块, 主从模式, 底层的Libuv.</p>
+</li>
+<li><p>CI/CD, 我们工作室的流程还是挺完善的, 包括<strong>commitlint</strong> -&gt; <strong>Husky + Lint-Staged</strong> + <strong>Code Review*n</strong> + <strong>ZEIT/now测试环境</strong>, 然后才是Gitlab pipeline到OSS. </p>
+</li>
+<li><p>埋点, 这一块我之前调研过, 可以读读我之前写的这篇<a target="_blank" rel="noopener" href="https://linbudu.top/posts/2020/03/11/%E5%85%B3%E4%BA%8E%E5%9F%8B%E7%82%B9%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0.html">关于埋点的一些思考</a>, 主要是以GA为代表的一键式埋点方案, 以MixAlpha/<a href="">神策数据</a>为代表的可视化埋点等. </p>
+</li>
+<li><p>测试, Jest/Enzyme/Puppeteer编写单元/集成/E2E测试. 稍微问了下单测覆盖率, 很没底气的说了可能就50%不到hhh.</p>
+</li>
+<li><p>Flutter, 感觉这种不是比较熟练的技术放到简历上不太好, 比如我用Flutter只能写写简单的Widget和页面这种, 于是就没问得太多.</p>
+</li>
+</ul>
+<h2 id="五面"><a href="#五面" class="headerlink" title="五面"></a>五面</h2><p>五面的面试官可能比较忙, 因此整个面试过程大概就二十分钟左右. 也是介绍了一下小程序与脚手架, 面试官应该是高P, 主要关注我在团队中的角色, 我对自己的定义集中在 <strong>参与<a href="">前端</a>技术栈选型</strong>&amp;<strong>推动新的<a href="">前端</a>架构</strong>&amp;<strong>参与对新人培训指导</strong>等, 这一块的话也是以自己的经历为主, 如果你是独行侠, 也可以讲一讲自己在社区的贡献等等, 不要直接说你喜欢独来独往一个人全干.</p>
+<h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><p>这一面就是常见的问题啦: </p>
+<ul>
+<li>大学成绩</li>
+<li>兴趣爱好</li>
+<li>有没有女朋友 俩人以后的<a href="">职业规划</a></li>
+<li>个人<a href="">职业规划</a></li>
+<li>成就感</li>
+<li>团队协作经历</li>
+<li>从小到大比较顺利还是坎坷(?)</li>
+<li>为什么学习<a href="">前端</a></li>
+<li>手上有别的offer吗</li>
+<li>为什么想来阿里, 当然是因为阿里是<a href="">前端</a>的宝地了</li>
+</ul>
+<p>这些问题比较主观, 为了避免误导我就不放自己答案了.</p>
+<h2 id="总结-amp-未来前端展望"><a href="#总结-amp-未来前端展望" class="headerlink" title="总结&amp;未来前端展望"></a>总结&amp;未来<a href="">前端</a>展望</h2><p>只能说面试真的是很玄学的东西, 如果每一面都能遇见和你相当match的面试官, 那整个面试流程真的会很轻松愉快. 春招逐渐接近尾声, 也希望大家都能拿到自己满意的offer, 还在面试的同学可以读读我整理的<a target="_blank" rel="noopener" href="https://github.com/linbudu599/FE-Basics"><strong>前端基础</strong></a>, 感觉有用的话就点个⭐吧~</p>
+<p>对未来<a href="">前端</a>的展望是二面问到的问题, 我个人的想法主要分这么三点:</p>
+<ul>
+<li><strong>多端方案</strong>, 随着5G的发展, 物联网设备也在逐渐成熟, 到时候<a href="">前端</a>程序员要适配的屏幕可能又多了几种? 我觉得未来可能会出现真正的<strong>多端解决方案</strong>, 即更全面的<code>Rax</code>或者<code>Taro</code>, 真正的一次编写处处运行. 当然理想是好的, 在它还未乘着七彩祥云到来前, 还是专心学好每一端吧~</li>
+<li><strong>侵入后端</strong>, <code>Serverless</code>无疑是<a href="">前端</a>仔的下一个风口, 它给予了我们向后端进发的能力, 让我们”自己和自己联调”, 也无需操心自己写的服务被流量打爆掉. 后端同学则能够解放出来, 去做一些更有意义的事情.(真的不是抢饭吃)</li>
+<li><strong>智能化</strong>, 虽然现在到处都是<strong>赋能</strong>这个概念, 但是我还是觉得, <a href="">前端</a>的终极之一就是赋能其他岗位, 让运营mm能够自己搭自己想要的活动页, 让产品爸爸自己选要对哪些控件/事件/指标进行埋点, 让不想从零学<a href="">前端</a>的后端直接拖拖拽拽配一个界面出来, 还有就是<a href="">前端</a>同学, 直接设计图生成UI代码(梦还是要有的). 虽然现在业界已经有一些方案, 但都还存在着或多或少的问题. 这也是我最感兴趣的方向之一.</li>
+</ul>
+<h1 id="6"><a href="#6" class="headerlink" title="6"></a>6</h1><p>作者：XUN冲冲冲<br>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/397740">https://www.nowcoder.com/discuss/397740</a><br>来源：牛客网</p>
+<h1 id="ICBU-阿里国际站"><a href="#ICBU-阿里国际站" class="headerlink" title="ICBU 阿里国际站"></a>ICBU 阿里国际站</h1><h2 id="一面-4-1-42min"><a href="#一面-4-1-42min" class="headerlink" title="一面 4.1 42min"></a>一面 4.1 42min</h2><ul>
+<li><strong>自我介绍</strong> </li>
+<li><strong>在现在公司实习为什么想离开</strong> </li>
+<li><strong>对于小程序有什么想法（开发小程序经验较多），微信小程序的业务形态和开发模式方面</strong> </li>
+<li><strong>你想做<a href="">前端</a>的哪个方向（to b，to c，web），全栈了解吗？</strong> </li>
+<li><strong>node和java/c++的区别，优势和缺点</strong> </li>
+<li><strong>用node实现多进程</strong> </li>
+<li><strong>举一个适合全栈的业务场景</strong> </li>
+<li><strong>react setstate机制</strong> </li>
+<li><strong><a href="">前端</a>性能优化</strong> </li>
+<li><strong>首屏性能优化（具体场景：淘宝详情页的性能优化）</strong> </li>
+<li><strong>有看过什么技术博客或内容制作者的文章吗？</strong> </li>
+<li><strong>还有什么想问的吗</strong> </li>
+<li><strong>（问了8分钟左右）</strong> </li>
+</ul>
+<p>最后面试官说，因为问的基础问题较少，所以再发一个笔试，之后再约面试，之后还有3-4轮面试。<br>祝我好运 ： )</p>
+<h2 id="二面-4-2-40min"><a href="#二面-4-2-40min" class="headerlink" title="二面 4.2 40min"></a>二面 4.2 40min</h2><p>1号没有给笔试链接，2号早上打电话直接二面，刚睡醒所以推到下午四点了 : (</p>
+<ul>
+<li><strong>自我介绍（学校活动和实习内容）</strong> </li>
+<li><strong>实习中遇到什么技术问题，怎么解决的</strong> </li>
+<li><strong><a href="">项目</a>中的通知系统怎么实现的</strong> </li>
+<li><strong>node 怎么接收请求和处理的</strong> </li>
+<li><strong><a href="">前端</a>怎么发起请求的，有哪些方式</strong> </li>
+<li><strong>position有哪些属性</strong> </li>
+<li><strong>大学有学习过什么课程</strong> </li>
+<li><strong>数据结构<a href="">二叉树</a>怎么存储在计算机里</strong> </li>
+<li><strong>0-100 很多重复数字，怎么去重</strong> </li>
+<li><strong>canvas的使用方法</strong> </li>
+<li><strong>http状态码有哪些</strong> </li>
+<li><strong>204状态码是什么意思</strong> </li>
+<li><strong>你自己有什么亮点</strong> </li>
+<li><strong>你还有什么问题吗</strong><br>最后面试官说，评估之后再联系我 : (<br>祝我好运 ： ) </li>
+</ul>
+<p>更新：根内推人的回复，下一面为P9面试，应该是二面过了，阿里面试流程较长，耐心等待中…</p>
+<p>4.8 更新：今天约面试，一面面试官说晚上加一场笔试</p>
+<h2 id="三面-4-8-36min"><a href="#三面-4-8-36min" class="headerlink" title="三面 4.8 36min"></a>三面 4.8 36min</h2><p>刚睡醒，接到电话，爬起来面试，7的128次方没答上来。。。大家有思路可以发一下</p>
+<ul>
+<li><strong>实习<a href="">项目</a></strong> </li>
+<li><strong>遇到的问题，怎么解决的</strong> </li>
+<li><strong>其他的<a href="">项目</a>和<a href="">项目</a>难点</strong> </li>
+<li><strong>为什么选择<a href="">前端</a></strong> </li>
+<li><strong>快排思路，时间，空间复杂度</strong> </li>
+<li><strong>TCP四次挥手，为什么需要四次？最后一次挥手没有可以吗？</strong> </li>
+<li><strong>数据库的ACID四个特性，隔离级别</strong> </li>
+<li><strong>数据库隔离级别的具体场景</strong> </li>
+<li><strong>7的128次方估算位数，偏差不超过十位，说下思路</strong> </li>
+<li><strong>如果同时tx和al都给了offer，你选择哪个？为什么</strong> </li>
+</ul>
+<p>后续如果还有安排面试应该是交叉面，等着吧，感觉凉度50%……</p>
+<p>4.8 22:02 目前没有收到笔试邮件，也不知道怎么肥事…</p>
+<h2 id="四面-4-9-55min"><a href="#四面-4-9-55min" class="headerlink" title="四面 4.9 55min"></a>四面 4.9 55min</h2><p>这一轮交叉面，前一晚我以为已经凉了: )，上午十一点突然接到电话，开始面试</p>
+<ul>
+<li><strong>实习<a href="">项目</a>介绍</strong> </li>
+<li><strong>遇到的问题，怎么解决的</strong> </li>
+<li><strong>其他的<a href="">项目</a>和<a href="">项目</a>难点</strong> </li>
+<li><strong>怎么优化小程序的性能</strong> </li>
+<li><strong>promise全链路捕获异常</strong> </li>
+<li><strong>promise和async的区别</strong> </li>
+<li><strong>ejs的原理及实现</strong> </li>
+<li><strong>tx实习经历，工作模式</strong> </li>
+<li><strong>分享过什么，对团队有什么贡献</strong> </li>
+<li><strong>对国际站有什么了解，对在深圳工作有什么想法？</strong> </li>
+<li><strong>未来<a href="">职业规划</a></strong> </li>
+</ul>
+<p>这是技术终面了，据内推人说还是要加笔试，集团规定…<br>终于喘口气了…<br>后面其他的面试依然要加油…</p>
+<p>我是没有感情的面试机器</p>
+<p>4.9 18:30 收到来自三面部门boss的微信，四面过了，接下来准备hr面！冲冲冲！</p>
+<p>4.10 晚上七点一面面试官给我发了笔试链接，一道题，20分钟</p>
+<p><a href="#">复制代码</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 实现一个getBracketList函数，传入数字n（代表中括号的对数），&#96;&#96;&#x2F;&#x2F; 输出所有有效的中括号组合。其中，n是0或正整数。&#96;&#96;&#x2F;&#x2F; 插入括号的过程中一定是左括号大于右括号&#96;&#96;&#x2F;&#x2F; 当左括号从n开始，一定将接下来的右括号全部输出&#96;&#96;&#x2F;&#x2F; 当左括号和右括号相等时，接下来继续递归，直到左括号达到目标数目，剩下添加右括号。&#96;&#96;function&#96; &#96;getBracketList(n) &#123;&#96;&#96;  &#96;&#96;&#x2F;&#x2F; your code here&#96;&#96;  &#96;&#96;var&#96; &#96;func &#x3D; &#96;&#96;function&#96; &#96;(str, left, right, n, ans) &#123;&#96;&#96;    &#96;&#96;if&#96; &#96;(left &#x3D;&#x3D; n) &#123;&#96;&#96;      &#96;&#96;for&#96; &#96;(&#96;&#96;var&#96; &#96;i &#x3D; 0; i &lt; n - right; i++) &#123;&#96;&#96;        &#96;&#96;str +&#x3D; &#96;&#96;&#39;]&#39;&#96;&#96;      &#96;&#96;&#125;&#96;&#96;      &#96;&#96;ans.push(str);&#96;&#96;      &#96;&#96;return&#96; &#96;ans&#96;&#96;    &#96;&#96;&#125;&#96;&#96;    &#96;&#96;if&#96; &#96;(left &#x3D;&#x3D; right) &#123;&#96;&#96;      &#96;&#96;ans.concat(func(str + &#96;&#96;&quot;[&quot;&#96;&#96;, left + 1, right, n, ans))&#96;&#96;    &#96;&#96;&#125; &#96;&#96;else&#96; &#96;&#123;&#96;&#96;      &#96;&#96;ans.concat(func(str + &#96;&#96;&quot;[&quot;&#96;&#96;, left + 1, right, n, ans))&#96;&#96;      &#96;&#96;ans.concat(func(str + &#96;&#96;&quot;]&quot;&#96;&#96;, left, right + 1, n, ans))&#96;&#96;    &#96;&#96;&#125;&#96;&#96;    &#96;&#96;return&#96; &#96;ans;&#96; &#96;  &#96;&#96;&#125;&#96;&#96;  &#96;&#96;var&#96; &#96;result &#x3D; func(&#96;&#96;&quot;&quot;&#96;&#96;, 0, 0, n, [])&#96;&#96;  &#96;&#96;console.log(result)&#96;&#96;  &#96;&#96;return&#96; &#96;result&#96;&#96;&#125;&#96; &#96;getBracketList(2) &#96;&#96;&#x2F;&#x2F; [&quot;[[]]&quot;, &quot;[][]&quot;]&#96;&#96;getBracketList(3) &#96;&#96;&#x2F;&#x2F; [&quot;[[[]]]&quot;, &quot;[[][]]&quot;, &quot;[[]][]&quot;, &quot;[][[]]&quot;, &quot;[][][]&quot;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="五面-hr面-4-16-35min"><a href="#五面-hr面-4-16-35min" class="headerlink" title="五面 hr面 4.16 35min"></a>五面 hr面 4.16 35min</h2><ul>
+<li><strong>自我介绍</strong> </li>
+<li><strong>到目前为止最有成就感的一件事</strong> </li>
+<li><strong>在过往的学习过程中遇到什么困难的事情</strong> </li>
+<li><strong>你有什么兴趣爱好，一直坚持的事情</strong> </li>
+<li><strong>你觉得自己有什么优点和缺点</strong> </li>
+<li><strong>在<a href="">前端</a>的方面你对哪些比较感兴趣，具体介绍一下</strong> </li>
+<li><strong>如何学习<a href="">前端</a></strong> </li>
+<li><strong>在实习过程中的感受</strong> </li>
+<li><strong>对于<a href="">前端</a>性能方面，你是怎样学习，或者实践的</strong> </li>
+<li><strong>你还有什么想问的吗？</strong></li>
+</ul>
+<h1 id="7"><a href="#7" class="headerlink" title="7"></a>7</h1><p>作者：Bruna<br>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/392405">https://www.nowcoder.com/discuss/392405</a><br>来源：牛客网</p>
+<p><a href="">阿里巴巴</a>的盒马部门，是我面过的场次最多，单次平均面试时间最长的一家部门了，整个流程持续了差不多1个多月，技术面试差不多有5-6轮！对校招的实习生的选拔好严格，同样的，我也是花了一个月时间断断续续写完了这篇<a href="">面经</a>。真的得吐槽。。。🙄 </p>
+<h2 id="一面（2020-3-6）"><a href="#一面（2020-3-6）" class="headerlink" title="一面（2020 3.6）"></a><strong>一面（2020 3.6）</strong></h2><p>  前一天晚上投的简历，第二天下午就接到了面试电话 </p>
+<ol>
+<li>请先做个自我介绍 </li>
+<li>场景题：提交表单，常用的方法有哪些？应用层，通信层发生了哪些过程？ </li>
+<li>post和get的区别，列举一下 </li>
+<li>http常见的响应码，拒绝服务资源是哪个（403） </li>
+<li>说一说这个系统是如何判断机制的（<a href="">前端</a>鉴权） </li>
+<li>你刚才说了三方OAuth，讲一讲内在原理吧 </li>
+<li>说说https的内在原理，ssl握手过程 </li>
+<li>为什么要用非对称密钥，pms呢？公钥怎么了？ </li>
+<li>说一说响应式布局吧？ </li>
+<li>响应式背后的浏览器原理你知道吗？（不太知道） </li>
+<li>旋转动画css，怎么去做？（animation+rotate） </li>
+<li>dom树和cssom树原理也说一下吧 </li>
+<li>为什么link要在前，script标签要在后面呢？原理 </li>
+<li>场景题：保证浏览器不受脚本的恶意攻击，（xss攻击，解决方法） </li>
+<li>假如说你的富文本编辑器内部要显示脚本，该怎么办呢？（不太清楚，我就尽可能说） </li>
+<li>场景题：promise.resolve.then和setTimeout（有关事件循环event loop） </li>
+<li>说说async和await的es5实现（我尽可能地说了一点） </li>
+<li>场景题：这里有cat和animal子类和父类，如何进行es5继承，至少说出5种。 </li>
+<li>说说你<a href="">项目</a>做的Vue spa首屏优化吧（按需引入，懒加载路由，gzip压缩，关闭一些插件…） </li>
+<li>说说webpack打包构建在实际<a href="">项目</a>中的优化 </li>
+<li><a href="">算法</a>场景题：数型系统，包含字符串关键词，如何对其作出效率很好的搜索？（balabala说了自己的一些看法，lz77<a href="">算法</a>，后来翻了翻<a href="">算法</a>书，应该结合B树来说） </li>
+</ol>
+<h2 id="一面追加面（2020-3-7）"><a href="#一面追加面（2020-3-7）" class="headerlink" title="一面追加面（2020 3.7）"></a><strong>一面追加面（2020 3.7）</strong></h2><p>   编程题：请使用js函数写出markdown转html的文本编辑器。（2个小时）  </p>
+<p>   <a href="">算法题</a>：在一个字符串中，找到最大不连续子字符串的长度。  </p>
+<p>   一面评级很好，面试官balabala…（给予我建议）  </p>
+<h2 id="二面（2020-3-9）"><a href="#二面（2020-3-9）" class="headerlink" title="二面（2020 3.9）"></a><strong>二面（2020 3.9）</strong></h2><ol>
+<li>请做个自我介绍，学校里做的<a href="">项目</a> </li>
+<li>说说你element-ui的按需引入吧 </li>
+<li>说说webpack打包优化具体干了什么？为什么要这么做呢？（Dllplugin，happypack） </li>
+<li>prerender-spa-plugin插件你用过？具体说一说吧 </li>
+<li>SEO优化你做了？具体讲一讲吧 </li>
+<li>追问：你seo排名怎么样了？（没有进展😂） </li>
+<li>我记得NUXT.js也可以做渲染和seo吧？了解SSR吗 </li>
+<li>小程序有碰到过复杂一点的业务场景吗？（说了数据列表懒加载处理setData优化问题） </li>
+<li>小程序的框架你有了解吗？要不说说几个？ </li>
+<li>你了解过的前沿技术来说一说？（Vue3.0，Flutter，Serverless，Typescript） </li>
+<li>说说Vue3.0和2.x的双向数据绑定（object.definePorperty和Proxy） </li>
+<li>说说你最感兴趣的<a href="">前端</a>方向（跨端解决方案Flutter、React Native…） </li>
+<li>一面面试官说你还可以，那我就不再问你基础问题了，你还有什么要问我的吗？ </li>
+<li>您对我的评价：balabalabala </li>
+</ol>
+<h2 id="三面（leader面）"><a href="#三面（leader面）" class="headerlink" title="三面（leader面）"></a><strong>三面（leader面）</strong></h2><p>   之前就有跟盒马的<a href="">前端</a>leader做过微信沟通，了解了一些<a href="">阿里巴巴</a>新零售的愿景。  </p>
+<ol>
+<li><p>先做个自我介绍 </p>
+</li>
+<li><p>说说你的个人博客和你做的小程序吧 </p>
+</li>
+<li><p>你刚才只说了技术层面的，功能层面没有什么创新吗？ </p>
+</li>
+<li><p>你现在还有开展什么新<a href="">项目</a>吗？ </p>
+</li>
+<li><p>我不管技术层面，还是来到功能层面，除了这一个功能就没有创新了吗？（顿时语塞。。） </p>
+</li>
+<li><p>有这么一个功能场景，老师随机点名，上堂课没来的同学被抽到的概率会大幅增加，怎么去做？ </p>
+</li>
+<li><p>还有一个功能场景，你的博客系统如何分享文章？ </p>
+</li>
+<li><p>还有一个功能场景，你可不可以做一个在线提交作业的平台，让老师不仅可以收到作业，还可以在平台上对作业进行批改？说说具体技术实现。。。 </p>
+</li>
+<li><p>我的问题问完了，你现在还有面其他的部门吗？balabala </p>
+</li>
+<li><p>对我的评价，balabala说了很多很多😭，其中用技术灵活地解决各种场景问题是非常要紧的素质！！！ </p>
+<p>说后面还会有P9级别的面试/(ㄒoㄒ)/~~  </p>
+</li>
+</ol>
+<h2 id="四面（技术终面）"><a href="#四面（技术终面）" class="headerlink" title="四面（技术终面）"></a>四面（技术终面）</h2><p>   正式校招系统开放，选择了盒马的邀请。四面在3月23号的下午打电话过来了，听口音像是个北方人。  </p>
+<p>   看到我的简历，抛出问题：  </p>
+<ol>
+<li>请先做个自我介绍吧，并说说你最有成就感的几个<a href="">项目</a> </li>
+<li>详细地讲讲Vue的首屏优化，具体的技术点 </li>
+<li>优化有过量化评级吗？说说具体为多少？怎么去做的？ </li>
+<li>有一个问题，你如何去确定哪一种方式是对整个首屏渲染优化起到最关键作用的？ </li>
+<li>我们现在回过头来，你可不可以按照软件开发的流程模块再来详细地说说博客的整体优化？各个方面的性能优化？（设计，编码，打包部署，上线体验。。。说了一部分） </li>
+<li>预渲染prerender-spa-plugin能详细讲讲？ </li>
+<li>你了解了原理，那么你引入这个prerender插件对于整个<a href="">项目</a>的架构产生了什么样的特别影响？（讲了路由冲突） </li>
+<li>对于上线后的用户体验，你打算怎么做改进？ </li>
+<li>功能层面是这样，技术层面可以来说说？ </li>
+<li>数据列表的懒加载这个说的好，那有这么一个场景，你提交了新的文章，由用户在刷你的博客，你怎么让用户通过一定的事件=来查看你的新文章，不要通过页面整体刷新，还是以动态引入的方式？ </li>
+<li>我们再次回到刚才<a href="">项目</a>的性能优化这个点上？在你解决首屏的时候，在网络通信的每个阶段，哪个阶段是性能开销的最大的地方，优化后有何变化？如何解决？ </li>
+<li>SEO怎么做的，讲一讲技术细节 </li>
+<li>你有对你的用户群体做过数据的量化统计吗？说说你有什么样的思路，如何去利用好这些数据？ </li>
+<li>这边有个问题，如果单纯地通过<a href="">前端</a>来分析用户的行为，开销会非常大，你有什么好办法？说说思路 </li>
+<li>如果过了很长时间，有人问你，一个高性能的博客页面该如何搭建，你会按照什么样的逻辑取来跟他分析这些零碎繁杂的性能优化？ </li>
+<li>好了，博客<a href="">项目</a>只是你个人对于技术的探索，你还有没有学校里真正拥有用户的实际<a href="">项目</a>呢？说说看 </li>
+<li>功能描述的很详细，这里有个问题，总所周知，二维码有一定的时效性，可传播性，如何防范那些没来同学也扫到二维码了？说说方法 </li>
+<li>没来的学生，你们就会采取这种单一的方案吗？还有没有别的？ </li>
+<li>说说你们<a href="">项目</a>组的团队，如何分工的？ </li>
+<li>在这个团队对于<a href="">项目</a>的功能构建中，你起到了什么作用呢？ </li>
+<li>你刚才说到了前后端分离，讲讲你和后台同学如何落实好前后端分离的？ </li>
+<li>对于后台的数据接口，经常会发生一些分歧，你们团队是怎么化解这种分歧的，有没有一种方式增进团队之间的沟通？ </li>
+<li>这小程序现在的用户量怎么样呢？日活又如何？ </li>
+<li>同样的，再说说这个小程序性能优化做了哪些呢？ </li>
+<li>你对于<a href="">前端</a>未来的开发？以及你以后的<a href="">职业规划</a>？ </li>
+<li>你希望阿里能给到你什么样的经历？在阿里希望能学到什么？ </li>
+<li>这边在杭州，之后方便过来对吧？ </li>
+<li>我的问题问完了，你这边有什么问题？ </li>
+</ol>
+<p>​     </p>
+<p>   惯例您对于我的评价：ok，在应届生群体中，你已经具备了工程师的素养和一定开发经验，但性能优化这一块是一个永无止境的过程，应当不断追求卓越balabala。。。。。  </p>
+<p>   面下来差不多一个小时，真的少见。。。  </p>
+<h2 id="五面（P9-交叉面）"><a href="#五面（P9-交叉面）" class="headerlink" title="五面（P9 交叉面）"></a>五面（P9 交叉面）</h2><p>   约在了3月25日的晚上，面试官比较严肃，问的问题也蛮有深度的，时间不长30分钟，但问的问题也比较广。。。  </p>
+<ol>
+<li><p>请先做个自我介绍 </p>
+</li>
+<li><p>说说你最有成就感的<a href="">项目</a> </p>
+</li>
+<li><p>你的博客网站，难道没有分析过用户的行为吗？对于用户量很大的情况下，难道没有做过性能分析吗？ </p>
+</li>
+<li><p>详细地讲一讲你做了哪些性能优化？ </p>
+</li>
+<li><p>就这么多吗？对于效果你有做过量化的评测吗？ </p>
+</li>
+<li><p>对于首屏中的FP，FCP，FMP，TTI你又分别去做量化的考虑吗？ </p>
+</li>
+<li><p>对了，你如何通过代码来分析首屏的FCP时间？ </p>
+</li>
+<li><p>除了这些，难道就没有进一步优化吗？ </p>
+</li>
+<li><p>prerender预渲染是什么原理呀？ </p>
+</li>
+<li><p>这样的一种插件引入，为整个性能提升又带来了多少量化的参考呢？你有去研究过吗？ </p>
+</li>
+<li><p>说说你拥有的实际用户量的<a href="">项目</a>吧？ </p>
+</li>
+<li><p>这个小程序已经上线对吧？你们团队有没有对这个小程序做过用户行为的调研呢？ </p>
+</li>
+<li><p>我想要知道的是在程序里面有代码去自动去分析用户的行为吗？ </p>
+</li>
+<li><p>我看你懂Vue，React有学过一些吗？系统地说一说两者的区别 </p>
+</li>
+<li><p>Vue如何解析template模板，diff<a href="">算法</a>两者的不同是什么？？ </p>
+</li>
+<li><p>详细地说说<a href="">前端</a>的动画种类？ </p>
+</li>
+<li><p>canvas有了解过吗？它适用于什么样的场景？ </p>
+</li>
+<li><p>你对于<a href="">前端</a>前沿技术的看法？ </p>
+</li>
+<li><p>你刚刚讲了flutter，Dart语言能不能说说看？ </p>
+</li>
+<li><p>React Native做过<a href="">项目</a>吗？ </p>
+</li>
+<li><p>你希望在未来，你在阿里能学习成长到什么？ </p>
+</li>
+<li><p>我的问题问完了，你这边有什么问题呢？ </p>
+<p>对我的评价：评价我先不给你，我说说我对于你的建议，继续探索下去，保持好奇心，用最前沿的技术尝试去做<a href="">项目</a>，<a href="">前端</a>的知识很广，需要去不断深入了解原理知识balabala。。。。（最后）我觉得你还是不错的，加油吧。。。。  </p>
+</li>
+</ol>
+<p>   后来，leader发了微信，交叉面顺利过了，剩下的就是HR了。</p>
+<h1 id="8"><a href="#8" class="headerlink" title="8"></a>8</h1><p>作者：luckyray<br>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/391782">https://www.nowcoder.com/discuss/391782</a><br>来源：牛客网</p>
+<h2 id="当前情况"><a href="#当前情况" class="headerlink" title="当前情况"></a>当前情况</h2><p>楼主已拿字节offer, 后续的几家都没有继续面试的打算, 现在将一路上从牛客这总结的知识点放给大家, 希望大家能够觉得有用, 绝对适合实习生(毕竟全部都是为了面试实习找的<a href="">面经</a>呀😂)</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://luckyray-fan.github.io/knowledge-point/#/browser/browser">知识点</a></p>
+</blockquote>
+<h2 id="腾讯"><a href="#腾讯" class="headerlink" title="腾讯"></a><a href="">腾讯</a></h2><h3 id="实习"><a href="#实习" class="headerlink" title="实习"></a>实习</h3><p>看点直播的, 搜索了一下, 是最近 19 年 11 月多左右出品的, 原身似乎是<a href="">腾讯</a>直播, 主要面向直播带货</p>
+<p>PCG 原本似乎是北京, 最近可能是看点之类的搬过来了, 深圳也有岗位</p>
+<h4 id="一面-1"><a href="#一面-1" class="headerlink" title="一面"></a>一面</h4><ul>
+<li>自我介绍 </li>
+<li>印象较深的<a href="">项目</a>, 困难以及如何解决的 </li>
+<li>express 优缺点, 用过 koa 没 </li>
+<li>存储, cookie, localstorage, sessionstorage </li>
+<li>http 状态码, 301 和 302 浏览器处理的区别 </li>
+<li>tcp 握手挥手 </li>
+<li>https </li>
+<li>缓存 </li>
+<li>let const, babel 中的实现 </li>
+<li>闭包优点缺点 </li>
+<li>事件代理 </li>
+<li>性能优化 </li>
+<li>首屏 </li>
+<li>同构 </li>
+<li>对 vue 的理解, 回答了双向绑定, 架构之类的 </li>
+<li>时针与分针的夹角, 3:45 </li>
+<li>笔试题, 此时 qq 分享屏幕, 面试官用的是 mac 又换成了 windows, 限时 1.5h, 不能查资料  <ul>
+<li>拖动一个方框, 不能用 jquery 库 </li>
+<li>大数相加, 问了下不能用 bigint </li>
+</ul>
+</li>
+</ul>
+<h2 id="字节跳动"><a href="#字节跳动" class="headerlink" title="字节跳动"></a><a href="">字节跳动</a></h2><h3 id="实习-1"><a href="#实习-1" class="headerlink" title="实习"></a>实习</h3><p>广告部门</p>
+<p>牛客的面试感觉还可以, 输出和 codeopen 差不多, 就是对象打印出来是个<code>[object object]</code>, 关键是有问题记录, 方便回顾</p>
+<h4 id="一面-2"><a href="#一面-2" class="headerlink" title="一面"></a>一面</h4><ul>
+<li>自我介绍 </li>
+<li>es6, 从 6 到 10 都讲了 </li>
+<li>数组去重扁平化, 都写了两种方案出来, 忘记 flat 了 </li>
+<li>flex, 有什么属性 </li>
+<li>position, absolute 和 fixed 区别 </li>
+<li>文本居中, flex 的和 line-height 的 </li>
+<li>canvas 的应用, 我说了 echart, <a href="">百度</a>地图, 下载图片(这个我记不大清了) </li>
+<li>js 继承, 手写了三种构造原型寄生组合 </li>
+<li><a href="">排序</a>, 将给入的对象数组按给定的属性<a href="">排序</a>, 值是 number 按升序, 是 string 按字母<a href="">排序</a>, 给定的属性用 eval 解决<ul>
+<li>字符串可以用 localcompare </li>
+</ul>
+</li>
+<li>有什么要问的吗, 字节的技术栈, 后端有用 node 吗 </li>
+</ul>
+<h4 id="二面-1"><a href="#二面-1" class="headerlink" title="二面"></a>二面</h4><ul>
+<li><p>自我介绍 </p>
+</li>
+<li><p>找出数组中最大的连续子数组的和, 写了点发现不太对面试官问我思路, 我慌忙改对了 </p>
+</li>
+<li><p>实现字符串的反转, </p>
+<p>unicode 字符如何处理</p>
+<ul>
+<li>因为 js 用 16 位来代表一个字符, 但是 utf-16 可以用四个字节, 所以一个 <code>&#39;😀&#39;.length == 2</code>, 解决方法是<code>Array.from(str)</code> </li>
+</ul>
+</li>
+<li><p><a href="">二叉树</a>结构和遍历, 前中后层次 </p>
+</li>
+<li><p>ajax,post </p>
+</li>
+<li><p>content-type 分别在响应和请求有些什么属性 </p>
+</li>
+<li><p>node express 如何处理 formdata, 扯了一下原生如何处理 </p>
+</li>
+<li><p>中间件, koa 洋葱与 express 的区别 </p>
+</li>
+<li><p>webpack 概念 </p>
+</li>
+<li><p>webpack loader/plugin </p>
+</li>
+<li><p>vue2 迁到 vue3 改成 proxy 原因 </p>
+</li>
+<li><p>问<a href="">项目</a> </p>
+</li>
+<li><p>有什么要问的吗, 字节 node 的框架是怎样子的 </p>
+</li>
+</ul>
+<p>本来面试官似乎还要再问我的, 和我约了十分钟后再来, 结果之后打来电话的直接就是hr了, emmm, 运气真好</p>
+<h2 id="阿里"><a href="#阿里" class="headerlink" title="阿里"></a>阿里</h2><h3 id="实习-2"><a href="#实习-2" class="headerlink" title="实习"></a>实习</h3><p>供应链平台</p>
+<h4 id="一面-3"><a href="#一面-3" class="headerlink" title="一面"></a>一面</h4><ul>
+<li>自我介绍 </li>
+<li>问<a href="">项目</a> </li>
+<li>es6 </li>
+<li>promise, koa 框架, await </li>
+<li>babel 如何编译 await </li>
+<li>this </li>
+<li>this 在嵌套函数中运行的指向 </li>
+<li>使用函数声明和函数表达式的区别 </li>
+<li>数组移除属性的方法, 如果要连续移除怎么办, 如何不用判断索引连续移除(<a href="">排序</a> w) </li>
+<li>场景题?  <ul>
+<li>输入, 一个数组, 数组中的元素对象的属性是, parentId, name </li>
+<li>输出, 一个对象, 对象属性, name, children, children 是个数组, 数组元素属性和上一层一致 </li>
+</ul>
+</li>
+<li><a href="">前端</a>安全 </li>
+<li>浏览器如何渲染 </li>
+</ul>
+<p>都扯开了讲</p>
+<p>计算一下我投了些啥</p>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>部门</th>
+<th>内推</th>
+<th>时间</th>
+<th>后续结果</th>
+<th>相关信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="">网易</a></td>
+<td><a href="">网易</a>互联网杭州研究院</td>
+<td>是</td>
+<td>3.17</td>
+<td></td>
+<td>4.7 笔试</td>
+</tr>
+<tr>
+<td><a href="">网易</a></td>
+<td><a href="">网易互娱</a>广州第二志愿</td>
+<td>否</td>
+<td>3.17</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="">网易</a></td>
+<td><a href="">网易互娱</a>杭州第一志愿</td>
+<td>是</td>
+<td>3.7</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="">腾讯</a></td>
+<td>无意向</td>
+<td>否</td>
+<td>3.7</td>
+<td>pcg 面试, 一面失效</td>
+<td>有内推机会, 等待通知中, 原来现在还是提前批啊= =(<a href="">腾讯</a>直播那看到的),3.5-4.18 提前批,4.24-4.26 笔试</td>
+</tr>
+<tr>
+<td>阿里</td>
+<td>供应链</td>
+<td>是</td>
+<td>3.6</td>
+<td></td>
+<td><del>完全不知道这家伙会不会继续跳票</del> 3.18 开放系统, 每周笔试为一三五, 包括<a href="">算法</a>数学等, 从笔试完初面到终面完一共七天</td>
+</tr>
+<tr>
+<td><a href="">美团</a></td>
+<td>无意向</td>
+<td>否</td>
+<td>3.17</td>
+<td></td>
+<td>每周四笔试, 共五道题</td>
+</tr>
+<tr>
+<td>字节</td>
+<td>广告</td>
+<td>是</td>
+<td>3.14</td>
+<td></td>
+<td><del>不知道 hr 看不看得上我的简历</del>, 看上了, 他们对实习似乎要求的很急, 周五下午四点半面试, 过了, 一发入魂</td>
+</tr>
+<tr>
+<td><a href="">百度</a></td>
+<td>北京<a href="">前端</a></td>
+<td>是</td>
+<td>3.18</td>
+<td></td>
+<td>3.26 内推停止, 3.29 笔试</td>
+</tr>
+</tbody></table>
+<p>后面<a href="">腾讯</a>和<a href="">美团</a>都试着内推了, <a href="">腾讯</a>pcg电话没接到太草了😂, 赶紧关掉所有拦截</p>
+<h1 id="zhouyou"><a href="#zhouyou" class="headerlink" title="zhouyou"></a>zhouyou</h1><h2 id="面试记录总结"><a href="#面试记录总结" class="headerlink" title="面试记录总结"></a>面试记录总结</h2><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li><a href="#%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E8%8E%B7%E5%BE%97-offer">阿里巴巴（获得 OFFER）</a><ul>
+<li><a href="#1-2019-3-25-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%B7%98%E5%AE%9D%E4%B8%80%E9%9D%A2">1. 2019-3-25 阿里巴巴（淘宝）一面</a></li>
+<li><a href="#2-2019-3-28-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%B7%98%E5%AE%9D%E4%BA%8C%E9%9D%A2">2. 2019-3-28 阿里巴巴（淘宝）二面</a></li>
+<li><a href="#3-2019-4-1-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%B7%98%E5%AE%9D%E4%B8%89%E9%9D%A2">3. 2019-4-1 阿里巴巴（淘宝）三面</a></li>
+<li><a href="#4-2019-4-3-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%B7%98%E5%AE%9D%E5%9B%9B%E9%9D%A2hr">4. 2019-4-3 阿里巴巴（淘宝）四面（hr）</a></li>
+<li><a href="#5-2019-4-29-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E9%98%BF%E9%87%8C%E4%BA%91%E4%B8%80%E9%9D%A2">5. 2019-4-29 阿里巴巴（阿里云）一面</a></li>
+<li><a href="#6-2019-5-27-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E9%98%BF%E9%87%8C%E4%BA%91%E4%BA%8C%E9%9D%A2">6. 2019-5-27 阿里巴巴（阿里云）二面</a></li>
+<li><a href="#7-2019-5-29-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%B7%98%E5%AE%9D%E4%BA%8C%E8%BD%AE%E4%B8%80%E9%9D%A2">7. 2019-5-29 阿里巴巴（淘宝二轮）一面</a></li>
+<li><a href="#8-2019-5-31-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%B7%98%E5%AE%9D%E4%BA%8C%E8%BD%AE%E4%BA%8C%E9%9D%A2">8. 2019-5-31 阿里巴巴（淘宝二轮）二面</a></li>
+<li><a href="#9-2019-5-31-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%B7%98%E5%AE%9D%E4%BA%8C%E8%BD%AE%E4%B8%89%E9%9D%A2hr">9. 2019-5-31 阿里巴巴（淘宝二轮）三面（hr）</a></li>
+</ul>
+</li>
+<li><a href="#%E8%85%BE%E8%AE%AF%E8%8E%B7%E5%BE%97-offer">腾讯（获得 OFFER）</a><ul>
+<li><a href="#1-2019-4-26-%E8%85%BE%E8%AE%AFteg%E4%B8%80%E9%9D%A2">1. 2019-4-26 腾讯（TEG）一面</a></li>
+<li><a href="#2-2019-4-29-%E8%85%BE%E8%AE%AFteg%E4%BA%8C%E9%9D%A2">2. 2019-4-29 腾讯（TEG）二面</a></li>
+<li><a href="#3-2019-5-9-%E8%85%BE%E8%AE%AFteg%E4%B8%89%E9%9D%A2">3. 2019-5-9 腾讯（TEG）三面</a></li>
+<li><a href="#4-2019-5-17-%E8%85%BE%E8%AE%AFteg%E5%9B%9B%E9%9D%A2hr">4. 2019-5-17 腾讯（TEG）四面（hr）</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BD%91%E6%98%93%E4%BA%92%E5%A8%B1%E8%8E%B7%E5%BE%97-offer">网易互娱（获得 OFFER）</a><ul>
+<li><a href="#1-2019-4-15-%E7%BD%91%E6%98%93%E4%BA%92%E5%A8%B1%E4%B8%80%E9%9D%A2">1. 2019-4-15 网易互娱一面</a></li>
+<li><a href="#2-2019-4-18-%E7%BD%91%E6%98%93%E4%BA%92%E5%A8%B1%E4%BA%8C%E9%9D%A2">2. 2019-4-18 网易互娱二面</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8">字节跳动</a><ul>
+<li><a href="#1-2019-3-23-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E4%B8%80%E9%9D%A2">1. 2019-3-23 字节跳动一面</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AE%E4%BC%97%E9%93%B6%E8%A1%8C">微众银行</a><ul>
+<li><a href="#1-2019-4-1-%E5%BE%AE%E4%BC%97%E9%93%B6%E8%A1%8C%E4%B8%80%E9%9D%A2">1. 2019-4-1 微众银行一面</a></li>
+</ul>
+</li>
+<li><a href="#%E9%85%B7%E5%AE%B6%E4%B9%90%E8%8E%B7%E5%BE%97-offer">酷家乐（获得 OFFER）</a><ul>
+<li><a href="#1-2019-4-18-%E9%85%B7%E5%AE%B6%E4%B9%90%E4%B8%80%E9%9D%A2">1. 2019-4-18 酷家乐一面</a></li>
+<li><a href="#2-2019-4-22-%E9%85%B7%E5%AE%B6%E4%B9%90%E4%BA%8C%E9%9D%A2">2. 2019-4-22 酷家乐二面</a></li>
+<li><a href="#3-2019-4-25-%E9%85%B7%E5%AE%B6%E4%B9%90%E4%B8%89%E9%9D%A2">3. 2019-4-25 酷家乐三面</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%AC%E4%B8%9C">京东</a><ul>
+<li><a href="#1-2019-4-22-%E4%BA%AC%E4%B8%9C%E4%B8%80%E9%9D%A2">1. 2019-4-22 京东一面</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%BF%E8%81%94%E7%BD%91%E7%BB%9C">亿联网络</a><ul>
+<li><a href="#1-2019-4-24-%E4%BA%BF%E8%81%94%E7%BD%91%E7%BB%9C%E4%B8%80%E9%9D%A2">1. 2019-4-24 亿联网络一面</a></li>
+</ul>
+</li>
+<li><a href="#oppo%E8%8E%B7%E5%BE%97-offer">OPPO（获得 OFFER）</a><ul>
+<li><a href="#1-2019-4-26-oppo%E4%B8%80%E9%9D%A2">1. 2019-4-26 OPPO一面</a></li>
+<li><a href="#2-2019-5-8-oppo%E4%BA%8C%E9%9D%A2hr">2. 2019-5-8 OPPO二面（hr）</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8D%8E%E4%B8%BA%E8%8E%B7%E5%BE%97-offer">华为（获得 OFFER）</a><ul>
+<li><a href="#1-2019-4-28-%E5%8D%8E%E4%B8%BA%E4%B8%80%E9%9D%A2">1. 2019-4-28 华为一面</a></li>
+<li><a href="#2-2019-4-28-%E5%8D%8E%E4%B8%BA%E4%BA%8C%E9%9D%A2">2. 2019-4-28 华为二面</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="阿里巴巴（获得-OFFER）"><a href="#阿里巴巴（获得-OFFER）" class="headerlink" title="阿里巴巴（获得 OFFER）"></a>阿里巴巴（获得 OFFER）</h3><h4 id="1-2019-3-25-阿里巴巴（淘宝）一面"><a href="#1-2019-3-25-阿里巴巴（淘宝）一面" class="headerlink" title="1. 2019-3-25 阿里巴巴（淘宝）一面"></a>1. 2019-3-25 阿里巴巴（淘宝）一面</h4><ol>
+<li>笔试题随机排序</li>
+<li>笔试题实现商品分配</li>
+<li>浏览器存储机制，cacheStorage</li>
+<li>cookie 原理</li>
+<li>项目 mvp 原理</li>
+<li>Vue 组件间通信</li>
+<li>双向绑定的原理</li>
+<li>网站性能优化</li>
+<li>页面的可用性时间的计算 performance api</li>
+<li>Webpack 配置</li>
+<li>Webassblem</li>
+<li>网络安全</li>
+<li>This的指向</li>
+<li>前沿知识</li>
+<li>Hybrid</li>
+<li>Node.js</li>
+<li>原型链</li>
+<li>跨域</li>
+<li>移动端的点击事件</li>
+<li>移动端布局</li>
+<li>前端路由的实现方式</li>
+</ol>
+<p>面试时间：3.25 20:10-22:25  135分钟</p>
+<h4 id="2-2019-3-28-阿里巴巴（淘宝）二面"><a href="#2-2019-3-28-阿里巴巴（淘宝）二面" class="headerlink" title="2. 2019-3-28 阿里巴巴（淘宝）二面"></a>2. 2019-3-28 阿里巴巴（淘宝）二面</h4><ol>
+<li>项目 mvp 模式</li>
+<li>图片优化</li>
+<li>移动端开发基础</li>
+<li>WebAssembly </li>
+</ol>
+<h4 id="3-2019-4-1-阿里巴巴（淘宝）三面"><a href="#3-2019-4-1-阿里巴巴（淘宝）三面" class="headerlink" title="3. 2019-4-1 阿里巴巴（淘宝）三面"></a>3. 2019-4-1 阿里巴巴（淘宝）三面</h4><ol>
+<li>项目介绍</li>
+<li>Vuex</li>
+<li>项目 mvp 模式介绍</li>
+<li>Ajax请求创建</li>
+<li>Promise 调用</li>
+<li>Flex 布局</li>
+<li>盒模型</li>
+<li>Git rebase</li>
+<li>随机排序</li>
+<li>Promise</li>
+<li>Fetch 没回答</li>
+<li>Grid 没回答</li>
+</ol>
+<p>面试时间:  4.1 15:20-15:57  37 分钟</p>
+<h4 id="4-2019-4-3-阿里巴巴（淘宝）四面（hr）"><a href="#4-2019-4-3-阿里巴巴（淘宝）四面（hr）" class="headerlink" title="4. 2019-4-3 阿里巴巴（淘宝）四面（hr）"></a>4. 2019-4-3 阿里巴巴（淘宝）四面（hr）</h4><ol>
+<li>项目介绍</li>
+<li>自我评价、同学评价</li>
+<li>家乡</li>
+<li>自己的优点</li>
+<li>学校课程</li>
+<li>未来5年的规划</li>
+<li>投了哪些公司</li>
+<li>学习生涯</li>
+<li>有没有女朋友</li>
+<li>性格</li>
+<li>从项目中学到的东西</li>
+</ol>
+<p>面试时间:  4.3 16:20-16:47  27 分钟</p>
+<h4 id="5-2019-4-29-阿里巴巴（阿里云）一面"><a href="#5-2019-4-29-阿里巴巴（阿里云）一面" class="headerlink" title="5. 2019-4-29 阿里巴巴（阿里云）一面"></a>5. 2019-4-29 阿里巴巴（阿里云）一面</h4><ol>
+<li>快速排序</li>
+<li>反转链表</li>
+<li>继承</li>
+<li>深度优先遍历</li>
+<li>Es6</li>
+<li>情景题 ui 组件设计</li>
+<li>列表数据加载问题</li>
+<li>懒加载扩展</li>
+</ol>
+<h4 id="6-2019-5-27-阿里巴巴（阿里云）二面"><a href="#6-2019-5-27-阿里巴巴（阿里云）二面" class="headerlink" title="6. 2019-5-27 阿里巴巴（阿里云）二面"></a>6. 2019-5-27 阿里巴巴（阿里云）二面</h4><ol>
+<li>Es6 新特性</li>
+<li>Object 方法</li>
+<li>Html5 方法</li>
+<li>Js 性能优化</li>
+<li>快速排序不用递归实现</li>
+</ol>
+<p>面试时间：5.27  20:32-20:58  26 分钟</p>
+<h4 id="7-2019-5-29-阿里巴巴（淘宝二轮）一面"><a href="#7-2019-5-29-阿里巴巴（淘宝二轮）一面" class="headerlink" title="7. 2019-5-29 阿里巴巴（淘宝二轮）一面"></a>7. 2019-5-29 阿里巴巴（淘宝二轮）一面</h4><ol>
+<li>简历第一个项目</li>
+<li>简历第二个项目</li>
+<li>简历第三个项目</li>
+<li>服务端了解知识</li>
+<li>Node.js 了解</li>
+<li>移动端相关</li>
+<li>React 基础</li>
+</ol>
+<p>面试时间：5.29  16:58-18:35  97分钟</p>
+<h4 id="8-2019-5-31-阿里巴巴（淘宝二轮）二面"><a href="#8-2019-5-31-阿里巴巴（淘宝二轮）二面" class="headerlink" title="8. 2019-5-31 阿里巴巴（淘宝二轮）二面"></a>8. 2019-5-31 阿里巴巴（淘宝二轮）二面</h4><ol>
+<li>项目经历</li>
+<li>技术选型</li>
+<li>为何这样选择</li>
+<li>项目提效率提升亮点</li>
+<li>项目目的</li>
+</ol>
+<p>面试时间：5.31  12:58-13:20  22分钟</p>
+<h4 id="9-2019-5-31-阿里巴巴（淘宝二轮）三面（hr）"><a href="#9-2019-5-31-阿里巴巴（淘宝二轮）三面（hr）" class="headerlink" title="9. 2019-5-31 阿里巴巴（淘宝二轮）三面（hr）"></a>9. 2019-5-31 阿里巴巴（淘宝二轮）三面（hr）</h4><ol>
+<li>项目介绍</li>
+<li>收获</li>
+<li>个人优势</li>
+<li>和腾讯offer 的选择</li>
+<li>职业规划</li>
+<li>如何获取前端前沿知识</li>
+</ol>
+<p>面试时间： 5.31  13:31-13:48  17分钟</p>
+<h3 id="腾讯（获得-OFFER）"><a href="#腾讯（获得-OFFER）" class="headerlink" title="腾讯（获得 OFFER）"></a>腾讯（获得 OFFER）</h3><h4 id="1-2019-4-26-腾讯（TEG）一面"><a href="#1-2019-4-26-腾讯（TEG）一面" class="headerlink" title="1. 2019-4-26 腾讯（TEG）一面"></a>1. 2019-4-26 腾讯（TEG）一面</h4><ol>
+<li>实习时间</li>
+<li>前端项目</li>
+<li>节流与防抖</li>
+<li>margin 重叠</li>
+<li>BFC</li>
+<li>This 对象</li>
+<li>Loader 和 plugin 的差别</li>
+<li>原型的获取</li>
+<li>单页应用的seo</li>
+<li>EventBus</li>
+<li>Vuex</li>
+</ol>
+<p>面试时间： 4.26 18:28-19:05  37分钟</p>
+<h4 id="2-2019-4-29-腾讯（TEG）二面"><a href="#2-2019-4-29-腾讯（TEG）二面" class="headerlink" title="2. 2019-4-29 腾讯（TEG）二面"></a>2. 2019-4-29 腾讯（TEG）二面</h4><ol>
+<li>项目</li>
+<li>Vue router实现</li>
+<li>Vuex</li>
+<li>项目管理规范</li>
+<li>5个价值不同的问题分给5个不同的人的方式</li>
+<li>For of 和 for in 的区别</li>
+<li>图片加载</li>
+<li>正则表达式</li>
+<li>页面遍历</li>
+<li>如何判断参数是否传入</li>
+<li>路由如何保存滚动位置</li>
+</ol>
+<p>面试时间：4.29 19:15-20:30  75 分钟</p>
+<h4 id="3-2019-5-9-腾讯（TEG）三面"><a href="#3-2019-5-9-腾讯（TEG）三面" class="headerlink" title="3. 2019-5-9 腾讯（TEG）三面"></a>3. 2019-5-9 腾讯（TEG）三面</h4><ol>
+<li>项目经历</li>
+<li>最困难的事</li>
+<li>兴趣爱好</li>
+<li>项目分工、人员讨论</li>
+<li>性格</li>
+<li>面试是否会准备</li>
+</ol>
+<p>面试时间： 5.9 19:03-19:43  40 分钟</p>
+<h4 id="4-2019-5-17-腾讯（TEG）四面（hr）"><a href="#4-2019-5-17-腾讯（TEG）四面（hr）" class="headerlink" title="4. 2019-5-17 腾讯（TEG）四面（hr）"></a>4. 2019-5-17 腾讯（TEG）四面（hr）</h4><ol>
+<li>项目问题</li>
+<li>新的解决方案</li>
+<li>实验室</li>
+<li>最难的问题</li>
+<li>家乡</li>
+<li>父母工作</li>
+<li>对职位的看法</li>
+<li>是否支持外地工作</li>
+<li>是否有直系亲属在腾讯</li>
+<li>实习时间</li>
+<li>中间是否回校</li>
+<li>兴趣爱好</li>
+<li>薪资有要求吗</li>
+</ol>
+<p>面试时间： 5.17 14:23-14:45  22分钟</p>
+<h3 id="网易互娱（获得-OFFER）"><a href="#网易互娱（获得-OFFER）" class="headerlink" title="网易互娱（获得 OFFER）"></a>网易互娱（获得 OFFER）</h3><h4 id="1-2019-4-15-网易互娱一面"><a href="#1-2019-4-15-网易互娱一面" class="headerlink" title="1. 2019-4-15 网易互娱一面"></a>1. 2019-4-15 网易互娱一面</h4><ol>
+<li>项目介绍</li>
+<li>Vue 理解</li>
+<li>路由的理解</li>
+<li>ES6 理解</li>
+</ol>
+<p>面试时间:  4.15 11:11-11:44  33 分钟</p>
+<h4 id="2-2019-4-18-网易互娱二面"><a href="#2-2019-4-18-网易互娱二面" class="headerlink" title="2. 2019-4-18 网易互娱二面"></a>2. 2019-4-18 网易互娱二面</h4><ol>
+<li>项目介绍</li>
+<li>权限系统的理解</li>
+<li>对于炉石传说的理解</li>
+<li>代码规范</li>
+<li>商品利润下降的原因</li>
+</ol>
+<p>面试时间:  4.18 10:00-10:42  42 分钟</p>
+<h3 id="字节跳动-1"><a href="#字节跳动-1" class="headerlink" title="字节跳动"></a>字节跳动</h3><h4 id="1-2019-3-23-字节跳动一面"><a href="#1-2019-3-23-字节跳动一面" class="headerlink" title="1. 2019-3-23 字节跳动一面"></a>1. 2019-3-23 字节跳动一面</h4><ol>
+<li>Webpack 了解</li>
+<li>http 缓存</li>
+<li>http1.0 和 http1.1 的区别</li>
+<li>css 上下固定为100px，中间为自适应高度</li>
+<li>一道代码分析题</li>
+<li>BFC</li>
+<li>类数组有哪些，如何转换</li>
+<li>跨域</li>
+<li>cors 简单请求和复杂请求的区别</li>
+<li>项目中图片的性能优化</li>
+<li>前端的性能优化</li>
+<li>Base64 在 html 中的缺点</li>
+<li>500 张图片，如何实现预加载优化</li>
+<li>二维码扫描登录的原理，服务器推送，客户端轮询</li>
+</ol>
+<p>面试时间：3.23 9:00-10:17  67 分钟</p>
+<h3 id="微众银行"><a href="#微众银行" class="headerlink" title="微众银行"></a>微众银行</h3><h4 id="1-2019-4-1-微众银行一面"><a href="#1-2019-4-1-微众银行一面" class="headerlink" title="1. 2019-4-1 微众银行一面"></a>1. 2019-4-1 微众银行一面</h4><ol>
+<li>Vue 双向绑定</li>
+<li>虚拟 Dom</li>
+<li>Diff 算法</li>
+<li>闭包</li>
+<li>闭包造成内存泄漏举例</li>
+<li>继承</li>
+<li>http 和 https 的区别</li>
+<li>es6 的了解</li>
+<li>是否会愿意留在公司</li>
+<li>你的优点</li>
+<li>为什么选择微众</li>
+</ol>
+<p>面试时间:  4.1 19:00-19:40  40 分钟</p>
+<h3 id="酷家乐（获得-OFFER）"><a href="#酷家乐（获得-OFFER）" class="headerlink" title="酷家乐（获得 OFFER）"></a>酷家乐（获得 OFFER）</h3><h4 id="1-2019-4-18-酷家乐一面"><a href="#1-2019-4-18-酷家乐一面" class="headerlink" title="1. 2019-4-18 酷家乐一面"></a>1. 2019-4-18 酷家乐一面</h4><ol>
+<li>基本数据类型</li>
+<li>null 和 undefined 的区别</li>
+<li>class 相对于 es5 的继承有什么区别</li>
+<li>作用域和闭包</li>
+<li>Webpack loader 和 plugins 的区别</li>
+<li>原型链和 this</li>
+<li>输入 url 的过程</li>
+<li>层叠上下文</li>
+<li>Git rebase 和 git merge 的区别</li>
+<li>前端学习的方式</li>
+<li>为什么选择前端</li>
+</ol>
+<p>面试时间：4.18 14:35-15:10 35分钟    </p>
+<h4 id="2-2019-4-22-酷家乐二面"><a href="#2-2019-4-22-酷家乐二面" class="headerlink" title="2. 2019-4-22 酷家乐二面"></a>2. 2019-4-22 酷家乐二面</h4><ol>
+<li>项目介绍</li>
+<li>Vue 的双向绑定机制</li>
+<li>权限管理</li>
+<li>Vue 中组件通信方式</li>
+<li>Vue Data 中为什么要使用函数的方式</li>
+<li>面向对象设计问题，自动超市购买商品设计</li>
+<li>智力题，五只鸡五天能下五个蛋，多少只鸡一百天下一百个蛋</li>
+<li>智力题，药罐污染问题</li>
+</ol>
+<p>面试时间： 4.22 15:06-16:06  60 分钟</p>
+<h4 id="3-2019-4-25-酷家乐三面"><a href="#3-2019-4-25-酷家乐三面" class="headerlink" title="3. 2019-4-25 酷家乐三面"></a>3. 2019-4-25 酷家乐三面</h4><ol>
+<li>实习时间</li>
+<li>前端方向</li>
+<li>项目</li>
+<li>懒加载</li>
+<li>状态持久化</li>
+<li>图片优化的方式</li>
+<li>浏览器如何判断是否支持 webp 格式图片</li>
+<li>Display 的常见属性</li>
+<li>改变url的几种方式</li>
+</ol>
+<p>面试时间： 4.25 20:35-21:10  35分钟</p>
+<h3 id="京东"><a href="#京东" class="headerlink" title="京东"></a>京东</h3><h4 id="1-2019-4-22-京东一面"><a href="#1-2019-4-22-京东一面" class="headerlink" title="1. 2019-4-22 京东一面"></a>1. 2019-4-22 京东一面</h4><ol>
+<li>前端工程师的理解</li>
+<li>项目介绍</li>
+<li>Vuex 的底层实现</li>
+<li>Vue router 的实现</li>
+<li>缓存的了解</li>
+<li>Computed 和 watch 的区别</li>
+<li>Proto 和 ptototype</li>
+<li>Object.defineProperty() 方法</li>
+<li>发布订阅者模式和观察者模式的区别</li>
+<li>no-cache </li>
+<li>cache-control 可以有几个值，没有限制吧….</li>
+<li>webpack-loader</li>
+<li>其他构建工具</li>
+</ol>
+<p>面试时间:  4.22 11:01-10:32  31 分钟</p>
+<h3 id="亿联网络"><a href="#亿联网络" class="headerlink" title="亿联网络"></a>亿联网络</h3><h4 id="1-2019-4-24-亿联网络一面"><a href="#1-2019-4-24-亿联网络一面" class="headerlink" title="1. 2019-4-24 亿联网络一面"></a>1. 2019-4-24 亿联网络一面</h4><ol>
+<li>项目介绍</li>
+<li>懒加载具体实现</li>
+<li>数组打平</li>
+<li>Kmp</li>
+<li>磁盘读取</li>
+<li>数据库索引</li>
+</ol>
+<p>面试时间：4.24 17:00-17:30  30分钟</p>
+<h3 id="OPPO（获得-OFFER）"><a href="#OPPO（获得-OFFER）" class="headerlink" title="OPPO（获得 OFFER）"></a>OPPO（获得 OFFER）</h3><h4 id="1-2019-4-26-OPPO一面"><a href="#1-2019-4-26-OPPO一面" class="headerlink" title="1. 2019-4-26 OPPO一面"></a>1. 2019-4-26 OPPO一面</h4><ol>
+<li>Js 数据类型</li>
+<li>判断 Array</li>
+<li>DOMContentLoaded 事件和 Load 事件的区别</li>
+<li>闭包</li>
+<li>模块化</li>
+<li>模块循环引用</li>
+<li>Js 文件异步加载</li>
+<li>Vue 双向绑定</li>
+<li>Watch 和 computed</li>
+<li>虚拟 dom</li>
+<li>浏览器缓存</li>
+</ol>
+<p>面试时间： 4.26 14:00-14:30  30分钟</p>
+<h4 id="2-2019-5-8-OPPO二面（hr）"><a href="#2-2019-5-8-OPPO二面（hr）" class="headerlink" title="2. 2019-5-8 OPPO二面（hr）"></a>2. 2019-5-8 OPPO二面（hr）</h4><ol>
+<li>自我介绍</li>
+<li>压力最大的时候</li>
+<li>学习方法</li>
+<li>为什么选择 oppo</li>
+<li>实习时间</li>
+<li>其他的爱好</li>
+<li>其他的公司</li>
+</ol>
+<p>面试时间：5.8 16:30-16:50  20分钟</p>
+<h3 id="华为（获得-OFFER）"><a href="#华为（获得-OFFER）" class="headerlink" title="华为（获得 OFFER）"></a>华为（获得 OFFER）</h3><h4 id="1-2019-4-28-华为一面"><a href="#1-2019-4-28-华为一面" class="headerlink" title="1. 2019-4-28 华为一面"></a>1. 2019-4-28 华为一面</h4><ol>
+<li>项目经历</li>
+<li>实习时间</li>
+</ol>
+<p>面试时间： 4.28 14:00-14:25  25分钟</p>
+<h4 id="2-2019-4-28-华为二面"><a href="#2-2019-4-28-华为二面" class="headerlink" title="2. 2019-4-28 华为二面"></a>2. 2019-4-28 华为二面</h4><ol>
+<li>项目经历</li>
+<li>什么是 es5</li>
+<li>Webpack</li>
+<li>后端框架</li>
+<li>有女朋友吗</li>
+<li>工作地点</li>
+<li>实习时间</li>
+</ol>
+<p>面试时间：4.28 14:30-14:55  25分钟</p>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

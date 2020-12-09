@@ -10,21 +10,14 @@
   
   <title>Mzh&#39;s blog</title>
   <meta name="author" content="mzh">
-  <meta name="description" content="JS模块化为什么要用模块化？
+  <meta name="description" content="论前端复习前端的准备分为几个维度，分别为：日常学习习惯、前端基础知识复习、项目准备
+项目驱动型
 
-依赖管理
-命名冲突
-代码可读性
-代码复用性
+项目及其技术-&amp;gt;基于所用技术进行复习-&amp;gt;对前端新技术进行了解并加入到项目中（为项目添加亮点）-&amp;gt; 学习、巩固新知识
 
-原始方法
-把代码放在一个对象内
-IIFE立即执行函数表达式
-commonJS
+学习习惯1、复盘
 
-https://juejin.im/post/6844904019845103629#heading-19
-commonJS
-运用于服务器端n">
+每周回想一下上一周做了些什么，有什么需要改进的">
   
   
   
@@ -66,12 +59,12 @@ commonJS
 
     </div>
     <div class="meta center">
-      <time datetime="2020-11-10T03:16:17.818Z" itemprop="datePublished">
+      <time datetime="2020-11-21T17:03:24.119Z" itemprop="datePublished">
   <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
     <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
   </svg>
   &nbsp;
-  2020-11-10
+  2020-11-22
 </time>
 
 
@@ -82,29 +75,47 @@ commonJS
     </div>
     <hr>
     
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">JS模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E6%96%B9%E6%B3%95"><span class="toc-text">原始方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#commonJS"><span class="toc-text">commonJS</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BA%E5%89%8D%E7%AB%AF%E5%A4%8D%E4%B9%A0"><span class="toc-text">论前端复习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E4%B9%A0%E6%83%AF"><span class="toc-text">学习习惯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0"><span class="toc-text">前端基础知识复习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87"><span class="toc-text">项目准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%89%8D%E6%B2%BF"><span class="toc-text">前端前沿</span></a></li></ol></li></ol>
     
     <div class="picture-container">
       
     </div>
-    <h1 id="JS模块化"><a href="#JS模块化" class="headerlink" title="JS模块化"></a>JS模块化</h1><p>为什么要用模块化？</p>
-<ul>
-<li>依赖管理</li>
-<li>命名冲突</li>
-<li>代码可读性</li>
-<li>代码复用性</li>
-</ul>
-<h2 id="原始方法"><a href="#原始方法" class="headerlink" title="原始方法"></a>原始方法</h2><ul>
-<li>把代码放在一个对象内</li>
-<li>IIFE立即执行函数表达式</li>
-<li>commonJS</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://juejin.im/post/6844904019845103629#heading-19">https://juejin.im/post/6844904019845103629#heading-19</a></p>
-<h3 id="commonJS"><a href="#commonJS" class="headerlink" title="commonJS"></a>commonJS</h3><blockquote>
-<p>运用于服务器端node.js</p>
+    <h1 id="论前端复习"><a href="#论前端复习" class="headerlink" title="论前端复习"></a>论前端复习</h1><p>前端的准备分为几个维度，分别为：日常学习习惯、前端基础知识复习、项目准备</p>
+<p>项目驱动型</p>
+<blockquote>
+<p>项目及其技术-&gt;基于所用技术进行复习-&gt;对前端新技术进行了解并加入到项目中（为项目添加亮点）-&gt; 学习、巩固新知识</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports.a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">&#x27;ok&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="学习习惯"><a href="#学习习惯" class="headerlink" title="学习习惯"></a>学习习惯</h2><p>1、复盘</p>
+<blockquote>
+<p>每周回想一下上一周做了些什么，有什么需要改进的地方</p>
+</blockquote>
+<p>2、脱离手机</p>
+<p>3、每天/周设置好ddl</p>
+<blockquote>
+<p>ddl可以让人更好地完成自己的任务</p>
+</blockquote>
+<p>4、自律</p>
+<blockquote>
+<p>想要去玩的时候，冷静思考一下，这样会给你带来哪些不好的影响，同时想一下学习的话会给你带来哪些不好的影响，高下立分</p>
+</blockquote>
+<h2 id="前端基础知识复习"><a href="#前端基础知识复习" class="headerlink" title="前端基础知识复习"></a>前端基础知识复习</h2><blockquote>
+<p>要知道自己的项目用到了哪些技术，针对性复习</p>
+</blockquote>
+<p>1、刷周游学长的笔记</p>
+<p>2、面经刷题</p>
+<p>3、算法：各种排序算法精通+智力题</p>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><blockquote>
+<p>项目准备的同时要好好复习项目用到的知识点</p>
+<p>要有亮点</p>
+</blockquote>
+<p>1、智慧钥匙</p>
+<p>2、官网</p>
+<p>3、贤得家</p>
+<h2 id="前端前沿"><a href="#前端前沿" class="headerlink" title="前端前沿"></a>前端前沿</h2><p>1、vue3.0新特性</p>
+<p>2、vue源码学习</p>
+<p>3、微前端</p>
+<p>4、前端可视化</p>
+<p>5、从更高的维度来思考自己的项目</p>
 
 
   </article>

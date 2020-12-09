@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Mzh&#39;s blog</title>
+  <meta name="author" content="mzh">
+  <meta name="description" content="JS类型
+原始类型
+
+对象类型
+
+-&amp;gt;深浅拷贝
+
+
+类型转换
+
+-&amp;gt; == vs ===
+
+
+
+原型-&amp;gt;typeof vs instanceof
+-&amp;gt;继承
+this指向闭包-&amp;gt;作用域
+-&amp;gt; js垃圾收集机制
+深浅拷贝ES6
+Var let const
+
+class">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Mzh&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Mzh&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2020-12-09T07:52:37.783Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2020-12-09
+</time>
+
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS"><span class="toc-text">JS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B"><span class="toc-text">原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this%E6%8C%87%E5%90%91"><span class="toc-text">this指向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">深浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6"><span class="toc-text">ES6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">模块化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="toc-text">异步编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eventloop"><span class="toc-text">eventloop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-apply-bind"><span class="toc-text">call apply bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof%E5%8E%9F%E7%90%86"><span class="toc-text">instanceof原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1-0-2-0-3"><span class="toc-text">0.1+0.2 !&#x3D; 0.3?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-text">垃圾回收机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85-%E8%A7%82%E5%AF%9F%E6%A8%A1%E5%BC%8F"><span class="toc-text">发布订阅&#x2F;观察模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E6%B5%81-%E9%98%B2%E6%8A%96"><span class="toc-text">节流 防抖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99ajax"><span class="toc-text">手写ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F"><span class="toc-text">跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99"><span class="toc-text">正则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D"><span class="toc-text">数组去重</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h1><h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ul>
+<li><p>原始类型</p>
+</li>
+<li><p>对象类型</p>
+<blockquote>
+<p>-&gt;深浅拷贝</p>
+</blockquote>
+</li>
+<li><p>类型转换</p>
+<blockquote>
+<p>-&gt; == vs ===</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>-&gt;typeof vs instanceof</p>
+<p>-&gt;继承</p>
+<h2 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h2><h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>-&gt;作用域</p>
+<p>-&gt; js垃圾收集机制</p>
+<h2 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h2><h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><ol>
+<li><p>Var let const</p>
+</li>
+<li><p>class继承 vs 原型链继承</p>
+</li>
+<li><p>proxy</p>
+</li>
+<li><p>数组的map,filtyer,reduce操作</p>
+</li>
+</ol>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><ul>
+<li><p>回调函数</p>
+</li>
+<li><p>promise</p>
+<ul>
+<li>promise.all</li>
+<li>promise.race</li>
+</ul>
+<blockquote>
+<p>手写promise</p>
+</blockquote>
+</li>
+<li><p>Async/await</p>
+</li>
+<li><p>定时器</p>
+</li>
+</ul>
+<h2 id="eventloop"><a href="#eventloop" class="headerlink" title="eventloop"></a>eventloop</h2><h2 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call apply bind"></a>call apply bind</h2><h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><h2 id="instanceof原理"><a href="#instanceof原理" class="headerlink" title="instanceof原理"></a>instanceof原理</h2><h2 id="0-1-0-2-0-3"><a href="#0-1-0-2-0-3" class="headerlink" title="0.1+0.2 != 0.3?"></a>0.1+0.2 != 0.3?</h2><h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><h2 id="发布订阅-观察模式"><a href="#发布订阅-观察模式" class="headerlink" title="发布订阅/观察模式"></a>发布订阅/观察模式</h2><h2 id="节流-防抖"><a href="#节流-防抖" class="headerlink" title="节流 防抖"></a>节流 防抖</h2><h2 id="手写ajax"><a href="#手写ajax" class="headerlink" title="手写ajax"></a>手写ajax</h2><h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2>
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Mzh
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

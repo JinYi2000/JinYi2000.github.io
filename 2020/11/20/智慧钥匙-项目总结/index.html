@@ -10,21 +10,11 @@
   
   <title>Mzh&#39;s blog</title>
   <meta name="author" content="mzh">
-  <meta name="description" content="JS模块化为什么要用模块化？
-
-依赖管理
-命名冲突
-代码可读性
-代码复用性
-
-原始方法
-把代码放在一个对象内
-IIFE立即执行函数表达式
-commonJS
-
-https://juejin.im/post/6844904019845103629#heading-19
-commonJS
-运用于服务器端n">
+  <meta name="description" content="智慧钥匙-项目总结项目简介
+数字钥匙系统，旨在通过手机的无线接入方式与车辆（t-box）进行云
+端系统通信，实现车辆的有效绑定与远程操控，即发送允许的车辆操控指令，传递相
+关的控制操作，整合并显示车辆状态与车辆诊断等信息，使得用户对汽车的信息的掌
+控更为直接明显，对汽车的操作更加简单快捷，从而为用户">
   
   
   
@@ -66,12 +56,12 @@ commonJS
 
     </div>
     <div class="meta center">
-      <time datetime="2020-11-10T03:16:17.818Z" itemprop="datePublished">
+      <time datetime="2020-11-20T08:52:03.473Z" itemprop="datePublished">
   <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
     <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
   </svg>
   &nbsp;
-  2020-11-10
+  2020-11-20
 </time>
 
 
@@ -82,30 +72,22 @@ commonJS
     </div>
     <hr>
     
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">JS模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E6%96%B9%E6%B3%95"><span class="toc-text">原始方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#commonJS"><span class="toc-text">commonJS</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%99%BA%E6%85%A7%E9%92%A5%E5%8C%99-%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="toc-text">智慧钥匙-项目总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-text">项目简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%9A%BE%E7%82%B9"><span class="toc-text">项目难点</span></a></li></ol></li></ol>
     
     <div class="picture-container">
       
     </div>
-    <h1 id="JS模块化"><a href="#JS模块化" class="headerlink" title="JS模块化"></a>JS模块化</h1><p>为什么要用模块化？</p>
-<ul>
-<li>依赖管理</li>
-<li>命名冲突</li>
-<li>代码可读性</li>
-<li>代码复用性</li>
-</ul>
-<h2 id="原始方法"><a href="#原始方法" class="headerlink" title="原始方法"></a>原始方法</h2><ul>
-<li>把代码放在一个对象内</li>
-<li>IIFE立即执行函数表达式</li>
-<li>commonJS</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://juejin.im/post/6844904019845103629#heading-19">https://juejin.im/post/6844904019845103629#heading-19</a></p>
-<h3 id="commonJS"><a href="#commonJS" class="headerlink" title="commonJS"></a>commonJS</h3><blockquote>
-<p>运用于服务器端node.js</p>
+    <h1 id="智慧钥匙-项目总结"><a href="#智慧钥匙-项目总结" class="headerlink" title="智慧钥匙-项目总结"></a>智慧钥匙-项目总结</h1><h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><blockquote>
+<p>数字钥匙系统，旨在通过手机的无线接入方式与车辆（t-box）进行云</p>
+<p>端系统通信，实现车辆的有效绑定与远程操控，即发送允许的车辆操控指令，传递相</p>
+<p>关的控制操作，整合并显示车辆状态与车辆诊断等信息，使得用户对汽车的信息的掌</p>
+<p>控更为直接明显，对汽车的操作更加简单快捷，从而为用户提供个性化与专业化的车</p>
+<p>辆管理服务。</p>
+<p>而于系统中，web端手机控车云平台用于对车辆进行系统化管理，统筹安排并记录车</p>
+<p>辆的使用信息，从而更好的让数字钥匙能够服务于各大车主。</p>
+<p>web端更像是一个企业中台管理系统，只是将场景从企业中台管理换成了车辆管理。</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports.a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">&#x27;ok&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<h2 id="项目难点"><a href="#项目难点" class="headerlink" title="项目难点"></a>项目难点</h2>
 
   </article>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
