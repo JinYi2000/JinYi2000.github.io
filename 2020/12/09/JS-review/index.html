@@ -13,6 +13,9 @@
   <meta name="description" content="JS类型
 原始类型
 
+number string boolean null undefined symbol 
+
+
 对象类型
 
 -&amp;gt;深浅拷贝
@@ -26,11 +29,11 @@ Proxy
 
 
 
-原型-&amp;gt;typeof vs instanceof
--&amp;gt;继承
-this指向闭包-&amp;gt;作用域
--&amp;gt; js垃圾收集机制
-">
+原型
+原型链
+new操作符
+继承
+Obje">
   
   
   
@@ -88,13 +91,16 @@ this指向闭包-&amp;gt;作用域
     </div>
     <hr>
     
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS"><span class="toc-text">JS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B"><span class="toc-text">原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this%E6%8C%87%E5%90%91"><span class="toc-text">this指向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">深浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6"><span class="toc-text">ES6</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">模块化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="toc-text">异步编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eventloop"><span class="toc-text">eventloop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-apply-bind"><span class="toc-text">call apply bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof%E5%8E%9F%E7%90%86"><span class="toc-text">instanceof原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1-0-2-0-3"><span class="toc-text">0.1+0.2 !&#x3D; 0.3?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-text">垃圾回收机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85-%E8%A7%82%E5%AF%9F%E6%A8%A1%E5%BC%8F"><span class="toc-text">发布订阅&#x2F;观察模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E6%B5%81-%E9%98%B2%E6%8A%96"><span class="toc-text">节流 防抖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99ajax"><span class="toc-text">手写ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F"><span class="toc-text">跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99"><span class="toc-text">正则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D"><span class="toc-text">数组去重</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS"><span class="toc-text">JS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B"><span class="toc-text">原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this%E6%8C%87%E5%90%91"><span class="toc-text">this指向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">深浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6"><span class="toc-text">ES6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-text">模块化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="toc-text">异步编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eventloop"><span class="toc-text">eventloop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-apply-bind"><span class="toc-text">call apply bind</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof%E5%8E%9F%E7%90%86"><span class="toc-text">instanceof原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1-0-2-0-3"><span class="toc-text">0.1+0.2 !&#x3D; 0.3?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-text">垃圾回收机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85-%E8%A7%82%E5%AF%9F%E6%A8%A1%E5%BC%8F"><span class="toc-text">发布订阅&#x2F;观察模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E6%B5%81-%E9%98%B2%E6%8A%96"><span class="toc-text">节流 防抖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99ajax"><span class="toc-text">手写ajax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F"><span class="toc-text">跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99"><span class="toc-text">正则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D"><span class="toc-text">数组去重</span></a></li></ol></li></ol>
     
     <div class="picture-container">
       
     </div>
     <h1 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h1><h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ul>
 <li><p>原始类型</p>
+<blockquote>
+<p>number string boolean null undefined symbol </p>
+</blockquote>
 </li>
 <li><p>对象类型</p>
 <blockquote>
@@ -109,10 +115,20 @@ this指向闭包-&amp;gt;作用域
 </blockquote>
 </li>
 </ul>
-<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>-&gt;typeof vs instanceof</p>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><ul>
+<li>原型链</li>
+<li>new操作符</li>
+<li>继承</li>
+<li>Object.create</li>
+</ul>
+<p>-&gt;typeof vs instanceof</p>
 <p>-&gt;继承</p>
-<h2 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h2><h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>-&gt;作用域</p>
-<p>-&gt; js垃圾收集机制</p>
+<h2 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h2><p>***箭头函数</p>
+<p>window</p>
+<p>对象</p>
+<p>new</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>-&gt;作用域</p>
+<p>-&gt; js垃圾收集机制*</p>
 <h2 id="深浅拷贝"><a href="#深浅拷贝" class="headerlink" title="深浅拷贝"></a>深浅拷贝</h2><h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><ol>
 <li><p>Var let const</p>
 </li>
@@ -120,10 +136,10 @@ this指向闭包-&amp;gt;作用域
 </li>
 <li><p>proxy</p>
 </li>
-<li><p>数组的map,filtyer,reduce操作</p>
+<li><p>数组的map,filter,reduce操作</p>
 </li>
 </ol>
-<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><ul>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><ul>
 <li><p>回调函数</p>
 </li>
 <li><p>promise</p>
@@ -140,7 +156,20 @@ this指向闭包-&amp;gt;作用域
 <li><p>定时器</p>
 </li>
 </ul>
-<h2 id="eventloop"><a href="#eventloop" class="headerlink" title="eventloop"></a>eventloop</h2><h2 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call apply bind"></a>call apply bind</h2><h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><h2 id="instanceof原理"><a href="#instanceof原理" class="headerlink" title="instanceof原理"></a>instanceof原理</h2><h2 id="0-1-0-2-0-3"><a href="#0-1-0-2-0-3" class="headerlink" title="0.1+0.2 != 0.3?"></a>0.1+0.2 != 0.3?</h2><h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><h2 id="发布订阅-观察模式"><a href="#发布订阅-观察模式" class="headerlink" title="发布订阅/观察模式"></a>发布订阅/观察模式</h2><h2 id="节流-防抖"><a href="#节流-防抖" class="headerlink" title="节流 防抖"></a>节流 防抖</h2><h2 id="手写ajax"><a href="#手写ajax" class="headerlink" title="手写ajax"></a>手写ajax</h2><h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2>
+<h2 id="eventloop"><a href="#eventloop" class="headerlink" title="eventloop"></a>eventloop</h2><p>**</p>
+<h2 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call apply bind"></a>call apply bind</h2><h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><h2 id="instanceof原理"><a href="#instanceof原理" class="headerlink" title="instanceof原理"></a>instanceof原理</h2><h2 id="0-1-0-2-0-3"><a href="#0-1-0-2-0-3" class="headerlink" title="0.1+0.2 != 0.3?"></a>0.1+0.2 != 0.3?</h2><h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><h2 id="发布订阅-观察模式"><a href="#发布订阅-观察模式" class="headerlink" title="发布订阅/观察模式"></a>发布订阅/观察模式</h2><h2 id="节流-防抖"><a href="#节流-防抖" class="headerlink" title="节流 防抖"></a>节流 防抖</h2><h2 id="手写ajax"><a href="#手写ajax" class="headerlink" title="手写ajax"></a>手写ajax</h2><h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><ul>
+<li><p>浏览器同源策略</p>
+</li>
+<li><p>jsonp *</p>
+</li>
+</ul>
+<ul>
+<li><p>cors</p>
+</li>
+<li><p>服务器代理</p>
+</li>
+</ul>
+<h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2>
 
   </article>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
